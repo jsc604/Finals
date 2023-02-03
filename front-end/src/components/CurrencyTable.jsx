@@ -23,9 +23,9 @@ export default function CurrencyTable(props) {
           <th scope="col">Symbol</th>
           <th scope="col">Name</th>
           <th scope="col">Price</th>
-          <th scope="col">24hr change</th>
-          <th scope="col">24hr high</th>
-          <th scope="col">24hr low</th>
+          <th scope="col">24hr Change</th>
+          <th scope="col">24hr High</th>
+          <th scope="col">24hr Low</th>
           <th scope="col">Volume</th>
           <th scope="col">Market Cap</th>
           <th scope="col">Chart</th>

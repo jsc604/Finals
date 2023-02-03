@@ -16,7 +16,7 @@ export default function Dashboard(props) {
         <div>
           <button
             className={classNames("btn btn-outline-warning", {
-              "active": activeButton === "Stocks",
+              active: activeButton === "Stocks",
             })}
             type="button"
             onClick={handleButtonClick}
@@ -25,7 +25,7 @@ export default function Dashboard(props) {
           </button>
           <button
             className={classNames("btn btn-outline-warning", {
-              "active": activeButton === "Crypto",
+              active: activeButton === "Crypto",
             })}
             type="button"
             onClick={handleButtonClick}
@@ -34,7 +34,7 @@ export default function Dashboard(props) {
           </button>
           <button
             className={classNames("btn btn-outline-warning", {
-              "active": activeButton === "NFT's",
+              active: activeButton === "NFT's",
             })}
             type="button"
             onClick={handleButtonClick}
@@ -46,7 +46,7 @@ export default function Dashboard(props) {
         <div>
           <button
             className={classNames("btn btn-outline-warning", {
-              "active": activeButton === "Watchlist",
+              active: activeButton === "Watchlist",
             })}
             type="button"
             onClick={handleButtonClick}
@@ -59,6 +59,7 @@ export default function Dashboard(props) {
       {activeButton === "Stocks" && <CurrencyTable />}
       {activeButton === "Crypto" && <CurrencyTable />}
       {activeButton === "NFT's" && <NftTable />}
+      {activeButton === "Watchlist" && <CurrencyTable />}
     </main>
   );
-};
+}
