@@ -2,17 +2,17 @@ import CurrencyItems from "./CurrencyItems";
 import coinData from "../samples/coinData";
 
 export default function CurrencyTable(props) {
-  let currencyItems = coinData.map((coin, i) => (
+  let currencyItems = coinData.map((token, i) => (
     <CurrencyItems
       key={i}
-      symbol={coin.symbol}
-      name={coin.name}
-      volume={coin.total_volume}
-      price={coin.current_price}
-      change={coin.price_change_percentage_24h}
-      high={coin.high_24h}
-      low={coin.low_24h}
-      marketCap={coin.market_cap}
+      symbol={token.symbol}
+      name={token.name}
+      volume={token.total_volume}
+      price={token.current_price}
+      change={token.price_change_percentage_24h}
+      high={token.high_24h}
+      low={token.low_24h}
+      marketCap={token.market_cap}
     />
   ));
 
