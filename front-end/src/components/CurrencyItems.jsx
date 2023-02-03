@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+
 export default function CurrencyItems(props) {
   return (
     <tr>
@@ -8,6 +11,7 @@ export default function CurrencyItems(props) {
       <td>-0.87448</td>
       <td>24196</td>
       <td>23520</td>
+      <td><FontAwesomeIcon icon={faCaretDown} /></td>
     </tr>
   );
 };

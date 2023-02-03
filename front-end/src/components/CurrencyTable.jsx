@@ -12,11 +12,12 @@ export default function CurrencyTable(props) {
           <th scope="col">24 hr change(%)</th>
           <th scope="col">24 hr high(usd)</th>
           <th scope="col">24 hr low(usd)</th>
+          <th scope="col">Chart</th>
         </tr>
       </thead>
       <tbody>
-       {CurrencyItems}
+        <CurrencyItems />
       </tbody>
     </table>
   );
-};
+}
