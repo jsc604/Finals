@@ -13,10 +13,10 @@ export default function NftItems(props) {
   return (
     <tr>
       <td>{props.collection}</td>
-      <td><i class="fa-brands fa-ethereum"></i>{formatNumber(props.volume)}</td>
-      <td><i class="fa-brands fa-ethereum"></i>{formatNumber(props.price)}</td>
+      <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.volume)}</td>
+      <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.price)}</td>
       <td className={percentChange}>{props.change}%</td>
-      <td><i class="fa-brands fa-ethereum"></i>{formatNumber(props.marketCap)}</td>
+      <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.marketCap)}</td>
       <td><FontAwesomeIcon icon={faCaretDown} /></td>
     </tr>
   );
