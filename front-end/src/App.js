@@ -4,10 +4,17 @@ import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard"
 import Home from "./components/Home";
+//SEARCHES FOR CRYPTO DATA
+import CallCrypto from './components/CallCryptoData'; 
+// SEARCHES FOR MOST POPULAR NFTS
+import CallNFT from './components/CallNFTData'; 
+// MATCHES CALLNFT API CONTRACT ADDRESS WITH FLOOR API CONTRACT ADDRESS TO DISPLAY FLOOR PRICE AND OTHER METRICS
+import CallNFTFloor from './components/CallNFTFloorPrice' 
+// CALLS STOCK API PER TICKER
+import CallStocks from './components/CallStockData'
 
 
-function App() {
-
+export default function App() {
   return (
     <div className="App">
       <Header />
@@ -18,5 +25,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
