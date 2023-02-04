@@ -38,6 +38,7 @@ export default function CurrencyTable(props) {
     <CurrencyItems
       key={i}
       rank={token.market_cap_rank}
+      logo={token.image}
       symbol={token.symbol}
       name={token.name}
       volume={token.total_volume}

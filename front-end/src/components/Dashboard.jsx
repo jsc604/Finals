@@ -4,7 +4,7 @@ import { useState } from "react";
 import classNames from "classnames";
 
 export default function Dashboard(props) {
-  const [activeButton, setActiveButton] = useState("Stocks");
+  const [activeButton, setActiveButton] = useState("Crypto");
 
   const handleButtonClick = (event) => {
     setActiveButton(event.target.innerText);

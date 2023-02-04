@@ -14,11 +14,12 @@ export default function CurrencyItems(props) {
     "negative": props.change < 0
   });
 
+  
   return (
     <>
       <tr>
         <td>{props.rank}</td>
-        <td>{props.symbol.toUpperCase()}</td>
+        <td className="symbol-data"> <img src={props.logo} alt="logo"/>  {props.symbol.toUpperCase()}</td>
         <td>{props.name}</td>
         <td>${formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change}%</td>
