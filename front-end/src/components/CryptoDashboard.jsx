@@ -3,7 +3,6 @@ import "../styles/tableItems.scss";
 import formatNumber from "../helpers/table_helpers";
 import { Link } from "react-router-dom";
 import coinData from "../samples/coinData";
-import CallCrypto from "./CallCryptoData";
 
 export default function CryptoDashboard(props) {
   return (
