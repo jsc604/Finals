@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./styles/app.scss";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard"
+import CryptoDashboard from "./components/CryptoDashboard"
+import NftDashBoard from "./components/NftDashboard"
 import Home from "./components/Home";
 //SEARCHES FOR CRYPTO DATA
 import CallCrypto from './components/CallCryptoData'; 
@@ -20,7 +21,12 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/dashboard">
+          <Route path="stocks" />
+          <Route path="crypto" element={<CryptoDashboard />}/>
+          <Route path="nft" element={<NftDashBoard />} />
+        </Route>
+        <Route path="*" element={<Home/>} />
       </Routes>
     </div>
   );

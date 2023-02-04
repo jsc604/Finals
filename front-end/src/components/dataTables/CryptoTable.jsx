@@ -1,10 +1,9 @@
-import CurrencyItems from "./CurrencyItems";
-import coinData from "../samples/coinData";
+import CryptoItems from "./CryptoItems";
 import { useState } from "react";
 
-export default function CurrencyTable(props) {
+export default function CryptoTable(props) {
 
-  const [sortedData, setSortedData] = useState(coinData);
+  const [sortedData, setSortedData] = useState(props.data);
   const [order, setOrder] = useState("asc");
   const [sortKey, setSortKey] = useState("");
 
@@ -35,7 +34,8 @@ export default function CurrencyTable(props) {
   };
 
   let currencyItems = sortedData.map((token, i) => (
-    <CurrencyItems
+    <CryptoItems
+      formatNumber={props.formatNumber}
       key={i}
       rank={token.market_cap_rank}
       logo={token.image}

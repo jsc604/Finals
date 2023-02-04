@@ -1,11 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import formatNumber from "../helpers/table_helpers";
 import classNames from "classnames";
-import "../styles/currencyItems.scss";
 import { useState } from "react";
 
-export default function CurrencyItems(props) {
+export default function CryptoItems(props) {
 
   const [dropdown, setDropdown] = useState(false);
 
@@ -13,7 +11,6 @@ export default function CurrencyItems(props) {
     "positive": props.change >= 0,
     "negative": props.change < 0
   });
-
   
   return (
     <>
@@ -21,12 +18,12 @@ export default function CurrencyItems(props) {
         <td>{props.rank}</td>
         <td className="symbol-data"> <img src={props.logo} alt="logo"/>  {props.symbol.toUpperCase()}</td>
         <td>{props.name}</td>
-        <td>${formatNumber(props.price)}</td>
+        <td>${props.formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change}%</td>
-        <td>${formatNumber(props.high)}</td>
-        <td>${formatNumber(props.low)}</td>
-        <td>${formatNumber(props.volume)}</td>
-        <td>${formatNumber(props.marketCap)}</td>
+        <td>${props.formatNumber(props.high)}</td>
+        <td>${props.formatNumber(props.low)}</td>
+        <td>${props.formatNumber(props.volume)}</td>
+        <td>${props.formatNumber(props.marketCap)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
       {dropdown && <tr><td colSpan={10}>Chart</td></tr>}

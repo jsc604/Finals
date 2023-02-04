@@ -1,10 +1,9 @@
-import nftData from "../samples/nftData";
 import NftItems from "./NftItems";
 import { useState } from "react";
 
 export default function NftTable(props) {
 
-  const [sortedData, setSortedData] = useState(nftData);
+  const [sortedData, setSortedData] = useState(props.data);
   const [order, setOrder] = useState("asc");
   const [sortKey, setSortKey] = useState("");
 
@@ -37,6 +36,7 @@ export default function NftTable(props) {
   let nftItems = sortedData.map((nft, i) => (
     <NftItems
       key={i}
+      image={nft.image.small}
       collection={nft.name}
       volume={nft.volume_24h.native_currency}
       price={nft.floor_price.native_currency}
@@ -45,6 +45,7 @@ export default function NftTable(props) {
       holders={nft.number_of_unique_addresses}
       holdersChange={nft.number_of_unique_addresses_24h_percentage_change}
       supply={nft.total_supply}
+      formatNumber={props.formatNumber}
     />
   ));
 

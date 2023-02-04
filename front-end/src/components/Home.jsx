@@ -14,7 +14,7 @@ export default function Home(props) {
       </div>
       <div className="homepage-button-group">
         <HomepageButton>Stocks</HomepageButton>
-        <HomepageButton><Link to="dashboard">Crypto</Link></HomepageButton>
+        <HomepageButton><Link to="dashboard/crypto">Crypto</Link></HomepageButton>
         <HomepageButton>NFT</HomepageButton>
       </div>
     </>
