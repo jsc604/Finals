@@ -17,6 +17,7 @@ export default function CurrencyItems(props) {
   return (
     <>
       <tr>
+        <td>{props.rank}</td>
         <td>{props.symbol.toUpperCase()}</td>
         <td>{props.name}</td>
         <td>${formatNumber(props.price)}</td>
@@ -27,7 +28,7 @@ export default function CurrencyItems(props) {
         <td>${formatNumber(props.marketCap)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={9}>Chart</td></tr>}
+      {dropdown && <tr><td colSpan={10}>Chart</td></tr>}
     </>
   );
 };

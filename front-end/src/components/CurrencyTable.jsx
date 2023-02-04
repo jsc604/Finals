@@ -1,10 +1,43 @@
 import CurrencyItems from "./CurrencyItems";
 import coinData from "../samples/coinData";
+import { useState } from "react";
 
 export default function CurrencyTable(props) {
-  let currencyItems = coinData.map((token, i) => (
+
+  const [sortedData, setSortedData] = useState(coinData);
+  const [order, setOrder] = useState("asc");
+  const [sortKey, setSortKey] = useState("");
+
+  const sortData = (key) => {
+    let newSortedData = [...sortedData];
+    if (sortKey === key) {
+      setOrder(order === "asc" ? "desc" : "asc");
+    } else {
+      setSortKey(key);
+      setOrder("asc");
+    };
+
+    newSortedData.sort((a, b) => {
+      let valueA = a[key];
+      let valueB = b[key];
+      if (typeof valueA === "string") {
+        valueA = valueA.toLowerCase();
+        valueB = valueB.toLowerCase();
+      }
+      if (order === "asc") {
+        return valueA > valueB ? 1 : -1;
+      } else {
+        return valueA < valueB ? 1 : -1;
+      }
+    });
+
+    setSortedData(newSortedData);
+  };
+
+  let currencyItems = sortedData.map((token, i) => (
     <CurrencyItems
       key={i}
+      rank={token.market_cap_rank}
       symbol={token.symbol}
       name={token.name}
       volume={token.total_volume}
@@ -20,14 +53,15 @@ export default function CurrencyTable(props) {
     <table className="table table-dark table-hover">
       <thead>
         <tr>
-          <th scope="col">Symbol</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">24hr Change</th>
-          <th scope="col">24hr High</th>
-          <th scope="col">24hr Low</th>
-          <th scope="col">Volume</th>
-          <th scope="col">Market Cap</th>
+          <th scope="col" onClick={() => sortData('market_cap_rank')}>Rank</th>
+          <th scope="col" onClick={() => sortData('symbol')}>Symbol</th>
+          <th scope="col" onClick={() => sortData('name')}>Name</th>
+          <th scope="col" onClick={() => sortData('current_price')}>Price</th>
+          <th scope="col" onClick={() => sortData('price_change_percentage_24h')}>24hr Change</th>
+          <th scope="col" onClick={() => sortData('high_24h')}>24hr High</th>
+          <th scope="col" onClick={() => sortData('low_24h')}>24hr Low</th>
+          <th scope="col" onClick={() => sortData('total_volume')}>Volume</th>
+          <th scope="col" onClick={() => sortData('market_cap')}>Market Cap</th>
           <th scope="col">Chart</th>
         </tr>
       </thead>

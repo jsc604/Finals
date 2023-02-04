@@ -12,7 +12,7 @@ export default function Dashboard(props) {
 
   return (
     <main>
-      <nav class="navbar navbar-light bg-dark">
+      <nav className="navbar navbar-light bg-dark">
         <div>
           <button
             className={classNames("btn btn-outline-warning", {
