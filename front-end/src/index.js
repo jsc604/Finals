@@ -11,7 +11,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    ReactDOM.render(
   <Auth0Provider
     domain="YOUR_DOMAIN"
     clientId="YOUR_CLIENT_ID"
