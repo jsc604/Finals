@@ -5,12 +5,21 @@ import App from './App';
 // import testAppAPI from './test-App-API';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    ReactDOM.render(
+  <Auth0Provider
+    domain="YOUR_DOMAIN"
+    clientId="YOUR_CLIENT_ID"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}>
       <App />
+      </Auth0Provider>,
     </BrowserRouter>
   </React.StrictMode>
 );
