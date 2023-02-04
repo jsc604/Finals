@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './styles/app.scss'
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import "./styles/app.scss";
+import axios from "axios";
+import HomepageButton from "./components/HomepageButton";
+import Header from "./components/Header";
+
 
 function App() {
   const [nftData, setNftData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
+
   useEffect(() => {
-    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=canto&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-      .then(response => {
+    axios
+      .get(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=canto&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      )
+      .then((response) => {
         setNftData(response.data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setError(error);
         setLoading(false);
       });
@@ -24,7 +31,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          
           <p>Loading...</p>
         </header>
       </div>
@@ -33,18 +40,17 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {error ? <p>{error.toString()}</p> : <p>{JSON.stringify(nftData[0].current_price)}</p>}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div>
+        <h2>
+          "You miss 100% of the shots you don't take" - Michael Scott  -- Michael Jordan
+        </h2>
+      </div>
+      <div className="homepage-button-group">
+        <HomepageButton>Stocks</HomepageButton>
+        <HomepageButton>Crypto</HomepageButton>
+        <HomepageButton>NFT</HomepageButton>
+      </div>
     </div>
   );
 }

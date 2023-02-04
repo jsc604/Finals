@@ -1,0 +1,18 @@
+.header {
+  background-color: #b1b8c400;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+}
+  
+.buttons {
+  background-color: red;
+  justify-content: space-between;
+}
+
+.logged-in {
+  background-color: white;
+  font-size: 2em;
+  border-radius: 25px;
+}

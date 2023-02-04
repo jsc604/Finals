@@ -1,0 +1,16 @@
+.login-button {
+  background-color: white;
+  font-size: 2em;
+  border-radius: 25px;
+  margin-right: 25px;
+  padding: .20em 1em;
+
+ &:hover, 
+ &:focus {
+  background-color: black;
+  color: white;
+  border: white;
+ }
+} 
+
+
