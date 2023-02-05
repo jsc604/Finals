@@ -5,7 +5,6 @@ export default function useCryptoData(param) {
   const [cryptoData, setCryptoData] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [tab, setTab] = useState('');
 
   axios.defaults.baseURL = 'https://api.coingecko.com/api/v3'; 
 
@@ -16,7 +15,6 @@ export default function useCryptoData(param) {
       .then(response => {
         if (shouldLog.current) {
           shouldLog.current = false;
-          setTab('crypto')
           setLoading(true);
           setCryptoData(response.data);
         };
@@ -25,7 +23,7 @@ export default function useCryptoData(param) {
       .finally(() => {setLoading(false);});
   }, []);
 
-  return { error, loading, cryptoData, tab };
+  return { error, loading, cryptoData };
 }
 
 // export default function useNFTdata(collectionName) {

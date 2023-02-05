@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import Header2 from "./components/Header2";
 import { Routes, Route } from "react-router-dom";
 import CryptoDashboard from "./components/CryptoDashboard"

@@ -1,6 +1,5 @@
 import "../styles/tableItems.scss";
 import formatNumber from "../helpers/table_helpers";
-import { Link } from "react-router-dom";
 import CryptoTable from "./dataTables/CryptoTable";
 import coinData from "../samples/coinData";
 import Navigation from "./Navigation";
