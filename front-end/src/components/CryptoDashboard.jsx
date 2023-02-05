@@ -1,6 +1,6 @@
 import CryptoTable from "./dataTables/CryptoTable";
 import "../styles/tableItems.scss";
-import formatNumber from "../helpers/table_helpers";
+import {formatNumber} from "../helpers/table_helpers";
 import useCryptoData from "../hooks/useCryptoData";
 import Navigation from "./Navigation";
 

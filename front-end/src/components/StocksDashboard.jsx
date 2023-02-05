@@ -1,5 +1,5 @@
 import "../styles/tableItems.scss";
-import formatNumber from "../helpers/table_helpers";
+import {formatNumber} from "../helpers/table_helpers";
 import CryptoTable from "./dataTables/CryptoTable";
 import coinData from "../samples/coinData";
 import Navigation from "./Navigation";
