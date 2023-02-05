@@ -1,36 +1,16 @@
 import CryptoTable from "./dataTables/CryptoTable";
 import "../styles/tableItems.scss";
 import formatNumber from "../helpers/table_helpers";
-import { Link } from "react-router-dom";
-import coinData from "../samples/coinData";
+import useCryptoData from "../hooks/useCryptoData";
+import Navigation from "./Navigation";
 
 export default function CryptoDashboard(props) {
+  const { cryptoData, loading, tab } = useCryptoData('/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false'); 
+   
   return (
     <main>
-      <nav className="navbar navbar-light bg-dark">
-        <div>
-          <button className="btn btn-outline-warning" type="button">
-            <Link to="/dashboard/stocks">Stocks</Link>
-          </button>
-          <button className="btn btn-outline-warning active" type="button">
-            <Link to="/dashboard/crypto">Crypto</Link>
-          </button>
-          <button className="btn btn-outline-warning" type="button">
-            <Link to="/dashboard/nft">NFT's</Link>
-          </button>
-        </div>
-
-        <div>
-          <button className="btn btn-outline-warning" type="button">
-            Watchlist
-          </button>
-        </div>
-      </nav>
-
-      <CryptoTable 
-        formatNumber={formatNumber} 
-        data={coinData} 
-      />
+      <Navigation tab={tab} />
+      {cryptoData && <CryptoTable formatNumber={formatNumber} data={cryptoData} />}
     </main>
   );
-}
+};

@@ -1,24 +1,31 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-export default function useCryptoData() {
+export default function useCryptoData(param) {
   const [cryptoData, setCryptoData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [tab, setTab] = useState('');
 
+  axios.defaults.baseURL = 'https://api.coingecko.com/api/v3'; 
+
+  const shouldLog = useRef(true);
+  
   useEffect(() => {
-    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=canto&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
+    axios.get(param)
       .then(response => {
-        setCryptoData(response.data);
-        setLoading(false);
+        if (shouldLog.current) {
+          shouldLog.current = false;
+          setTab('crypto')
+          setLoading(true);
+          setCryptoData(response.data);
+        };
       })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
+      .catch(error => {setError(error);})
+      .finally(() => {setLoading(false);});
   }, []);
 
-  return [error, loading, cryptoData];
+  return { error, loading, cryptoData, tab };
 }
 
 // export default function useNFTdata(collectionName) {

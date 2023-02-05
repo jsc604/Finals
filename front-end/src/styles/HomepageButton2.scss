@@ -1,0 +1,17 @@
+.homepage-button {
+  height: 60px;
+  width: 150px;
+  background-color: #212529;
+  font-size: 2em;
+  border-radius: 25px;
+  box-shadow: #ffc107 0px 3px 8px;
+  color: #ffc107;
+  
+  &:hover, 
+  &:focus {
+    background-color: #ffc107;
+    color: #212529;
+    border: #212529;
+  }
+}
+

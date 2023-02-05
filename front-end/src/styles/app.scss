@@ -9,14 +9,16 @@ button {
 .App {
   min-height: 100vh;
   text-align: center;
-  background-image: url('../../public/wave.gif');
+  // background-image: url('../../public/wave.gif');
+  background-image: url('https://i.pinimg.com/originals/f9/4d/f1/f94df1f75eb518ade0f5c608c21e36f6.gif');
   background-size: 100%;
 }
 
 
 
 .App h2 {
-  margin-top: 200px
+  margin-top: 200px;
+  color: #ffc107;
 }
 
 .homepage-button-group {
