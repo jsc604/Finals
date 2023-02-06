@@ -9,6 +9,7 @@ export default function CryptoDashboard(props) {
    
   return (
     <main>
+      <h1><strong>Top Crypto Currencies</strong></h1>
       <Navigation tab={'crypto'} />
       {cryptoData && <CryptoTable formatNumber={formatNumber} data={cryptoData} />}
     </main>

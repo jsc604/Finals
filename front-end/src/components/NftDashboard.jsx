@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 export default function NftDashboard(props) {
   return (
     <main>
+      <h1><strong>Top NFT Collections</strong></h1>
       <Navigation tab={'nft'} />
       <NftTable 
         formatNumber={formatNumber}

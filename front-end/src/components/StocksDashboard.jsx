@@ -8,6 +8,7 @@ export default function StocksDashboard(props) {
 
   return (
     <main>
+      <h1><strong>Top Stocks</strong></h1>
       <Navigation tab={'stocks'} />
       {coinData && <CryptoTable formatNumber={formatNumber} data={coinData} />}
     </main>

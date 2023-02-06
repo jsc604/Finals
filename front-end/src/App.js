@@ -4,6 +4,7 @@ import CryptoDashboard from "./components/CryptoDashboard"
 import NftDashBoard from "./components/NftDashboard"
 import StocksDashboard from "./components/StocksDashboard";
 import Home from "./components/Home";
+import CryptoInfo from "./components/info/CryptoInfo";
 //SEARCHES FOR CRYPTO DATA
 import CallCrypto from './components/CallCryptoData'; 
 // SEARCHES FOR MOST POPULAR NFTS
@@ -21,7 +22,9 @@ export default function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/dashboard">
           <Route path="stocks" element={<StocksDashboard />} />
-          <Route path="crypto" element={<CryptoDashboard />}/>
+          <Route path="crypto" element={<CryptoDashboard />}>
+            <Route path=":id" element={<CryptoInfo/>} />
+          </Route>
           <Route path="nft" element={<NftDashBoard />} />
         </Route>
         <Route path="*" element={<Home/>} />
