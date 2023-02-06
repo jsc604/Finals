@@ -1,5 +1,6 @@
 import CryptoItems from "./CryptoItems";
 import { useState } from "react";
+import "../../styles/tableItems.scss";
 
 export default function CryptoTable(props) {
 
@@ -35,7 +36,6 @@ export default function CryptoTable(props) {
 
   let currencyItems = sortedData.map((token, i) => (
     <CryptoItems
-      formatNumber={props.formatNumber}
       key={i}
       rank={token.market_cap_rank}
       logo={token.image}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function useCryptoData(param) {
@@ -8,23 +8,27 @@ export default function useCryptoData(param) {
 
   axios.defaults.baseURL = 'https://api.coingecko.com/api/v3'; 
 
-  const shouldLog = useRef(true);
-  
   useEffect(() => {
+    let cancel = false;
+
     axios.get(param)
       .then(response => {
-        if (shouldLog.current) {
-          shouldLog.current = false;
+        if (!cancel) {
           setLoading(true);
           setCryptoData(response.data);
-        };
+        }
       })
       .catch(error => {setError(error);})
       .finally(() => {setLoading(false);});
+
+    return () => {
+      cancel = true;
+    };
   }, []);
 
   return { error, loading, cryptoData };
 }
+
 
 // export default function useNFTdata(collectionName) {
 //   const [nftData, setNftData] = useState(null);

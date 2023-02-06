@@ -1,5 +1,6 @@
 import NftItems from "./NftItems";
 import { useState } from "react";
+import "../../styles/tableItems.scss";
 
 export default function NftTable(props) {
 
@@ -45,7 +46,6 @@ export default function NftTable(props) {
       holders={nft.number_of_unique_addresses}
       holdersChange={nft.number_of_unique_addresses_24h_percentage_change}
       supply={nft.total_supply}
-      formatNumber={props.formatNumber}
       id={nft.id}
     />
   ));
