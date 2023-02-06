@@ -17,6 +17,9 @@ img {
 .symbol-data {
  
   align-items: center;
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 a:link { text-decoration: none; color: inherit;}

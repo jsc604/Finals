@@ -3,6 +3,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import classNames from "classnames";
 import { useState } from "react";
 import { trendingDown, trendingUp } from "../../helpers/table_helpers";
+import { Link } from "react-router-dom";
 
 export default function NftItems(props) {
 
@@ -16,7 +17,11 @@ export default function NftItems(props) {
   return (
     <>
       <tr>
-        <td><img src={props.image} alt="logo"/>  {props.collection}</td>
+        <td className="symbol-data">
+         <Link to={`/nft/${props.id}`}>
+            <img src={props.image} alt="logo"/>  {props.collection}
+         </Link> 
+        </td>
         <td><i className="fa-brands fa-ethereum"></i>{props.formatNumber(props.volume)}</td>
         <td><i className="fa-brands fa-ethereum"></i>{props.formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>

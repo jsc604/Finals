@@ -11,13 +11,13 @@ export default function Navigation(props) {
     <nav className="navbar navbar-light bg-dark">
       <div>
         <button className={stockButton} type="button">
-          <Link to="/dashboard/stocks">Stocks</Link>
+          <Link to="/stocks/dashboard">Stocks</Link>
         </button>
         <button className={cryptoButton} type="button">
-          <Link to="/dashboard/crypto">Crypto</Link>
+          <Link to="/crypto/dashboard">Crypto</Link>
         </button>
         <button className={nftButton} type="button">
-          <Link to="/dashboard/nft">NFT's</Link>
+          <Link to="/nft/dashboard">NFT's</Link>
         </button>
       </div>
 

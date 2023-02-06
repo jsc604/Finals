@@ -46,6 +46,7 @@ export default function NftTable(props) {
       holdersChange={nft.number_of_unique_addresses_24h_percentage_change}
       supply={nft.total_supply}
       formatNumber={props.formatNumber}
+      id={nft.id}
     />
   ));
 

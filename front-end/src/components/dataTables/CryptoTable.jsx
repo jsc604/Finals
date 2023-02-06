@@ -47,6 +47,7 @@ export default function CryptoTable(props) {
       high={token.high_24h}
       low={token.low_24h}
       marketCap={token.market_cap}
+      id={token.id}
     />
   ));
 

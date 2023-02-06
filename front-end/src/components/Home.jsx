@@ -20,12 +20,12 @@ export default function Home(props) {
         </h2>
       </div>
       <div className="homepage-button-group">
-        <HomepageButton><Link to="dashboard/stocks">Stocks</Link></HomepageButton>
-        <HomepageButton><Link to="dashboard/crypto">Crypto</Link></HomepageButton>
-        <HomepageButton><Link to="dashboard/nft">Nft</Link></HomepageButton>
-        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="dashboard/nft">Stocks</Link></button> */}
-        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="dashboard/nft">Crypto</Link></button> */}
-        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="dashboard/nft">Nft</Link></button> */}
+        <HomepageButton><Link to="stocks/dashboard">Stocks</Link></HomepageButton>
+        <HomepageButton><Link to="crypto/dashboard">Crypto</Link></HomepageButton>
+        <HomepageButton><Link to="nft/dashboard">Nft</Link></HomepageButton>
+        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="stocks/dashboard">Stocks</Link></button> */}
+        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="crypto/dashboard">Crypto</Link></button> */}
+        {/* <button className="btn btn-lg btn-outline-warning btn-dark" type="button" style={style}><Link to="nft/dashboard">Nft</Link></button> */}
       </div>
     </>
   );

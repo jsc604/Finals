@@ -3,6 +3,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import classNames from "classnames";
 import { useState } from "react";
 import { trendingDown, trendingUp } from "../../helpers/table_helpers";
+import { Link } from "react-router-dom";
 
 export default function CryptoItems(props) {
 
@@ -17,7 +18,11 @@ export default function CryptoItems(props) {
     <>
       <tr>
         <td>{props.rank}</td>
-        <td className="symbol-data"> <img src={props.logo} alt="logo"/>  {props.name} ({props.symbol.toUpperCase()})</td>
+        <td className="symbol-data"> 
+          <Link to={`/crypto/${props.id}`}>
+            <img src={props.logo} alt="logo"/>  {props.name} ({props.symbol.toUpperCase()})
+          </Link>
+        </td>
         <td>${props.formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
         <td>${props.formatNumber(props.high)}</td>

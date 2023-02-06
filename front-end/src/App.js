@@ -1,16 +1,16 @@
 import Header2 from "./components/Header2";
 import { Routes, Route } from "react-router-dom";
-import CryptoDashboard from "./components/CryptoDashboard"
-import NftDashBoard from "./components/NftDashboard"
-import StocksDashboard from "./components/StocksDashboard";
 import Home from "./components/Home";
+import StocksDashboard from "./components/StocksDashboard";
+import CryptoDashboard from "./components/CryptoDashboard"
+import NftDashboard from "./components/NftDashboard"
 import CryptoInfo from "./components/info/CryptoInfo";
 //SEARCHES FOR CRYPTO DATA
-import CallCrypto from './components/CallCryptoData'; 
+import CallCrypto from './components/CallCryptoData';
 // SEARCHES FOR MOST POPULAR NFTS
-import CallNFT from './components/CallNFTData'; 
+import CallNFT from './components/CallNFTData';
 // MATCHES CALLNFT API CONTRACT ADDRESS WITH FLOOR API CONTRACT ADDRESS TO DISPLAY FLOOR PRICE AND OTHER METRICS
-import CallNFTFloor from './components/CallNFTFloorPrice' 
+import CallNFTFloor from './components/CallNFTFloorPrice'
 // CALLS STOCK API PER TICKER
 import CallStocks from './components/CallStockData'
 
@@ -19,15 +19,26 @@ export default function App() {
     <div className="App">
       <Header2 />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/dashboard">
-          <Route path="stocks" element={<StocksDashboard />} />
-          <Route path="crypto" element={<CryptoDashboard />}>
-            <Route path=":id" element={<CryptoInfo/>} />
-          </Route>
-          <Route path="nft" element={<NftDashBoard />} />
+
+        <Route path="/" element={<Home />} />
+
+        <Route path="stocks">
+          <Route path="dashboard" element={<StocksDashboard />} />
+          <Route path=":id" element={<CryptoInfo />} />
         </Route>
-        <Route path="*" element={<Home/>} />
+
+        <Route path="crypto">
+          <Route path="dashboard" element={<CryptoDashboard />} />
+          <Route path=":id" element={<CryptoInfo />} />
+        </Route>
+
+        <Route path="nft">
+          <Route path="dashboard" element={<NftDashboard />} />
+          <Route path=":id" element={<CryptoInfo />} />
+        </Route>
+
+        <Route path="*" element={<Home />} />
+
       </Routes>
     </div>
   );
