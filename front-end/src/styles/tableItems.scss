@@ -1,0 +1,32 @@
+td.positive {
+  color: #56af3b;
+}
+
+td.negative {
+  color: #EE4B2B;
+}
+
+img {
+
+  height: 20px;
+  width: 20px;
+  margin-bottom: 2px;
+  
+}
+
+.symbol-data {
+ 
+  align-items: center;
+  :hover {
+    text-decoration: underline;
+  }
+}
+
+a:link { text-decoration: none; color: inherit;}
+a:visited { text-decoration: none; color: inherit;}
+a:hover { text-decoration: none; color: inherit;}
+a:active { text-decoration: none; color: inherit;}
+
+h1 {
+  color: #ffc107;
+}

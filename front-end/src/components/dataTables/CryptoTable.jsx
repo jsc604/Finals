@@ -1,10 +1,10 @@
-import CurrencyItems from "./CurrencyItems";
-import coinData from "../samples/coinData";
+import CryptoItems from "./CryptoItems";
 import { useState } from "react";
+import "../../styles/tableItems.scss";
 
-export default function CurrencyTable(props) {
+export default function CryptoTable(props) {
 
-  const [sortedData, setSortedData] = useState(coinData);
+  const [sortedData, setSortedData] = useState(props.data);
   const [order, setOrder] = useState("asc");
   const [sortKey, setSortKey] = useState("");
 
@@ -35,7 +35,7 @@ export default function CurrencyTable(props) {
   };
 
   let currencyItems = sortedData.map((token, i) => (
-    <CurrencyItems
+    <CryptoItems
       key={i}
       rank={token.market_cap_rank}
       logo={token.image}
@@ -47,6 +47,7 @@ export default function CurrencyTable(props) {
       high={token.high_24h}
       low={token.low_24h}
       marketCap={token.market_cap}
+      id={token.id}
     />
   ));
 
@@ -55,8 +56,7 @@ export default function CurrencyTable(props) {
       <thead>
         <tr>
           <th scope="col" onClick={() => sortData('market_cap_rank')}>Rank</th>
-          <th scope="col" onClick={() => sortData('symbol')}>Symbol</th>
-          <th scope="col" onClick={() => sortData('name')}>Name</th>
+          <th scope="col" onClick={() => sortData('name')}>Token</th>
           <th scope="col" onClick={() => sortData('current_price')}>Price</th>
           <th scope="col" onClick={() => sortData('price_change_percentage_24h')}>24hr Change</th>
           <th scope="col" onClick={() => sortData('high_24h')}>24hr High</th>

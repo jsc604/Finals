@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@300&display=swap');
+
+body,
+button {
+  font-family: 'Asap';
+
+}
+
+.App {
+  min-height: 100vh;
+  text-align: center;
+  background-image: url('../../public/wave.gif');
+  background-size: 100%;
+}
+
+
+
+.App h2 {
+  margin-top: 200px
+}
