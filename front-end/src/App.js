@@ -5,6 +5,9 @@ import StocksDashboard from "./components/dashboards/StocksDashboard";
 import CryptoDashboard from "./components/dashboards/CryptoDashboard"
 import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
+import Header from "./components/Header";
+
+
 //SEARCHES FOR CRYPTO DATA
 import CallCrypto from './components/CallCryptoData';
 // SEARCHES FOR MOST POPULAR NFTS
@@ -17,7 +20,7 @@ import CallStocks from './components/CallStockData'
 export default function App() {
   return (
     <div className="App">
-      <Header2 />
+      <Header />
       <Routes>
 
         <Route path="/" element={<Home />} />
