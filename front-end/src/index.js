@@ -7,7 +7,20 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+<<<<<<< Updated upstream
     <App />
+=======
+    <BrowserRouter>
+  <Auth0Provider
+    domain="dev-erh72rhlmqu1s4tl.us.auth0.com"
+    clientId="KCTHSHM8mIrkFWXb9hCfiBZd4s1ngW9G"
+    authorizationParams={{
+      redirect_uri: 'http://localhost:3000'
+    }}>
+      <App />
+      </Auth0Provider>,
+    </BrowserRouter>
+>>>>>>> Stashed changes
   </React.StrictMode>
 );
 

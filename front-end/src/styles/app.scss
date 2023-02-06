@@ -7,16 +7,19 @@ button {
 }
 
 .App {
-  min-height: 100vh;
+  // min-height: 100vh;
+  max-height: 75%;
   text-align: center;
-  background-image: url('../../public/wave.gif');
+  background-image: url('../../public/wave-b&w.gif');
   background-size: 100%;
+  border: 3px solid green;
 }
 
 
 
 .App h2 {
-  margin-top: 200px
+  margin-top: 200px;
+  color: goldenrod
 }
 
 .homepage-button-group {

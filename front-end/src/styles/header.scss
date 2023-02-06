@@ -7,12 +7,13 @@
 }
   
 .buttons {
-  background-color: red;
+  border: 2px solid red;
   justify-content: space-between;
+  color: goldenrod;
 }
 
-.logged-in {
-  background-color: white;
-  font-size: 2em;
-  border-radius: 25px;
-}
+// .logged-in {
+//   background-color: white;
+//   font-size: 2em;
+//   border-radius: 25px;
+// }

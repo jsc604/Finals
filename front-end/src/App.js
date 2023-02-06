@@ -41,6 +41,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+<<<<<<< Updated upstream
       <div>
         <h2>
           "You miss 100% of the shots you don't take" - Michael Scott  -- Michael Jordan
@@ -51,6 +52,13 @@ function App() {
         <HomepageButton>Crypto</HomepageButton>
         <HomepageButton>NFT</HomepageButton>
       </div>
+=======
+      <Home />
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+      </Routes>
+>>>>>>> Stashed changes
     </div>
   );
 }
