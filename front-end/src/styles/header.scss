@@ -7,12 +7,26 @@
 }
   
 .buttons {
-  background-color: red;
   justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: goldenrod;
+  gap: 2em;
+  margin: 15px;
 }
 
-.logged-in {
+.log-in {
+  height: 40px;
+  width: 100px;
   background-color: white;
-  font-size: 2em;
   border-radius: 25px;
+  border: 1px solid black;
+
+  &:hover, 
+  &:focus {
+    background-color: black;
+    color: white;
+    border: 1px solid goldenrod;
+  }
 }

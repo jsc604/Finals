@@ -12,10 +12,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
   <Auth0Provider
-    domain="YOUR_DOMAIN"
-    clientId="YOUR_CLIENT_ID"
+    domain="dev-erh72rhlmqu1s4tl.us.auth0.com"
+    clientId="KCTHSHM8mIrkFWXb9hCfiBZd4s1ngW9G"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: 'http://localhost:3000'
     }}>
       <App />
       </Auth0Provider>,

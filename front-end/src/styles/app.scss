@@ -9,14 +9,13 @@ button {
 .App {
   min-height: 100vh;
   text-align: center;
-  background-image: url('../../public/wave.gif');
+  background-image: url('../../public/wave-b&w.gif');
   background-size: 100%;
-}
-
-
-
-.App h2 {
-  margin-top: 200px
+ 
+  h2 {
+    margin-top: 200px;
+    color: goldenrod;
+  }
 }
 
 .homepage-button-group {
@@ -28,5 +27,23 @@ button {
   gap: 8em;
   margin-top: 200px;
   
+  a {
+    text-decoration: none;
+    color: black;
+    height: 60px;
+    width: 150px;
+    background-color: white;
+    font-size: 2em;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    line-height: 55px;
+
+
+    &:hover {
+      color: goldenrod;
+      background-color: black;
+      border: 1px solid goldenrod;
+    }
+  }
 }
 

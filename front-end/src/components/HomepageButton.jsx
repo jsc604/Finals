@@ -1,15 +1,15 @@
-import '../styles/HomepageButton.scss'
+// import '../styles/HomepageButton.scss'
 
 
-export default function HomepageButton(props) {
+// export default function HomepageButton(props) {
 
-  return <button
-  className="homepage-button"
-  onClick={props.onClick}>
+//   return <button
+//   className="homepage-button"
+//   onClick={props.onClick}>
 
-  {props.children}
+//   {props.children}
 
 
-</button>;
+// </button>;
 
-}
+// }

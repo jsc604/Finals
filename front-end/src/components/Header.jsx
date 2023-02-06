@@ -1,33 +1,26 @@
 import "../styles/app.scss";
 import "../styles/header.scss";
-import Button from "./Button";
-import { useState } from "react";
-
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Header() {
   
-  const [login, setLogin] = useState(false);
-  
-  const user = 'Mr Bond';
-
-  const handleClick = () => {
-    setLogin(!login)
-  }
-
+  const {isAuthenticated, user} = useAuth0(); 
 
   return (
     <header className="header">
       <div className="buttons">
 
-      {!login ? (
-        < Button handleClick={ handleClick }>Login</Button>
-        ) : (
-          <div className="logged-in">
-          Welcome, {user}
-          < Button handleClick={ handleClick }>Logout</Button>
-        </div>
-      )}
+        {!isAuthenticated ? (
+          < LoginButton />
+          ) : (
+          <div className="buttons">
+            <h3><strong>Welcome, {user.email}</strong></h3>
+            < LogoutButton />
+          </div>
+        )}
       </div>
     </header>
   )
