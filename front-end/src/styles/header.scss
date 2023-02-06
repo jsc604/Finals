@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: goldenrod;
+  color: #ffc107;
   gap: 2em;
   margin: 15px;
 }
@@ -19,14 +19,16 @@
 .log-in {
   height: 40px;
   width: 100px;
-  background-color: white;
+  background-color: black;
   border-radius: 25px;
-  border: 1px solid black;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+  box-shadow: #ffc107 0px 3px 8px;
 
   &:hover, 
   &:focus {
-    background-color: black;
-    color: white;
-    border: 1px solid goldenrod;
+    background-color: #ffc107;
+    color: black;
+    border: 1px solid black;
   }
 }

@@ -9,20 +9,30 @@ import { formatNumber } from "../../helpers/table_helpers";
 export default function NftItems(props) {
 
   const [dropdown, setDropdown] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const percentChange = classNames({
     "positive": props.change >= 0,
     "negative": props.change < 0
   });
 
+  const handleClick = () => {
+    setFavorite(!favorite);
+  };
+
   return (
     <>
       <tr>
+        <td onClick={handleClick}>
+          <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i>
+        </td>
+
         <td className="symbol-data">
          <Link to={`/nft/${props.id}`}>
             <img src={props.image} alt="logo"/>  {props.collection}
          </Link> 
         </td>
+        
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.volume)}</td>
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>

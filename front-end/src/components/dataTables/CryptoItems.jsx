@@ -10,21 +10,32 @@ import CryptoChart from "../charts/CryptoChart";
 export default function CryptoItems(props) {
 
   const [dropdown, setDropdown] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const percentChange = classNames({
     "positive": props.change >= 0,
     "negative": props.change < 0
   });
-  
+
+  const handleClick = () => {
+    setFavorite(!favorite);
+  };
+
   return (
     <>
       <tr>
+        <td onClick={handleClick}>
+          <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i>
+        </td>
+
         <td>{props.rank}</td>
+
         <td className="symbol-data"> 
           <Link to={`/crypto/${props.id}`}>
             <img src={props.logo} alt="logo"/>  {props.name} ({props.symbol.toUpperCase()})
           </Link>
         </td>
+
         <td>${formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
         <td>${formatNumber(props.high)}</td>
@@ -33,7 +44,7 @@ export default function CryptoItems(props) {
         <td>${formatNumber(props.marketCap)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={5} className="disable-hover"><CryptoChart id={props.id}/></td><td colSpan={4}>something</td></tr>}
+      {dropdown && <tr><td colSpan={6} className="disable-hover"><CryptoChart id={props.id}/></td><td colSpan={4}>something</td></tr>}
     </>
   );
 };

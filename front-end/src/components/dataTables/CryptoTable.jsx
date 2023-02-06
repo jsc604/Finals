@@ -55,6 +55,7 @@ export default function CryptoTable(props) {
     <table className="table table-dark table-hover">
       <thead>
         <tr>
+          <th></th>
           <th scope="col" onClick={() => sortData('market_cap_rank')}>Rank</th>
           <th scope="col" onClick={() => sortData('name')}>Token</th>
           <th scope="col" onClick={() => sortData('current_price')}>Price</th>

@@ -1,12 +1,10 @@
-import Header2 from "./components/Header2";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import StocksDashboard from "./components/dashboards/StocksDashboard";
 import CryptoDashboard from "./components/dashboards/CryptoDashboard"
 import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
 import Header from "./components/Header";
-
 
 //SEARCHES FOR CRYPTO DATA
 import CallCrypto from './components/CallCryptoData';
@@ -16,10 +14,16 @@ import CallNFT from './components/CallNFTData';
 import CallNFTFloor from './components/CallNFTFloorPrice'
 // CALLS STOCK API PER TICKER
 import CallStocks from './components/CallStockData'
+import classNames from "classnames";
 
 export default function App() {
+
+  const location = useLocation();
+
+  const className = classNames('App', {'home': location.pathname === '/'});
+  
   return (
-    <div className="App">
+    <div className={className}>
       <Header />
       <Routes>
 

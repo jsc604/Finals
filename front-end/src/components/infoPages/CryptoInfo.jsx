@@ -9,7 +9,6 @@ export default function CryptoInfo(props) {
   const { cryptoData } = useCryptoData(
     `coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&sparkline=false`
   );
-  // console.log(cryptoData);
 
   return (
     <div className="infos">

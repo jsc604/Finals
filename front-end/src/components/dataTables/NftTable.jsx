@@ -54,6 +54,7 @@ export default function NftTable(props) {
     <table className="table table-dark table-hover">
       <thead>
         <tr>
+          <th></th>
           <th scope="col" onClick={() => sortData('name')}>Collection</th>
           <th scope="col" onClick={() => sortData('native_currency')}>24hr Volume</th>
           <th scope="col" onClick={() => sortData('native_currency')}>Floor Price</th>
