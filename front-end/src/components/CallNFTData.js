@@ -24,6 +24,7 @@ export default function CallNFT() {
         setLoading(false);
       });
   }, []);
+  
 
   return (
     <div className="App">
@@ -51,3 +52,4 @@ export default function CallNFT() {
     </div>
   );
 }
+

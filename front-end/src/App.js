@@ -12,6 +12,10 @@ import CallNFT from './components/CallNFTData';
 import CallNFTFloor from './components/CallNFTFloorPrice' 
 // CALLS STOCK API PER TICKER
 import CallStocks from './components/CallStockData'
+import GetNFTLowestPrice from "./components/TEST-MORALIS-api-test";
+import Top100NFT from "./components/TEST-CSLAM-TOP100";
+import SalesSummary from "./components/TEST-CSLAM-SALESSUMMARY";
+
 
 
 export default function App() {
@@ -21,6 +25,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/api-test-name" element={<CallNFT/>} />
+        <Route path="/api-test-floor_price" element={<CallNFTFloor/>} />
+        <Route path="/moralis" element={<GetNFTLowestPrice/>} />
+        <Route path="/top100" element={<Top100NFT/>} />
+        {/* <Route path="/salessummary" element={<SalesSummary/>} /> */}
       </Routes>
     </div>
   );

@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import logo from '../logo.svg';
 import '../styles/app.scss';
 import axios from 'axios';
+import filteredData from '../helpers/filteredData';
 
-export default function CallNFTFloor() {
+export default function Top100NFT() {
   const [contractsData, setContractsData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`https://api.nftport.xyz/v0/transactions/stats/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d?chain=ethereum`, {
+    axios.get(`https://api.cryptoslam.io/9vtih9mrf0giktml/v1/collections/top-100?timeRange=day`, {
       headers: {
-        Authorization: '68f7f9cd-a9bd-467b-9109-e9eba793e436',
+        'X-BLOBR-KEY': 'EMWda4itaSmFyrGOsQhNR11RPPS7h5ib',
         'accept': 'application/json'
       }
     })
       .then(response => {
-        setContractsData(response.data);
+        const filtered = filteredData(response.data.data, 1, 10);
+        setContractsData(filtered);
         setLoading(false);
       })
       .catch(error => {
@@ -25,13 +27,19 @@ export default function CallNFTFloor() {
       });
   }, []);
 
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {error ? <p>{error.toString()}</p> :
           <div>
-            {contractsData ? <p>{contractsData.statistics.floor_price}</p> : null}
+            {contractsData ? <p>{contractsData ? <p>{JSON.stringify(contractsData)}</p> : null}</p> : null}
+          </div>
+        }
+        {error ? <p>{error.toString()}</p> :
+          <div>
+            {contractsData ? <p>{contractsData.map(data => data.collectionId)}</p> : null}
           </div>
         }
         <a
