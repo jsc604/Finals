@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useCryptoData from "../../hooks/useCryptoData";
 import "../../styles/infoPage.scss"
+import CryptoChart from "../charts/CryptoChart";
 
 export default function CryptoInfo(props) {
 
@@ -8,7 +9,7 @@ export default function CryptoInfo(props) {
   const { cryptoData } = useCryptoData(
     `coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&sparkline=false`
   );
-  console.log(cryptoData);
+  // console.log(cryptoData);
 
   return (
     <div className="infos">
@@ -18,6 +19,7 @@ export default function CryptoInfo(props) {
             <img src={cryptoData.image.small} alt={cryptoData.name}/>
             {cryptoData.name}
           </h1>
+          <CryptoChart />
           <p dangerouslySetInnerHTML={{ __html: cryptoData.description.en }} ></p>
         </>
       ) : (<p>Loading...</p>)}

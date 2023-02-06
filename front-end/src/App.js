@@ -1,10 +1,10 @@
 import Header2 from "./components/Header2";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import StocksDashboard from "./components/StocksDashboard";
-import CryptoDashboard from "./components/CryptoDashboard"
-import NftDashboard from "./components/NftDashboard"
-import CryptoInfo from "./components/info/CryptoInfo";
+import StocksDashboard from "./components/dashboards/StocksDashboard";
+import CryptoDashboard from "./components/dashboards/CryptoDashboard"
+import NftDashboard from "./components/dashboards/NftDashboard"
+import CryptoInfo from "./components/infoPages/CryptoInfo";
 //SEARCHES FOR CRYPTO DATA
 import CallCrypto from './components/CallCryptoData';
 // SEARCHES FOR MOST POPULAR NFTS

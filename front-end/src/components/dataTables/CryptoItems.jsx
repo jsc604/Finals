@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { trendingDown, trendingUp } from "../../helpers/table_helpers";
 import classNames from "classnames";
 import { formatNumber } from "../../helpers/table_helpers";
+import CryptoChart from "../charts/CryptoChart";
 
 export default function CryptoItems(props) {
 
@@ -32,7 +33,7 @@ export default function CryptoItems(props) {
         <td>${formatNumber(props.marketCap)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={9}>Chart</td></tr>}
+      {dropdown && <tr><td colSpan={9}><CryptoChart id={props.id}/></td></tr>}
     </>
   );
 };

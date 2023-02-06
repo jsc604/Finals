@@ -1,6 +1,6 @@
-import CryptoTable from "./dataTables/CryptoTable";
-import coinData from "../samples/coinData";
-import Navigation from "./Navigation";
+import CryptoTable from "../dataTables/CryptoTable";
+import coinData from "../../samples/coinData";
+import Navigation from "../Navigation";
 
 export default function StocksDashboard(props) {
 

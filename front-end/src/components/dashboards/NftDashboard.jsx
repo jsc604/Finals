@@ -1,6 +1,6 @@
-import NftTable from "./dataTables/NftTable";
-import nftData from "../samples/nftData";
-import Navigation from "./Navigation";
+import NftTable from "../dataTables/NftTable";
+import nftData from "../../samples/nftData";
+import Navigation from "../Navigation";
 
 export default function NftDashboard(props) {
   return (
