@@ -6,14 +6,14 @@ import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
 import Header from "./components/Header";
 import Test from "./hooks/test";
-//SEARCHES FOR CRYPTO DATA
-import CallCrypto from './components/CallCryptoData';
-// SEARCHES FOR MOST POPULAR NFTS
-import CallNFT from './components/CallNFTData';
-// MATCHES CALLNFT API CONTRACT ADDRESS WITH FLOOR API CONTRACT ADDRESS TO DISPLAY FLOOR PRICE AND OTHER METRICS
-import CallNFTFloor from './components/CallNFTFloorPrice'
-// CALLS STOCK API PER TICKER
-import CallStocks from './components/CallStockData'
+// //SEARCHES FOR CRYPTO DATA
+// import CallCrypto from './components/CallCryptoData';
+// // SEARCHES FOR MOST POPULAR NFTS
+// import CallNFT from './components/CallNFTData';
+// // MATCHES CALLNFT API CONTRACT ADDRESS WITH FLOOR API CONTRACT ADDRESS TO DISPLAY FLOOR PRICE AND OTHER METRICS
+// import CallNFTFloor from './components/CallNFTFloorPrice'
+// // CALLS STOCK API PER TICKER
+// import CallStocks from './components/CallStockData'
 import classNames from "classnames";
 
 export default function App() {
@@ -46,7 +46,7 @@ export default function App() {
 
         <Route path="*" element={<Home />} />
 
-        <Route path="test" element={<Test />} />
+        {/* <Route path="test" element={<Test />} /> */}
 
       </Routes>
     </div>

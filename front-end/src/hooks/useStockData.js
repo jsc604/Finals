@@ -1,45 +1,51 @@
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-// export default function useStockData() {
-//   const [useStockData, setStockData] = useState([]);
-//   const [error, setError] = useState('');
-//   const [loading, setLoading] = useState(false);
+export default function useStockData() {
+  const [stockData, setStockData] = useState({});
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
-//   const stockArray = ['Apple', 'IBM', 'Microsof'];
+  useEffect(() => {
+    let cancel = false;
 
-//   useEffect(() => {
-//     let cancel = false;
+    const setLoading = true;
 
-//     setLoading(true);
+    const promises = stockArray.map(stock => {
+      const options = {
+        method: 'GET',
+        url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
+        params: {diffandsplits: 'false'},
+        headers: {
+          'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
+          'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+        }
+      };
 
-//     const requests = stockArray.map((stock) => axios.request({
-//       method: 'GET',
-//       url: 'https://real-time-finance-data.p.rapidapi.com/search',
-//       params: {query: stock},
-//       headers: {
-//         'X-RapidAPI-Key': '5f256936efmshf8eff84aba61fcap167b2djsnd9381c53a634',
-//         'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
-//       }
-//     }));
+      return axios.request(options)
+        .then(response => ({
+          [stock]: response.data
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+    });
 
-//     Promise.all(requests)
-//       .then(responses => {
-//         if (!cancel) {
-//           setStockData(responses.map(response => response.data));
-//         }
-//       })
-//       .catch(error => {
-//         setError(error);
-//       })
-//       .finally(() => {
-//         setLoading(false);
-//       });
+    Promise.all(promises)
+      .then(responses => {
+        setStockData(prev => ({
+          ...prev,
+          ...responses.reduce((acc, response) => ({ ...acc, ...response }), {})
+        }))
+      });
+      return() => {
+        cancel = true;
+      }
+  }, []);
 
-//     return () => {
-//       cancel = true;
-//     };
-//   }, []);
+  const result = { error, loading, stockData }
+  console.log("result", result)
+  return result;
+};
 
-//   return { error, loading, useStockData };
-// }
