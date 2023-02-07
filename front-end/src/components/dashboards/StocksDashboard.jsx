@@ -1,14 +1,15 @@
-import CryptoTable from "../dataTables/CryptoTable";
-import coinData from "../../samples/coinData";
+import StockTable from "../dataTables/StockTable";
 import Navigation from "../Navigation";
+import useStockData from "../../hooks/useStockData";
 
 export default function StocksDashboard(props) {
-
+  const { stockData } = useStockData();
+  console.log("stockData", stockData)
   return (
     <main>
       <h1><strong>Top Stocks</strong></h1>
       <Navigation tab={'stocks'} />
-      {coinData && <CryptoTable data={coinData} />}
+      {stockData && stockData.length !==0 && <StockTable data={stockData} />}
     </main>
   );
 }
