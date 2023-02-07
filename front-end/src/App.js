@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="stocks">
-          <Route path="dashboard" element={<StocksDashboard />} />
+          <Route path="dashboard" element={<CryptoDashboard />} />
           <Route path=":id" element={<CryptoInfo />} />
         </Route>
 

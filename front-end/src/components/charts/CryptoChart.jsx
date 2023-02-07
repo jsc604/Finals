@@ -30,7 +30,7 @@ export default function CryptoChart(props) {
   const id = props.id || urlId;
 
   const { cryptoData } = useCryptoData(
-    `coins/${id}/market_chart?vs_currency=usd&days=10`
+    `coins/${id}/market_chart?vs_currency=usd&days=7`
   );
 
   if (!cryptoData) {
@@ -58,7 +58,7 @@ export default function CryptoChart(props) {
   };
   return (
     <>
-      <div>
+      <div className="info-chart">
         <Line options={options} data={data} />
       </div>
     </>
