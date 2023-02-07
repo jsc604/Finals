@@ -33,6 +33,7 @@ button {
   gap: 8em;
   margin-top: 200px;
   color: #ffc107;
+  
 
   a {
     text-decoration: none;
@@ -44,6 +45,7 @@ button {
     box-shadow: #ffc107 0px 3px 8px;
     color: #ffc107;
     line-height: 55px;
+    border: 1px solid #ffc107;
 
     inherits:false;
 
