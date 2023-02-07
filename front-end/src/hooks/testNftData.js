@@ -33,6 +33,7 @@ export default function useNftData() {
     return () => {
       cancel = true;
     };
+    //eslint-disable-next-line
   }, []);
 
   return { error, loading, nftData };

@@ -24,6 +24,7 @@ export default function useCryptoData(param) {
     return () => {
       cancel = true;
     };
+    //eslint-disable-next-line
   }, []);
 
   return { error, loading, cryptoData };
