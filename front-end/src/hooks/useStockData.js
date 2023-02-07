@@ -3,9 +3,15 @@ import axios from 'axios';
 
 export default function useStockData() {
   const [stockData, setStockData] = useState({});
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
   useEffect(() => {
+    let cancel = false;
+
+    const setLoading = true;
+
     const promises = stockArray.map(stock => {
       const options = {
         method: 'GET',
@@ -31,11 +37,14 @@ export default function useStockData() {
         setStockData(prev => ({
           ...prev,
           ...responses.reduce((acc, response) => ({ ...acc, ...response }), {})
-        }));
+        }))
       });
+      return() => {
+        cancel = true;
+      }
   }, []);
 
-  const result = { stockData }
+  const result = { error, loading, stockData }
   console.log("result", result)
   return result;
 };

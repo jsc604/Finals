@@ -9,6 +9,12 @@ import percentChangedHelper from "../../helpers/percentChange";
 
 export default function StockItems(props) {
 
+  
+  console.log("props", props)
+  console.log("props symbol", props.meta.symbol)
+  console.log("props prev close", props.meta.previousClose)
+  console.log("props current price", props.meta.regularMarketPrice)
+
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
