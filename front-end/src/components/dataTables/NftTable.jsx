@@ -16,10 +16,33 @@ export default function NftTable(props) {
       setSortKey(key);
       setOrder("asc");
     };
-
+  
     newSortedData.sort((a, b) => {
       let valueA = a[key];
       let valueB = b[key];
+      if (key === "name") {
+        valueA = a.name;
+        valueB = b.name;
+      } else if (key === "native_currency") {
+        valueA = a.volume_24h.native_currency;
+        valueB = b.volume_24h.native_currency;
+      } else if (key === "floor_price_in_usd_24h_percentage_change") {
+        valueA = a.floor_price_in_usd_24h_percentage_change;
+        valueB = b.floor_price_in_usd_24h_percentage_change;
+      } else if (key === "usd") {
+        valueA = a.market_cap.usd;
+        valueB = b.market_cap.usd;
+      } else if (key === "number_of_unique_addresses") {
+        valueA = a.number_of_unique_addresses;
+        valueB = b.number_of_unique_addresses;
+      } else if (key === "number_of_unique_addresses_24h_percentage_change") {
+        valueA = a.number_of_unique_addresses_24h_percentage_change;
+        valueB = b.number_of_unique_addresses_24h_percentage_change;
+      } else if (key === "total_supply") {
+        valueA = a.total_supply;
+        valueB = b.total_supply;
+      }
+  
       if (typeof valueA === "string") {
         valueA = valueA.toLowerCase();
         valueB = valueB.toLowerCase();
@@ -30,10 +53,10 @@ export default function NftTable(props) {
         return valueA < valueB ? 1 : -1;
       }
     });
-
+  
     setSortedData(newSortedData);
   };
-
+  
   let nftItems = sortedData.map((nft, i) => (
     <NftItems
       key={i}
