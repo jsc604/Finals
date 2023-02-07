@@ -5,6 +5,8 @@ import "../styles/header.scss";
 const LoginButton = () => {
   const { loginWithPopup } = useAuth0();
 
+  
+
   return <button className="log-in" onClick={() => loginWithPopup()}>Log In</button>;
 };
 
