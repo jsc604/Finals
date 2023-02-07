@@ -1,11 +1,12 @@
 .infos {
   width: 80%;
   margin: auto;
-  color: #ffc107;
+  color: white;
 
   h1 {
     text-transform: capitalize;
     font-weight: bold;
+    color: white;
 
     img {
       height: 4rem;
@@ -18,7 +19,7 @@
   }
   a:link {
     text-decoration: none;
-    color: white;
+    color: #ffc107;
   }
   a:visited {
     text-decoration: none;
@@ -26,7 +27,7 @@
   }
   a:hover {
     text-decoration: underline;
-    color: white;
+    color: #ffc107;
   }
   a:active {
     text-decoration: none;

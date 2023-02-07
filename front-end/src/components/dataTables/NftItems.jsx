@@ -32,7 +32,7 @@ export default function NftItems(props) {
             <img src={props.image} alt="logo"/>  {props.collection}
          </Link> 
         </td>
-        
+
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.volume)}</td>
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.price)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
@@ -42,7 +42,7 @@ export default function NftItems(props) {
         <td>{formatNumber(props.supply)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={9}>Chart</td></tr>}
+      {dropdown && <tr><td colSpan={10}>Chart</td></tr>}
     </>
   );
 };
