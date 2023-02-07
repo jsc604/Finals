@@ -6,16 +6,16 @@ export default function useNftData() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const topNftId = ['clonex', 'meebits', 'azuki', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
+  const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
 
-  axios.defaults.baseURL = 'https://api.coingecko.com/api/v3'; 
+  axios.defaults.baseURL = 'https://api.coingecko.com/api/v3/nfts/'; 
 
   useEffect(() => {
     let cancel = false;
 
     setLoading(true);
 
-    const requests = topNftId.map((id) => axios.get(`/nfts/${id}`));
+    const requests = topNftId.map((id) => axios.get(`${id}`));
 
     Promise.all(requests)
       .then(responses => {

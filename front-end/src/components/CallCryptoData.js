@@ -13,7 +13,7 @@ export default function CallCrypto() {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=canto&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
+    axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
       .then(response => {
         setCryptoData(response.data);
         setLoading(false);
