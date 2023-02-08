@@ -42,7 +42,7 @@ export default function NftItems(props) {
         <td>{formatNumber(props.supply)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={10}>Chart</td></tr>}
+      {dropdown && <tr><td colSpan={10}>{props.description}</td></tr>}
     </>
   );
 };

@@ -33,4 +33,20 @@
     text-decoration: none;
     color: #ffc107;
   }
+  .chart-info-container {
+    display: flex;
+    justify-content: space-between;
+    .info-chart {
+      width: 70%;
+    }
+    .info-details {
+      width: 27%;
+      .table {
+        margin-bottom: 3rem;
+      }
+      .add-to-watchlist {
+        margin-top: 3rem;
+      }
+    }
+  }
 }
