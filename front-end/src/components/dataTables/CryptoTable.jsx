@@ -52,7 +52,7 @@ export default function CryptoTable(props) {
   ));
 
   return (
-    <table className="table table-dark table-hover">
+    <table className="table table-dark">
       <thead>
         <tr>
           <th></th>

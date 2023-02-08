@@ -7,12 +7,13 @@ import { useState } from "react";
 
 export default function CryptoInfo(props) {
   const [favorite, setFavorite] = useState(false);
+  const [interval, setInterval] = useState(7);
+
   const { id } = useParams();
   const { cryptoData } = useCryptoData(
     `coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&sparkline=false`
   );
 
-  console.log(cryptoData);
   const handleClick = () => {
     setFavorite(!favorite);
   };
@@ -26,15 +27,43 @@ export default function CryptoInfo(props) {
             {cryptoData.name}
           </h1>
           <div className="chart-info-container">
-            <CryptoChart />
+            <CryptoChart interval={interval}/>
             <div className="info-details">
               <table class="table table-sm">
                 <thead>
                   <tr>
-                    <th scope="col"><button className="btn btn-outline-light">1 day</button></th>
-                    <th scope="col"><button className="btn btn-outline-light">7 day</button></th>
-                    <th scope="col"><button className="btn btn-outline-light">14 day</button></th>
-                    <th scope="col"><button className="btn btn-outline-light">30 day</button></th>
+                    <th scope="col">
+                      <button 
+                        className={interval === 1 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        onClick={() => setInterval(1)} 
+                      >
+                        1 day
+                      </button>
+                    </th>
+                    <th scope="col">
+                      <button 
+                        className={interval === 7 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        onClick={() => setInterval(7)} 
+                      >
+                        7 day
+                      </button>
+                    </th>
+                    <th scope="col">
+                      <button 
+                        className={interval === 14 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        onClick={() => setInterval(14)} 
+                      >
+                        14 day
+                      </button>
+                    </th>
+                    <th scope="col">
+                      <button 
+                        className={interval === 30 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        onClick={() => setInterval(30)} 
+                      >
+                        30 day
+                      </button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
