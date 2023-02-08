@@ -11,6 +11,9 @@ export default function Header() {
 
   return (
     <header className="header">
+      {/* <div >
+        <img className="logo" src="/home/labber/lighthouse/finals/Finals/front-end/public/riding-wave-logo.png" alt="wave logo" />
+      </div> */}
       <div className="buttons">
 
         {!isAuthenticated ? (

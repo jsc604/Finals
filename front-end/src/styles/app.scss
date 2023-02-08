@@ -15,8 +15,12 @@ button {
 }
 
 .App.home{
-  // background-image: url('../../public/wave-b&w.gif');
-  background-image: url("https://i.pinimg.com/originals/f9/4d/f1/f94df1f75eb518ade0f5c608c21e36f6.gif");
+  background-image: url('../../public/wave-b&w.gif');
+  // background-image: url("https://i.pinimg.com/originals/f9/4d/f1/f94df1f75eb518ade0f5c608c21e36f6.gif");
+    .logo {
+      width: 300px;
+      height: 300px;
+    }
 }
 
 .App h2 {
@@ -31,7 +35,7 @@ button {
   align-items: center;
   height: 200px;
   gap: 8em;
-  margin-top: 450px;
+  margin-top: 150px;
   color: #ffc107;
 
   a {

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 
+
 export default function Home(props) {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -25,6 +26,7 @@ export default function Home(props) {
         {/* <h2>
           <strong>"You miss 100% of the shots you don't take - Wayne Gretzky" - Michael Scott</strong>
         </h2> */}
+        <img className="logo" src={require("../logo/riding-wave-logo.png")} alt="Wave logo"></img>
       </div>
       <div className="homepage-button-group">
         <Link to="stocks/dashboard">Stocks</Link>
