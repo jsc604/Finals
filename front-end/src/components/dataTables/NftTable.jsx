@@ -87,7 +87,7 @@ export default function NftTable(props) {
           <th scope="col" onClick={() => sortData('number_of_unique_addresses')}>Holders</th>
           <th scope="col" onClick={() => sortData('number_of_unique_addresses_24h_percentage_change')}>24hr Holders</th>
           <th scope="col" onClick={() => sortData('total_supply')}>Supply</th>
-          <th scope="col">Chart</th>
+          <th scope="col">Description</th>
         </tr>
       </thead>
       <tbody>{nftItems}</tbody>
