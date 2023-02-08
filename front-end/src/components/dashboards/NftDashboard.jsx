@@ -1,6 +1,6 @@
 import NftTable from "../dataTables/NftTable";
 import Navigation from "../Navigation";
-import useNftData from "../../hooks/testNftData";
+import useNftData from "../../hooks/useNftData";
 
 
 export default function NftDashboard(props) {
