@@ -6,12 +6,17 @@ import { trendingDown, trendingUp } from "../../helpers/table_helpers";
 import classNames from "classnames";
 import { formatNumber } from "../../helpers/table_helpers";
 import CryptoChart from "../charts/CryptoChart";
+import CryptoChartDropdown from "./CryptoChartDropdown";
 
 export default function CryptoItems(props) {
 
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
-  const [interval, setInterval] = useState(7);
+  const [interval, setInterval] = useState(7);;
+
+  const handleIntervalChange = (newInterval) => {
+    setInterval(newInterval);
+  };
 
   const percentChange = classNames({
     "positive": props.change >= 0,
@@ -45,7 +50,15 @@ export default function CryptoItems(props) {
         <td>${formatNumber(props.marketCap)}</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={6} className="disable-hover"><CryptoChart id={props.id} interval={interval}/></td><td colSpan={4}>something</td></tr>}
+      {dropdown && 
+      <tr>
+        <td colSpan={6}>
+          <CryptoChart id={props.id} interval={interval}/>
+        </td>
+        <td colSpan={4}>
+          <CryptoChartDropdown id={props.id} onIntervalChange={handleIntervalChange} interval={interval}/>
+        </td>
+      </tr>}
     </>
   );
 };

@@ -34,7 +34,7 @@ export default function CryptoChart(props) {
   );
 
   if (!cryptoData) {
-    return <div>loading...</div>;
+    return <div>Loading...</div>;
   }
 
   const chartData = cryptoData.prices.map((value) => ({
@@ -55,6 +55,10 @@ export default function CryptoChart(props) {
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
+  };
+
+  if(!data) {
+    return <p>Loading...</p>
   };
 
   return (
