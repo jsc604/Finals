@@ -12,6 +12,26 @@ app.get("/", (req, res) => {
   res.send("Hello!");
 });
 
+// On page load, check if item is already in db to star already favorited items
+app.get("/checkIfFavorite", (req, res) => {
+  const { email, apiId, category } = req.query;
+  db.query(
+    `SELECT * 
+    FROM users 
+    JOIN ${category} ON users.id = ${category}.user_id 
+    WHERE users.email = '${email}' AND ${category}.api_id = '${apiId}'`,
+    (error, result) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send({ error });
+      }
+      const isFavorite = result.rows.length > 0;
+      return res.send({ isFavorite });
+    }
+  );
+});
+
+
 //When NEW user logs in, they are added to local db (if not already in there)
 app.post("/users", (req, res) => {
   const email = req.body.email;
@@ -42,9 +62,9 @@ app.post("/users", (req, res) => {
   });
 });
 
-// Based on the category, it calls the appropriate insert function for that category. The insert
-// functions for each table (insertIntoCrypto, insertIntoStocks, and insertIntoNft) are defined
-// separately and are called from the request based on the category
+//-------------------------------------------------------------------------------------------
+//INSERT FUNCTIONS
+
 app.post("/favoriteInsert", (req, res) => {
   if (req.body?.email) {
     const { email, apiId, category } = req.body;
@@ -76,7 +96,6 @@ app.post("/favoriteInsert", (req, res) => {
   } 
 });
 
-// ** INSERT **  HELPER FUNCTIONS
 const insertIntoCrypto = (userId, apiId) => {
   db.query(
     `SELECT * FROM crypto WHERE user_id = ${userId} AND api_id = '${apiId}'`,
@@ -155,7 +174,7 @@ const insertIntoNft = (userId, apiId) => {
   );
 };
 //-------------------------------------------------------------------------------------------------------
-
+// DELETING FUNCTIONS
 
 app.post("/favoriteDelete", (req, res) => {
   if (req.body?.email) {
@@ -188,8 +207,6 @@ app.post("/favoriteDelete", (req, res) => {
   } 
 });
 
-
-// ** DELETE ** HELPER FUNCTIONS
 const deleteFromCrypto = (userId, apiId) => {
   db.query(
     `SELECT * FROM crypto WHERE user_id = ${userId} AND api_id = '${apiId}'`,
@@ -268,7 +285,59 @@ const deleteFromNft = (userId, apiId) => {
   );
 };
 
+//-----------------------------------------------------------------------------------------
+// POPULATE THE THREE WATCHLISTS
 
+app.get("/getFavoritesCrypto", (req, res) => {
+  const { email } = req.query;
+  db.query(
+    `SELECT * 
+    FROM users 
+    JOIN crypto ON users.id = crypto.user_id 
+    WHERE users.email = '${email}'`,
+    (error, result) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send({ error });
+      }
+      return res.send({ favorites: result.rows });
+    }
+  );
+});
+
+app.get("/getFavoritesNFT", (req, res) => {
+  const { email } = req.query;
+  db.query(
+    `SELECT * 
+    FROM users 
+    JOIN nft ON users.id = nft.user_id 
+    WHERE users.email = '${email}'`,
+    (error, result) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send({ error });
+      }
+      return res.send({ favorites: result.rows });
+    }
+  );
+});
+
+app.get("/getFavoritesStocks", (req, res) => {
+  const { email } = req.query;
+  db.query(
+    `SELECT * 
+    FROM users 
+    JOIN stocks ON users.id = stocks.user_id 
+    WHERE users.email = '${email}'`,
+    (error, result) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).send({ error });
+      }
+      return res.send({ favorites: result.rows });
+    }
+  );
+});
 
 
 app.listen(PORT, () => {
