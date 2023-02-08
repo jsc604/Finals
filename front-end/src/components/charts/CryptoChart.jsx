@@ -30,7 +30,7 @@ export default function CryptoChart(props) {
   const id = props.id || urlId;
 
   const { cryptoData } = useCryptoData(
-    `coins/${id}/market_chart?vs_currency=usd&days=7`
+    `coins/${id}/market_chart?vs_currency=usd&days=${props.interval}`
   );
 
   if (!cryptoData) {
@@ -45,9 +45,9 @@ export default function CryptoChart(props) {
   const options = { responsive: true };
 
   const data = {
-    labels: chartData.map((value) => moment(value.x).format("MM/DD/H:00")),
+    labels: chartData.map((value) => moment(value.x).format("MM/DD/H:MM")),
     datasets: [
-      {
+      { 
         fill: true,
         label: id,
         data: chartData.map((value) => value.y),
@@ -56,11 +56,10 @@ export default function CryptoChart(props) {
       },
     ],
   };
+
   return (
-    <>
       <div className="info-chart">
         <Line options={options} data={data} />
       </div>
-    </>
   );
 }
