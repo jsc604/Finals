@@ -31,8 +31,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="stocks">
-          <Route path="dashboard" element={<CryptoDashboard />} />
-          <Route path=":id" element={<CryptoInfo />} />
+          <Route path="dashboard" element={<StocksDashboard />} />
+          {/* <Route path=":id" element={<StockInfo />} /> */}
         </Route>
 
         <Route path="crypto">
@@ -47,7 +47,7 @@ export default function App() {
 
         <Route path="*" element={<Home />} />
 
-        {/* <Route path="test" element={<Test />} /> */}
+        <Route path="test" element={<Test />} />
 
       </Routes>
     </div>

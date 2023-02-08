@@ -11,11 +11,6 @@ import axios from "axios";
 
 export default function StockItems(props) {
 
-  
-  console.log("props", props)
-  console.log("props symbol", props.meta.symbol)
-  console.log("props prev close", props.meta.previousClose)
-  console.log("props current price", props.meta.regularMarketPrice)
 
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
@@ -23,8 +18,8 @@ export default function StockItems(props) {
   const {user} = useAuth0();
 
   const percentChange = classNames({
-    "positive": percentChangedHelper(props.meta.previousClose, props.meta.regularMarketPrice) >= 0,
-    "negative": percentChangedHelper(props.meta.previousClose, props.meta.regularMarketPrice) < 0
+    "positive": props.change >= 0,
+    "negative": props.change < 0
   });
 
   const handleClick = () => {
@@ -61,13 +56,14 @@ export default function StockItems(props) {
         </td>
 
         <td className="symbol-data">
-         <Link to={`/stocks/${props.id}`}>
-         <img src={props.logo} alt="logo"/>  {props.meta.symbol}
+         <Link to={`/stocks/${props.stock}`}>
+          {props.stock} 
          </Link> 
         </td>
 
-        <td>{formatNumber(props.meta.previousClose)}</td>
-        <td>{formatNumber(props.meta.regularMarketPrice)}</td>
+        <td>{formatNumber(props.price)}</td>
+
+        <td>{formatNumber(props.prevClose)}</td>
         
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
 

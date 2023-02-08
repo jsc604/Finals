@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import percentChangedHelper from '../helpers/percentChange';
 import axios from 'axios';
+import { formatNumber } from "../helpers/table_helpers";
 
-export default function useStockData() {
-  const [stockData, setStockData] = useState({});
+export default function Test() {
+  const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
@@ -10,15 +12,15 @@ export default function useStockData() {
   useEffect(() => {
     let cancel = false;
 
-    const setLoading = true;
+    setLoading(true);
 
     const promises = stockArray.map(stock => {
       const options = {
         method: 'GET',
         url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
-        params: {diffandsplits: 'false'},
+        params: { diffandsplits: 'false' },
         headers: {
-          'X-RapidAPI-Key': '40795b65damshafd9b9de5c7f76bp134526jsn5a3d2446df9c',
+          'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
           'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
         }
       };
@@ -34,18 +36,23 @@ export default function useStockData() {
 
     Promise.all(promises)
       .then(responses => {
-        setStockData(prev => ({
-          ...prev,
-          ...responses.reduce((acc, response) => ({ ...acc, ...response }), {})
-        }))
+
+        setData(responses.map(stockObj => {
+          const container = Object.values(stockObj)[0];
+          
+          return { ...container.meta, items: container.items, percentageChange: formatNumber(percentChangedHelper(container.meta.previousClose, container.meta.regularMarketPrice)) };
+        }
+        ));
       });
-      return() => {
-        cancel = true;
-      }
+    return () => {
+      cancel = true;
+    };
   }, []);
 
-  const result = { error, loading, stockData }
-  console.log("result", result)
+  console.log("Data is:", data);
+
+
+  const result = { error, loading, data };
+  console.log("result", result);
   return result;
 };
-
