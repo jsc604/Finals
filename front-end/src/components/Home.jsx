@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 export default function Home(props) {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log('USER: ', user)
 
   useEffect(() => {
     axios.post('http://localhost:8080/users', user)

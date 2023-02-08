@@ -18,7 +18,7 @@ export default function useStockData() {
         url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
         params: {diffandsplits: 'false'},
         headers: {
-          'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
+          'X-RapidAPI-Key': '40795b65damshafd9b9de5c7f76bp134526jsn5a3d2446df9c',
           'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
         }
       };

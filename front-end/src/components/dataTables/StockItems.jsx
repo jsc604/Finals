@@ -6,6 +6,8 @@ import classNames from "classnames";
 import { trendingDown, trendingUp } from "../../helpers/table_helpers";
 import { formatNumber } from "../../helpers/table_helpers";
 import percentChangedHelper from "../../helpers/percentChange";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export default function StockItems(props) {
 
@@ -18,6 +20,8 @@ export default function StockItems(props) {
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
+  const {user} = useAuth0();
+
   const percentChange = classNames({
     "positive": percentChangedHelper(props.meta.previousClose, props.meta.regularMarketPrice) >= 0,
     "negative": percentChangedHelper(props.meta.previousClose, props.meta.regularMarketPrice) < 0
@@ -25,6 +29,28 @@ export default function StockItems(props) {
 
   const handleClick = () => {
     setFavorite(!favorite);
+    const payload = {
+      email: user.email,
+      apiId: props.id,
+      category: 'stocks'
+    }
+    if (favorite) {
+      axios.post('http://localhost:8080/favoriteDelete', payload)
+        .then(result => {
+          console.log('RESULT: ', result);
+        })
+        .catch(ex => {
+          console.log(ex);
+        });
+    } else {
+      axios.post('http://localhost:8080/favoriteInsert', payload)
+        .then(result => {
+          console.log('RESULT: ', result);
+        })
+        .catch(ex => {
+          console.log(ex);
+        });
+    }
   };
 
   return (
