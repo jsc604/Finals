@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { trendingDown, trendingUp } from "../../helpers/table_helpers";
 import classNames from "classnames";
 import { formatNumber } from "../../helpers/table_helpers";
-import CryptoChart from "../charts/CryptoChart";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import CryptoChartDropdown from "./CryptoChartDropdown";
+import ApexCryptoChart from "../charts/ApexCryptoChart";
 
 export default function CryptoItems(props) {
   const [dropdown, setDropdown] = useState(false);
@@ -78,8 +78,8 @@ export default function CryptoItems(props) {
       </tr>
       {dropdown && 
       <tr>
-        <td colSpan={6}>
-          <CryptoChart id={props.id} interval={interval}/>
+        <td colSpan={6} className="drop-down-chart">
+          <ApexCryptoChart id={props.id} interval={interval}/>
         </td>
         <td colSpan={4}>
           <CryptoChartDropdown id={props.id} onIntervalChange={handleIntervalChange} interval={interval}/>

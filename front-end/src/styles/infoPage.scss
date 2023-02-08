@@ -1,21 +1,25 @@
 .infos {
   width: 80%;
   margin: auto;
-  color: white;
-
+  
   h1 {
     text-transform: capitalize;
     font-weight: bold;
     color: white;
-
+    
     img {
       height: 4rem;
       width: 4rem;
     }
   }
+  
+  .details {
+    color: white;
+  }
 
   p {
     text-align: initial;
+    color: white;
   }
   a:link {
     text-decoration: none;
