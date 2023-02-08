@@ -45,7 +45,7 @@ export default function CryptoChart(props) {
   const options = { responsive: true };
 
   const data = {
-    labels: chartData.map((value) => moment(value.x).format("MM/DD/H:MM")),
+    labels: chartData.map((value) => moment(value.x).format("MM-DD-H:MM")),
     datasets: [
       { 
         fill: true,
