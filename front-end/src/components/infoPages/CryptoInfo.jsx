@@ -4,6 +4,8 @@ import "../../styles/infoPage.scss";
 import CryptoChart from "../charts/CryptoChart";
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export default function CryptoInfo(props) {
   const [favorite, setFavorite] = useState(false);
@@ -14,8 +16,32 @@ export default function CryptoInfo(props) {
     `coins/${id}?localization=false&tickers=false&market_data=true&community_data=false&sparkline=false`
   );
 
+  const {user} = useAuth0();
+
   const handleClick = () => {
     setFavorite(!favorite);
+    const payload = {
+      email: user.email,
+      apiId: id,
+      category: 'crypto'
+    }
+    if (favorite) {
+      axios.post('http://localhost:8080/favoriteDelete', payload)
+        .then(result => {
+          console.log('RESULT: ', result);
+        })
+        .catch(ex => {
+          console.log(ex);
+        });
+    } else {
+      axios.post('http://localhost:8080/favoriteInsert', payload)
+        .then(result => {
+          console.log('RESULT: ', result);
+        })
+        .catch(ex => {
+          console.log(ex);
+        });
+    }
   };
 
   return (

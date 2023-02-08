@@ -8,6 +8,7 @@ import { formatNumber } from "../../helpers/table_helpers";
 import percentChangedHelper from "../../helpers/percentChange";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { useEffect } from "react";
 
 export default function StockItems(props) {
 
@@ -21,6 +22,24 @@ export default function StockItems(props) {
     "positive": props.change >= 0,
     "negative": props.change < 0
   });
+
+  useEffect(() => {
+    if (user) {
+      axios.get('http://localhost:8080/checkIfFavorite', {
+        params: {
+          email: user.email,
+          apiId: props.id,
+          category: 'stocks'
+        }
+      })
+      .then(result => {
+        setFavorite(result.data.isFavorite);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+  }, [user]);
 
   const handleClick = () => {
     setFavorite(!favorite);
