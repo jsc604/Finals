@@ -1,5 +1,5 @@
 import CryptoItems from "./CryptoItems";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/tableItems.scss";
 
 export default function CryptoTable(props) {
@@ -33,6 +33,10 @@ export default function CryptoTable(props) {
 
     setSortedData(newSortedData);
   };
+
+  useEffect(() => {
+    setSortedData(props.data)
+  },[props.data])
 
   let currencyItems = sortedData.map((token, i) => (
     <CryptoItems
