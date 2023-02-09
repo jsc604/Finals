@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 export default function Navigation(props) {
-  const { toggle } = props;
+  const { toggle, tab, watchlistStatus } = props;
 
-  const stockButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': props.tab === 'stocks' });
-  const cryptoButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': props.tab === 'crypto' });
-  const nftButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': props.tab === 'nft' });
+  const stockButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'stocks' });
+  const cryptoButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'crypto' });
+  const nftButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'nft' });
+  const watchlistButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': watchlistStatus === true });
   
 
   return (
@@ -30,7 +31,7 @@ export default function Navigation(props) {
       </div>
 
       <div>
-        <button className="btn btn-outline-warning" type="button">
+        <button className={watchlistButton} type="button" onClick={() => toggle()}>
           Watchlist
         </button>
       </div>

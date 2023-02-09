@@ -48,6 +48,16 @@ export default function CryptoTable(props) {
       low={token.low_24h}
       marketCap={token.market_cap}
       id={token.id}
+
+      supply={token.total_supply}
+      ath={token.ath}
+      athChange={token.ath_change_percentage}
+      atl={token.atl}
+      atlChange={token.atl_change_percentage}
+      oneDayChange={token.price_change_percentage_24h_in_currency}
+      sevenDayChange={token.price_change_percentage_7d_in_currency}
+      fourteenDayChange={token.price_change_percentage_14d_in_currency}
+      thirtyDayChange={token.price_change_percentage_30d_in_currency}
     />
   ));
 

@@ -101,7 +101,21 @@ export default function CryptoItems(props) {
           <ApexCryptoChart id={props.id} interval={interval}/>
         </td>
         <td colSpan={4}>
-          <CryptoChartDropdown id={props.id} onIntervalChange={handleIntervalChange} interval={interval}/>
+          <CryptoChartDropdown 
+            onIntervalChange={handleIntervalChange} 
+            interval={interval}
+            id={props.id}
+            supply={props.supply}
+            ath={props.ath}
+            athChange={props.athChange}
+            atl={props.atl}
+            atlChange={props.atlChange}
+            oneDayChange={props.oneDayChange}
+            sevenDayChange={props.sevenDayChange}
+            fourteenDayChange={props.fourteenDayChange}
+            thirtyDayChange={props.thirtyDayChange} 
+            logo={props.logo}
+          />
         </td>
       </tr>}
     </>

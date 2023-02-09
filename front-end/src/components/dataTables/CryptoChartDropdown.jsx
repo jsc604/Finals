@@ -1,15 +1,8 @@
 import { formatNumber, trendingUp, trendingDown } from "../../helpers/table_helpers";
-import useCryptoData from "../../hooks/useCryptoData";
+import "../../styles/tableItems.scss";
 
 export default function CryptoChartDropdown(props) {
   const { onIntervalChange } = props;
-  const { cryptoData } = useCryptoData(
-    `coins/${props.id}?localization=false&tickers=false&market_data=true&community_data=false&sparkline=false`
-  );
-
-  if (!cryptoData) {
-    return <p>Loading...</p>
-  }
   
   return (
     <>
@@ -48,37 +41,56 @@ export default function CryptoChartDropdown(props) {
         </thead>
         <tbody>
           <tr>
-            <td className={ cryptoData.market_data.price_change_percentage_24h >= 0 ? "positive" : "negative" }>
-              {cryptoData.market_data.price_change_percentage_24h >= 0 ? trendingUp : trendingDown}
+            <td className={ props.oneDayChange >= 0 ? "positive" : "negative" }>
+              {props.oneDayChange >= 0 ? trendingUp : trendingDown}
               <br />
-              {formatNumber(cryptoData.market_data.price_change_percentage_24h)} %
+              {formatNumber(props.oneDayChange)} %
             </td>
-            <td className={ cryptoData.market_data.price_change_percentage_7d >= 0 ? "positive" : "negative" }>
-              {cryptoData.market_data.price_change_percentage_7d >= 0 ? trendingUp : trendingDown}
+            <td className={ props.sevenDayChange >= 0 ? "positive" : "negative" }>
+              {props.sevenDayChange >= 0 ? trendingUp : trendingDown}
               <br />
-              {formatNumber(cryptoData.market_data.price_change_percentage_7d)} %
+              {formatNumber(props.sevenDayChange)} %
             </td>
-            <td className={ cryptoData.market_data.price_change_percentage_14d >= 0 ? "positive" : "negative" }>
-              {cryptoData.market_data.price_change_percentage_14d >= 0 ? trendingUp : trendingDown}
+            <td className={ props.fourteenDayChange >= 0 ? "positive" : "negative" }>
+              {props.fourteenDayChange >= 0 ? trendingUp : trendingDown}
               <br />
-              {formatNumber(cryptoData.market_data.price_change_percentage_14d)} %
+              {formatNumber(props.fourteenDayChange)} %
             </td>
-            <td className={ cryptoData.market_data.price_change_percentage_30d >= 0 ? "positive" : "negative" }>
-              {cryptoData.market_data.price_change_percentage_30d >= 0 ? trendingUp : trendingDown}
+            <td className={ props.thirtyDayChange >= 0 ? "positive" : "negative" }>
+              {props.thirtyDayChange >= 0 ? trendingUp : trendingDown}
               <br />
-              {formatNumber(cryptoData.market_data.price_change_percentage_30d)} %
+              {formatNumber(props.thirtyDayChange)} %
             </td>
           </tr>
         </tbody>
       </table>
       <div className="dropdown-details">
-        All Time High Price: <strong>${formatNumber(cryptoData.market_data.ath.usd)}</strong>
+        All Time High Price: <strong>${formatNumber(props.ath)}</strong>
         <br/>
-        All Time Low Price: <strong>${formatNumber(cryptoData.market_data.atl.usd)}</strong>
+        All Time High Price Change: <strong>
+          <td className={ (props.athChange) >= 0 ? "positive" : "negative" }> 
+          {(props.athChange) >= 0 ? trendingUp : trendingDown} {formatNumber(props.athChange)} %
+          </td>
+        </strong>
         <br/>
-        All Time High & Low Difference: <strong >{formatNumber((cryptoData.market_data.ath.usd) / (cryptoData.market_data.atl.usd) * 100) } %</strong>
         <br/>
-        Total Supply (<img src={cryptoData.image.thumb} alt="logo"/>): <strong>{formatNumber(cryptoData.market_data.total_supply)}</strong>
+        All Time Low Price: <strong>${formatNumber(props.atl)}</strong>
+        <br/>
+        All Time low Price Change: <strong>
+          <td className={ (props.atlChange) >= 0 ? "positive" : "negative" }> 
+          {(props.atlChange) >= 0 ? trendingUp : trendingDown} {formatNumber(props.atlChange)} %
+          </td>
+        </strong>
+        <br/>
+        <br/>
+        All Time High & Low Difference: <strong>
+          <td className={ (props.ath) / (props.atl) * 100 >= 0 ? "positive" : "negative"}>
+          {(props.ath) / (props.atl) * 100 >= 0 ? trendingUp : trendingDown} {formatNumber((props.ath) / (props.atl) * 100) } %
+          </td>
+          </strong>
+        <br/>
+        <br/>
+        Total Supply (<img src={props.logo} alt="logo"/>): <strong>{formatNumber(props.supply)}</strong>
       </div>
     </>
   );
