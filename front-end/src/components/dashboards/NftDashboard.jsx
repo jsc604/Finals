@@ -2,14 +2,13 @@ import NftTable from "../dataTables/NftTable";
 import Navigation from "../Navigation";
 import useNftData from "../../hooks/useNftData";
 
-
 export default function NftDashboard(props) {
   const { nftData } = useNftData();
   return (
-    <main>
-      <h1><strong>Top NFT Collections</strong></h1>
-      <Navigation tab={'nft'} />
-      { nftData && nftData.length !== 0 && <NftTable data={nftData} /> }
-    </main>
+      <main>
+        <h1><strong>Top NFT Collections</strong></h1>
+        <Navigation tab={'nft'} />
+        { nftData && nftData.length !== 0 && <NftTable data={nftData} /> }
+      </main>
   );
 };

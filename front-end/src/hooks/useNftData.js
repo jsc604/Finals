@@ -12,7 +12,8 @@ export default function useNftData() {
     let cancel = false;
 
     setLoading(true);
-
+    setNftData([]);
+    
     const requests = topNftId.map((id) => 
       axios.get(`https://api.coingecko.com/api/v3/nfts/${id}`)
     );

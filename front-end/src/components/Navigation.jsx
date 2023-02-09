@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
+import { useContext } from "react";
+import { watchlistContext } from "../providers/WatchlistProvider";
 
 export default function Navigation(props) {
-  const { toggle, tab, watchlistStatus } = props;
+  const { tab } = props;
+  const { watchlistToggle, watchlist } = useContext(watchlistContext)
 
   const stockButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'stocks' });
   const cryptoButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'crypto' });
   const nftButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'nft' });
-  const watchlistButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': watchlistStatus === true });
+  const watchlistButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': watchlist === true });
   
 
   return (
@@ -31,7 +34,7 @@ export default function Navigation(props) {
       </div>
 
       <div>
-        <button className={watchlistButton} type="button" onClick={() => toggle()}>
+        <button className={watchlistButton} type="button" onClick={watchlistToggle}>
           Watchlist
         </button>
       </div>
