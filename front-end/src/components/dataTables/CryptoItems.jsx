@@ -88,7 +88,7 @@ export default function CryptoItems(props) {
         </td>
 
         <td>${formatNumber(props.price)}</td>
-        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
+        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change} %</td>
         <td>${formatNumber(props.high)}</td>
         <td>${formatNumber(props.low)}</td>
         <td>${formatNumber(props.volume)}</td>

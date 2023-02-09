@@ -96,19 +96,19 @@ export default function CryptoInfo(props) {
                   <tr>
                     <td className={cryptoData.market_data.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}>
                       {cryptoData.market_data.price_change_percentage_24h >= 0 ? trendingUp : trendingDown}<br/> 
-                      %{formatNumber(cryptoData.market_data.price_change_percentage_24h)}
+                      {formatNumber(cryptoData.market_data.price_change_percentage_24h)} %
                     </td>
                     <td className={cryptoData.market_data.price_change_percentage_7d >= 0 ? 'positive' : 'negative'}>
                       {cryptoData.market_data.price_change_percentage_7d >= 0 ? trendingUp : trendingDown}<br/>
-                      %{formatNumber(cryptoData.market_data.price_change_percentage_7d)}
+                      {formatNumber(cryptoData.market_data.price_change_percentage_7d)} %
                     </td>
                     <td className={cryptoData.market_data.price_change_percentage_14d >= 0 ? 'positive' : 'negative'}>
                       {cryptoData.market_data.price_change_percentage_14d >= 0 ? trendingUp : trendingDown}<br/>  
-                      %{formatNumber(cryptoData.market_data.price_change_percentage_14d)}
+                      {formatNumber(cryptoData.market_data.price_change_percentage_14d)} %
                     </td>
                     <td className={cryptoData.market_data.price_change_percentage_30d >= 0 ? 'positive' : 'negative'}>
                       {cryptoData.market_data.price_change_percentage_30d >= 0 ? trendingUp : trendingDown}<br/>  
-                      %{formatNumber(cryptoData.market_data.price_change_percentage_30d)}
+                      {formatNumber(cryptoData.market_data.price_change_percentage_30d)} %
                     </td>
                   </tr>
                 </tbody>
