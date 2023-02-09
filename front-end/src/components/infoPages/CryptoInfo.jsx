@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import useCryptoData from "../../hooks/useCryptoData";
 import "../../styles/infoPage.scss";
-import CryptoChart from "../charts/CryptoChart";
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import ApexCryptoChart from "../charts/ApexCryptoChart";
 
 export default function CryptoInfo(props) {
   const [favorite, setFavorite] = useState(false);
@@ -53,7 +53,7 @@ export default function CryptoInfo(props) {
             {cryptoData.name}
           </h1>
           <div className="chart-info-container">
-            <CryptoChart interval={interval}/>
+            <ApexCryptoChart interval={interval}/>
             <div className="info-details">
               <table class="table table-sm">
                 <thead>
@@ -113,7 +113,7 @@ export default function CryptoInfo(props) {
                   </tr>
                 </tbody>
               </table>
-              <div>
+              <div className="details">
                 Current Price: <strong>${formatNumber(cryptoData.market_data.current_price.usd)}</strong>
                 <br />
                 Market Cap: <strong>${formatNumber(cryptoData.market_data.market_cap.usd)}</strong> 
