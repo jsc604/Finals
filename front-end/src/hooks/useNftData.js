@@ -1,22 +1,17 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useContext } from 'react';
+import { watchlistContext } from '../providers/WatchlistProvider';
 
-export default function useNftData() {
+export default function useNftData(requests) {
   const [nftData, setNftData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
+  const { watchlist } = useContext(watchlistContext)
 
   useEffect(() => {
     let cancel = false;
 
     setLoading(true);
     setNftData([]);
-    
-    const requests = topNftId.map((id) => 
-      axios.get(`https://api.coingecko.com/api/v3/nfts/${id}`)
-    );
 
     Promise.all(requests)
       .then(responses => {
@@ -40,8 +35,7 @@ export default function useNftData() {
     return () => {
       cancel = true;
     };
-    //eslint-disable-next-line
-  }, []);
+  }, [watchlist]);
 
   return { error, loading, nftData };
 }
