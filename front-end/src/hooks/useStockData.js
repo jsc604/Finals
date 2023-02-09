@@ -9,6 +9,9 @@ export default function Test() {
   const [loading, setLoading] = useState(false);
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
+  axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/'; 
+
+
   useEffect(() => {
     let cancel = false;
 
@@ -17,7 +20,7 @@ export default function Test() {
     const promises = stockArray.map(stock => {
       const options = {
         method: 'GET',
-        url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
+        url: `${stock}/15m`,
         params: { diffandsplits: 'false' },
         headers: {
           'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',

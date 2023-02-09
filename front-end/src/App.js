@@ -5,6 +5,7 @@ import CryptoDashboard from "./components/dashboards/CryptoDashboard"
 import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
 import NftInfo from "./components/infoPages/NftInfo";
+import StockInfo from "./components/infoPages/StockInfo"
 import Header from "./components/Header";
 import Test from "./hooks/test";
 // //SEARCHES FOR CRYPTO DATA
@@ -32,7 +33,7 @@ export default function App() {
 
         <Route path="stocks">
           <Route path="dashboard" element={<StocksDashboard />} />
-          {/* <Route path=":id" element={<StockInfo />} /> */}
+          <Route path=":id" element={<StockInfo />} />
         </Route>
 
         <Route path="crypto">
