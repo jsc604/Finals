@@ -52,9 +52,8 @@ export default function NftItems(props) {
           let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
           props.setWatchlistIds(sorted)
           setFavorite(!favorite);
-          console.log('DELETE NFT CLICKED')
 
-            axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload}`)
+            axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload.email}`)
             .then((result) => {
               const ids = result.data.NftFavorites.map(favorite => favorite.api_id);
               props.setWatchlistIds(ids);
@@ -71,7 +70,7 @@ export default function NftItems(props) {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
           setFavorite(!favorite)
-          axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload}`)
+          axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload.email}`)
           .then((result) => {
             const ids = result.data.NftFavorites.map(favorite => favorite.api_id);
             props.setWatchlistIds(ids);

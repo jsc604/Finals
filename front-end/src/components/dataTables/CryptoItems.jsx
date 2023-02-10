@@ -46,8 +46,7 @@ export default function CryptoItems(props) {
   }, [user]);
 
   const handleClick = () => {
-    // setFavorite(!favorite);
-    // console.log('hello world', favorite);
+
     const payload = {
       email: user.email,
       apiId: props.id,
@@ -61,7 +60,7 @@ export default function CryptoItems(props) {
             props.setWatchlistIds(sorted)
             setFavorite(!favorite);  
             
-            axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
+            axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload.email}`)
             .then((result) => {
               const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
               props.setWatchlistIds(ids);
@@ -78,7 +77,7 @@ export default function CryptoItems(props) {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
           setFavorite(!favorite);
-          axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
+          axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload.email}`)
           .then((result) => {
             const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
             props.setWatchlistIds(ids);

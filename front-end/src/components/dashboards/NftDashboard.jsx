@@ -6,45 +6,31 @@ import { watchlistContext } from "../../providers/WatchlistProvider";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useParams } from "react-router-dom";
 
+const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
 
 export default function NftDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
-import { useParams } from "react-router-dom";
-
-export default function NftDashboard(props) {
-  const { watchlist } = useContext(watchlistContext);
   const { watchlistparam } = useParams();
   
-  console.log('watchlist Param---', watchlistparam);
-
-  const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
-  // const watchlistNftId = ['clonex', 'bored-ape-yacht-club'];
   const payload = user?.email;
   
   useEffect(() => {
-    if (watchlistIds?.length === 0) {
       
       axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload}`)
       .then((result) => {
         const ids = result.data.NftFavorites.map(favorite => favorite.api_id);
-        console.log('----- NFT ids-----', ids);
         setWatchlistIds(ids);
-        console.log('NFT DATA: ', nftData)  
       })
       .catch((ex) => {
         console.log(ex);
       });
-    }
-  },[watchlistIds])
+    },[payload])
   
-  
-  const topNftApiUrl = topNftId.map((id) => axios.get(`https://api.coingecko.com/api/v3/nfts/${id}`));
-  const watchlistNftApiUrl = watchlistIds.map((id) => axios.get(`https://api.coingecko.com/api/v3/nfts/${id}`));
-
-  const { nftData } = useNftData(watchlist ? watchlistNftApiUrl : topNftApiUrl);
+  const { nftData } = useNftData(watchlist ? watchlistIds : topNftId);
   
   if(isLoading) {
     return null;

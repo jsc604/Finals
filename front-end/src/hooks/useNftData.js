@@ -1,20 +1,28 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useMemo, useCallback } from 'react';
 import { watchlistContext } from '../providers/WatchlistProvider';
+import axios from 'axios';
 
-export default function useNftData(requests) {
+
+export default function useNftData(array) {
   const [nftData, setNftData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { watchlist } = useContext(watchlistContext)
-
+  const { watchlist } = useContext(watchlistContext);
+  
+  
+  
   useEffect(() => {
     let cancel = false;
 
+    const request = array.map((id) => axios.get(`https://api.coingecko.com/api/v3/nfts/${id}`))
+   
     setLoading(true);
     setNftData([]);
 
-    Promise.all(requests)
+
+    Promise.all(request)
       .then(responses => {
+        console.log('PROMISE DOT ALL');
         if (!cancel) {
           console.log('RESPONSES:', responses)
           const data = responses.map(response => {
@@ -36,7 +44,7 @@ export default function useNftData(requests) {
     return () => {
       cancel = true;
     };
-  }, [requests, watchlist]);
+  }, [array]);
 
   return { error, loading, nftData };
 }

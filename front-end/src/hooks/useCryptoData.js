@@ -13,11 +13,9 @@ export default function useCryptoData(param) {
   useEffect(() => {
     let cancel = false;
     setCryptoData(null);
-    // console.log('---param----', param);
     axios.get(param)
       .then(response => {
         if (!cancel) {
-          // console.log('-----api called-----');
           setLoading(true);
           setCryptoData(response.data);
         }
