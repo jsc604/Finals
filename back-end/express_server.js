@@ -229,14 +229,11 @@ const deleteFromCrypto = (userId, apiId, res) => {
               return;
             }
             console.log(`Deleted "${apiId}" from crypto table for user ${userId}`);
-
-
             db.query(`SELECT * FROM crypto WHERE user_id = ${userId}`, (error, result) => {
               if (error) {
                 console.error(error);
                 return;
               }
-              console.log('DELETE FUNC RETURN', result.rows)
               res.send({rows: result.rows});
             });
           }
@@ -256,6 +253,7 @@ const deleteFromStocks = (userId, apiId, res) => {
         console.error(error);
         return;
       }
+      
       if (result.rows.length > 0) {
         db.query(
           `DELETE FROM stocks WHERE user_id = ${userId} AND api_id = '${apiId}'`,
@@ -265,6 +263,13 @@ const deleteFromStocks = (userId, apiId, res) => {
               return;
             }
             console.log(`Deleted "${apiId}" from stocks table for user ${userId}`);
+            db.query(`SELECT * FROM stocks WHERE user_id = ${userId}`, (error, result) => {
+              if (error) {
+                console.error(error);
+                return;
+              }
+              res.send({rows: result.rows});
+            });
           }
         );
       } else {
@@ -291,6 +296,13 @@ const deleteFromNft = (userId, apiId, res) => {
               return;
             }
             console.log(`Deleted "${apiId}" from nft table for user ${userId}`);
+            db.query(`SELECT * FROM nft WHERE user_id = ${userId}`, (error, result) => {
+              if (error) {
+                console.error(error);
+                return;
+              }
+              res.send({rows: result.rows});
+            });
           }
         );
       } else {
@@ -315,8 +327,7 @@ app.get("/getFavoritesCrypto", (req, res) => {
         console.error(error);
         return res.status(500).send({ error });
       }
-      console.log('result.rows', result.rows);
-      return res.send({ favorites: result.rows });
+      return res.send({ CryptoFavorites: result.rows });
     }
   );
 });
@@ -333,7 +344,7 @@ app.get("/getFavoritesNFT", (req, res) => {
         console.error(error);
         return res.status(500).send({ error });
       }
-      return res.send({ favorites: result.rows });
+      return res.send({ NftFavorites: result.rows });
     }
   );
 });
@@ -350,7 +361,7 @@ app.get("/getFavoritesStocks", (req, res) => {
         console.error(error);
         return res.status(500).send({ error });
       }
-      return res.send({ favorites: result.rows });
+      return res.send({ Stockfavorites: result.rows });
     }
   );
 });

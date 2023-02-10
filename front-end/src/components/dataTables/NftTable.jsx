@@ -71,6 +71,8 @@ export default function NftTable(props) {
       supply={nft.total_supply}
       id={nft.id}
       description={nft.description}
+      setWatchlistIds={props.setWatchlistIds}
+      watchlistIds={props.watchlistIds}
     />
   ));
 

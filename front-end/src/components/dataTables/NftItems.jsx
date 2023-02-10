@@ -10,10 +10,9 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function NftItems(props) {
-
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
-
+  
   const {user} = useAuth0();
 
   const percentChange = classNames({
@@ -40,7 +39,7 @@ export default function NftItems(props) {
   }, [user]);
 
   const handleClick = () => {
-    setFavorite(!favorite);
+
     const payload = {
       email: user.email,
       apiId: props.id,
@@ -48,8 +47,22 @@ export default function NftItems(props) {
     }
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
-        .then(result => {
-          console.log('RESULT: ', result);
+      .then(result => {
+        for (let i of result.data.rows) {
+          let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
+          props.setWatchlistIds(sorted)
+          setFavorite(!favorite);
+          console.log('DELETE NFT CLICKED')
+
+            axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload}`)
+            .then((result) => {
+              const ids = result.data.NftFavorites.map(favorite => favorite.api_id);
+              props.setWatchlistIds(ids);
+            })
+            .catch((ex) => {
+              console.log(ex);
+            });
+          }
         })
         .catch(ex => {
           console.log(ex);
@@ -57,14 +70,18 @@ export default function NftItems(props) {
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
-          console.log('RESULT: ', result);
+          setFavorite(!favorite)
+          axios.get(`http://localhost:8080/getFavoritesNFT?email=${payload}`)
+          .then((result) => {
+            const ids = result.data.NftFavorites.map(favorite => favorite.api_id);
+            props.setWatchlistIds(ids);
+          })
         })
         .catch(ex => {
           console.log(ex);
         });
     }
   };
-
   return (
     <>
       <tr>

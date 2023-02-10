@@ -16,6 +16,7 @@ export default function useNftData(requests) {
     Promise.all(requests)
       .then(responses => {
         if (!cancel) {
+          console.log('RESPONSES:', responses)
           const data = responses.map(response => {
             if (response.data.error) {
               throw new Error(response.data.error);
@@ -35,7 +36,7 @@ export default function useNftData(requests) {
     return () => {
       cancel = true;
     };
-  }, [watchlist]);
+  }, [requests, watchlist]);
 
   return { error, loading, nftData };
 }

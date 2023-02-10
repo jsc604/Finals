@@ -11,7 +11,6 @@ import { useState } from "react";
 export default function CryptoDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
-
   const { isLoading, user } = useAuth0();
 
   const buildAPIUrl = (ids) => {
@@ -22,6 +21,10 @@ export default function CryptoDashboard(props) {
     return null;
   };
 
+  let watchlistApi = buildAPIUrl(watchlistIds);
+  const { cryptoData } = useCryptoData(watchlist && watchlistApi ? watchlistApi : "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d");
+  // console.log('-----cryptoData-----',cryptoData);
+
   const payload = user?.email;
 
   useEffect(() => {
@@ -29,8 +32,8 @@ export default function CryptoDashboard(props) {
   
       axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
         .then((result) => {
-          const ids = result.data.favorites.map(favorite => favorite.api_id);
-          // console.log('-----result-----', result);
+          const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
+          console.log('-----CRYPTO ids-----', ids);
           setWatchlistIds(ids);
         })
         .catch((ex) => {
@@ -39,9 +42,6 @@ export default function CryptoDashboard(props) {
     }
   },[watchlistIds])
 
-  let watchlistApi = buildAPIUrl(watchlistIds);
-  const { cryptoData } = useCryptoData(watchlist && watchlistApi ? watchlistApi : "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d");
-  // console.log('-----cryptoData-----',cryptoData);
 
   if(isLoading) {
     return null;

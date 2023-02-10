@@ -16,11 +16,11 @@ export default function CryptoItems(props) {
   const [favorite, setFavorite] = useState(false);
   const [interval, setInterval] = useState(7);
 
+  const {user} = useAuth0();
   const handleIntervalChange = (newInterval) => {
     setInterval(newInterval);
   };
 
-  const {user} = useAuth0();
 
   const percentChange = classNames({
     "positive": props.change >= 0,
@@ -58,20 +58,17 @@ export default function CryptoItems(props) {
         .then(result => {
             for (let i of result.data.rows) {
               let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
-              console.log('props watchlist id: ', props.watchlistIds)
             props.setWatchlistIds(sorted)
             setFavorite(!favorite);  
             
             axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
             .then((result) => {
-              const ids = result.data.favorites.map(favorite => favorite.api_id);
-              // console.log('-----result-----', result);
+              const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
               props.setWatchlistIds(ids);
             })
             .catch((ex) => {
               console.log(ex);
             });
-
           }
         })
         .catch(ex => {
@@ -80,12 +77,10 @@ export default function CryptoItems(props) {
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
-          console.log('RESULT favorited: ', result);
           setFavorite(!favorite);
           axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
           .then((result) => {
-            const ids = result.data.favorites.map(favorite => favorite.api_id);
-            // console.log('-----result-----', result);
+            const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
             props.setWatchlistIds(ids);
           })
         })
