@@ -204,6 +204,7 @@ app.post("/favoriteDelete", (req, res) => {
         }
       }
     );
+    res.json({value: 'value'});
   } 
 });
 
@@ -224,6 +225,7 @@ const deleteFromCrypto = (userId, apiId) => {
               return;
             }
             console.log(`Deleted "${apiId}" from crypto table for user ${userId}`);
+            return result.rows;
           }
         );
       } else {
@@ -300,6 +302,7 @@ app.get("/getFavoritesCrypto", (req, res) => {
         console.error(error);
         return res.status(500).send({ error });
       }
+      console.log('result.rows', result.rows);
       return res.send({ favorites: result.rows });
     }
   );
