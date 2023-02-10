@@ -23,10 +23,9 @@ export default function Home(props) {
   return (
     <>
       <div>
-        {/* <h2>
-          <strong>"You miss 100% of the shots you don't take - Wayne Gretzky" - Michael Scott</strong>
-        </h2> */}
-        <img className="logo" src={require("../logo/riding-wave-logo.png")} alt="Wave logo"></img>
+        <h2>
+          <strong>What are we tracking today anon?</strong>
+        </h2>
       </div>
       <div className="homepage-button-group">
         <Link to="stocks/dashboard">Stocks</Link>

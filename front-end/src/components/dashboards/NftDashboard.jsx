@@ -18,7 +18,7 @@ export default function NftDashboard(props) {
   
   return (
       <main>
-        <h1><strong>Top NFT Collections</strong></h1>
+        <h1><strong>{watchlist ? 'NFT Watchlist' : 'Top NFT Collections'}</strong></h1>
         <Navigation tab={'nft'} />
         { nftData && nftData.length !== 0 && <NftTable data={nftData} /> }
       </main>

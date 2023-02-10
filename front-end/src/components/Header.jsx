@@ -3,6 +3,7 @@ import "../styles/header.scss";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 
 export default function Header() {
@@ -11,11 +12,14 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/* <div >
-        <img className="logo" src="/home/labber/lighthouse/finals/Finals/front-end/public/riding-wave-logo.png" alt="wave logo" />
-      </div> */}
-      <div className="buttons">
 
+      <Link to="/">
+        <span >
+          <img className="logo" src={require("../logo/riding-wave-logo.png")} alt="Wave logo"></img>
+        </span>
+      </Link>
+
+      <div className="buttons">
         {!isAuthenticated ? (
           < LoginButton />
           ) : (
