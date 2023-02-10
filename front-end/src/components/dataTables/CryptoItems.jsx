@@ -14,7 +14,7 @@ import ApexCryptoChart from "../charts/ApexCryptoChart";
 export default function CryptoItems(props) {
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
-  const [interval, setInterval] = useState(7);;
+  const [interval, setInterval] = useState(7);
 
   const handleIntervalChange = (newInterval) => {
     setInterval(newInterval);
@@ -46,18 +46,33 @@ export default function CryptoItems(props) {
   }, [user]);
 
   const handleClick = () => {
-    setFavorite(!favorite);
-    console.log('hello world', favorite);
+    // setFavorite(!favorite);
+    // console.log('hello world', favorite);
     const payload = {
       email: user.email,
       apiId: props.id,
       category: 'crypto'
     }
-    console.log('payload', payload);
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
         .then(result => {
-          console.log('RESULT deleted: ', result);
+            for (let i of result.data.rows) {
+              let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
+              console.log('props watchlist id: ', props.watchlistIds)
+            props.setWatchlistIds(sorted)
+            setFavorite(!favorite);  
+            
+            axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
+            .then((result) => {
+              const ids = result.data.favorites.map(favorite => favorite.api_id);
+              // console.log('-----result-----', result);
+              props.setWatchlistIds(ids);
+            })
+            .catch((ex) => {
+              console.log(ex);
+            });
+
+          }
         })
         .catch(ex => {
           console.log(ex);
@@ -66,6 +81,13 @@ export default function CryptoItems(props) {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
           console.log('RESULT favorited: ', result);
+          setFavorite(!favorite);
+          axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
+          .then((result) => {
+            const ids = result.data.favorites.map(favorite => favorite.api_id);
+            // console.log('-----result-----', result);
+            props.setWatchlistIds(ids);
+          })
         })
         .catch(ex => {
           console.log(ex);
