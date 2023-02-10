@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useCryptoData from "../../hooks/useCryptoData";
 import "../../styles/infoPage.scss";
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
@@ -48,10 +48,16 @@ export default function CryptoInfo(props) {
     <div className="infos">
       {cryptoData ? (
         <>
-          <h1>
-            <img src={cryptoData.image.small} alt={cryptoData.name} />
-            {cryptoData.name}
-          </h1>
+          <div className="info-header">
+            <Link to="/crypto/dashboard">
+              <button className="btn btn-outline-warning">Back to Dashboard</button>
+            </Link>
+            <h1>
+              <img src={cryptoData.image.small} alt={cryptoData.name} />
+              {cryptoData.name}
+            </h1>
+          </div>
+          
           <div className="chart-info-container">
             <ApexCryptoChart interval={interval}/>
             <div className="info-details">

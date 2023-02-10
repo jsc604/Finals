@@ -24,7 +24,7 @@ export default function Home(props) {
     <>
       <div>
         <h2>
-          <strong>What are we tracking today anon?</strong>
+          <strong>What are we tracking today Anon?</strong>
         </h2>
       </div>
       <div className="homepage-button-group">
