@@ -79,13 +79,13 @@ app.post("/favoriteInsert", (req, res) => {
         const userId = result.rows[0].id;
         switch (category) {
           case "crypto":
-            insertIntoCrypto(userId, apiId);
+            insertIntoCrypto(userId, apiId, res);
             break;
           case "stocks":
-            insertIntoStocks(userId, apiId);
+            insertIntoStocks(userId, apiId, res);
             break;
           case "nft":
-            insertIntoNft(userId, apiId);
+            insertIntoNft(userId, apiId, res);
             break;
           default:
             console.error(`Unrecognized api id category: ${apiId}`);
@@ -96,7 +96,7 @@ app.post("/favoriteInsert", (req, res) => {
   } 
 });
 
-const insertIntoCrypto = (userId, apiId) => {
+const insertIntoCrypto = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM crypto WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {
@@ -116,13 +116,14 @@ const insertIntoCrypto = (userId, apiId) => {
             return;
           }
           console.log(`Inserted "${apiId}" into crypto table`);
+          res.send({ status: "success" });
         }
       );
     }
   );
 };
 
-const insertIntoStocks = (userId, apiId) => {
+const insertIntoStocks = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM stocks WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {
@@ -142,13 +143,15 @@ const insertIntoStocks = (userId, apiId) => {
             return;
           }
           console.log(`Inserted "${apiId}" into stocks table`);
+          res.send({ status: "success" });
+
         }
       );
     }
   );
 };
 
-const insertIntoNft = (userId, apiId) => {
+const insertIntoNft = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM nft WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {
@@ -168,6 +171,8 @@ const insertIntoNft = (userId, apiId) => {
             return;
           }
           console.log(`Inserted "${apiId}" into nft table`);
+          res.send({ status: "success" });
+
         }
       );
     }
@@ -190,13 +195,13 @@ app.post("/favoriteDelete", (req, res) => {
         const userId = result.rows[0].id;
         switch (category) {
           case "crypto":
-            deleteFromCrypto(userId, apiId);
+            deleteFromCrypto(userId, apiId, res);
             break;
           case "stocks":
-            deleteFromStocks(userId, apiId);
+            deleteFromStocks(userId, apiId, res);
             break;
           case "nft":
-            deleteFromNft(userId, apiId);
+            deleteFromNft(userId, apiId, res);
             break;
           default:
             console.error(`Unrecognized api id category: ${apiId}`);
@@ -204,11 +209,10 @@ app.post("/favoriteDelete", (req, res) => {
         }
       }
     );
-    res.json({value: 'value'});
   } 
 });
 
-const deleteFromCrypto = (userId, apiId) => {
+const deleteFromCrypto = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM crypto WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {
@@ -225,7 +229,16 @@ const deleteFromCrypto = (userId, apiId) => {
               return;
             }
             console.log(`Deleted "${apiId}" from crypto table for user ${userId}`);
-            return result.rows;
+
+
+            db.query(`SELECT * FROM crypto WHERE user_id = ${userId}`, (error, result) => {
+              if (error) {
+                console.error(error);
+                return;
+              }
+              console.log('DELETE FUNC RETURN', result.rows)
+              res.send({rows: result.rows});
+            });
           }
         );
       } else {
@@ -235,7 +248,7 @@ const deleteFromCrypto = (userId, apiId) => {
   );
 };
 
-const deleteFromStocks = (userId, apiId) => {
+const deleteFromStocks = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM stocks WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {
@@ -261,7 +274,7 @@ const deleteFromStocks = (userId, apiId) => {
   );
 };
 
-const deleteFromNft = (userId, apiId) => {
+const deleteFromNft = (userId, apiId, res) => {
   db.query(
     `SELECT * FROM nft WHERE user_id = ${userId} AND api_id = '${apiId}'`,
     (error, result) => {

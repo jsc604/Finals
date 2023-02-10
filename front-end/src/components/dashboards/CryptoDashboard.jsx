@@ -15,23 +15,23 @@ export default function CryptoDashboard(props) {
   const { isLoading, user } = useAuth0();
 
   const buildAPIUrl = (ids) => {
-    const idString = ids.join("%2C%20");
-    return `coins/markets?vs_currency=usd&ids=${idString}&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d`;
+    const idString = ids && ids.length > 0 ? ids.join("%2C%20") : null;
+    if (idString) {
+      return `coins/markets?vs_currency=usd&ids=${idString}&order=market_cap_desc&per_page=250&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d`;
+    }
+    return null;
   };
 
   const payload = user?.email;
-  console.log('PAYLOAD: ', payload)
 
   useEffect(() => {
-    if (watchlistIds.length === 0) {
+    if (watchlistIds?.length === 0) {
   
       axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
         .then((result) => {
           const ids = result.data.favorites.map(favorite => favorite.api_id);
-          console.log('-----result-----', result);
+          // console.log('-----result-----', result);
           setWatchlistIds(ids);
-          
-          console.log('--------ids------', ids);
         })
         .catch((ex) => {
           console.log(ex);
@@ -40,9 +40,8 @@ export default function CryptoDashboard(props) {
   },[watchlistIds])
 
   let watchlistApi = buildAPIUrl(watchlistIds);
-
-  const { cryptoData } = useCryptoData(watchlist ? watchlistApi : "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d");
-  console.log('-----cryptoData-----',cryptoData);
+  const { cryptoData } = useCryptoData(watchlist && watchlistApi ? watchlistApi : "/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h%2C7d%2C14d%2C30d");
+  // console.log('-----cryptoData-----',cryptoData);
 
   if(isLoading) {
     return null;
@@ -54,7 +53,7 @@ export default function CryptoDashboard(props) {
         <strong>{watchlist ? 'Crypto Watchlist' : 'Top Crypto Currencies'}</strong>
       </h1>
       <Navigation tab={"crypto"} />
-      {cryptoData && <CryptoTable data={cryptoData} />}
+      {cryptoData && <CryptoTable data={cryptoData} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds}   />}
     </main>
   );
 }

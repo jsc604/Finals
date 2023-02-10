@@ -48,7 +48,8 @@ export default function CryptoTable(props) {
       low={token.low_24h}
       marketCap={token.market_cap}
       id={token.id}
-
+      setWatchlistIds={props.setWatchlistIds}
+      watchlistIds={props.watchlistIds}
       supply={token.total_supply}
       ath={token.ath}
       athChange={token.ath_change_percentage}
