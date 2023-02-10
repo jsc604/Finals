@@ -47,15 +47,17 @@ export default function CryptoItems(props) {
 
   const handleClick = () => {
     setFavorite(!favorite);
+    console.log('hello world', favorite);
     const payload = {
       email: user.email,
       apiId: props.id,
       category: 'crypto'
     }
+    console.log('payload', payload);
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
         .then(result => {
-          console.log('RESULT: ', result);
+          console.log('RESULT deleted: ', result);
         })
         .catch(ex => {
           console.log(ex);
@@ -63,7 +65,7 @@ export default function CryptoItems(props) {
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
         .then(result => {
-          console.log('RESULT: ', result);
+          console.log('RESULT favorited: ', result);
         })
         .catch(ex => {
           console.log(ex);
