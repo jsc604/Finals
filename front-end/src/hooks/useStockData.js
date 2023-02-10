@@ -3,11 +3,14 @@ import percentChangedHelper from '../helpers/percentChange';
 import axios from 'axios';
 import { formatNumber } from "../helpers/table_helpers";
 
-export default function Test() {
+export default function StockData(interval) {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
+  // const [interval, setInterval] = useState('1d');
+
+  axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history'; 
 
   useEffect(() => {
     let cancel = false;
@@ -17,7 +20,7 @@ export default function Test() {
     const promises = stockArray.map(stock => {
       const options = {
         method: 'GET',
-        url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
+        url: `/${stock}/15m`,
         params: { diffandsplits: 'false' },
         headers: {
           'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
@@ -36,8 +39,10 @@ export default function Test() {
 
     Promise.all(promises)
       .then(responses => {
-
+        
+        
         setData(responses.map(stockObj => {
+          console.log("LOGGING HEERE", stockObj)
           const container = Object.values(stockObj)[0];
           
           return { ...container.meta, items: container.items, percentageChange: formatNumber(percentChangedHelper(container.meta.previousClose, container.meta.regularMarketPrice)) };
@@ -49,10 +54,9 @@ export default function Test() {
     };
   }, []);
 
-  console.log("Data is:", data);
 
-
+console.log('--------', data);
   const result = { error, loading, data };
-  console.log("result", result);
+
   return result;
 };

@@ -5,8 +5,12 @@ import CryptoDashboard from "./components/dashboards/CryptoDashboard"
 import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
 import NftInfo from "./components/infoPages/NftInfo";
+import StockInfo from "./components/infoPages/StockInfo";
 import Header from "./components/Header";
+
+
 import Test from "./hooks/test";
+import TestStockInfo from "./components/infoPages/TestStockInfo"
 // //SEARCHES FOR CRYPTO DATA
 // import CallCrypto from './components/CallCryptoData';
 // // SEARCHES FOR MOST POPULAR NFTS
@@ -32,7 +36,7 @@ export default function App() {
 
         <Route path="stocks">
           <Route path="dashboard" element={<StocksDashboard />} />
-          {/* <Route path=":id" element={<StockInfo />} /> */}
+          <Route path=":id" element={<StockInfo />} />
         </Route>
 
         <Route path="crypto">
@@ -47,7 +51,10 @@ export default function App() {
 
         <Route path="*" element={<Home />} />
 
-        <Route path="test" element={<Test />} />
+        <Route path="test">
+          <Route path="test" element={<Test />} />
+          <Route path=":id" element={<TestStockInfo />} />
+        </Route>
 
       </Routes>
     </div>

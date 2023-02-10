@@ -9,6 +9,7 @@ import percentChangedHelper from "../../helpers/percentChange";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
+import ApexStockChart from "../charts/ApexStockChart";
 
 export default function StockItems(props) {
 
@@ -88,7 +89,7 @@ export default function StockItems(props) {
 
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
-      {dropdown && <tr><td colSpan={10}>Chart</td></tr>}
+      {dropdown && <tr><td colSpan={10}><ApexStockChart id={props.stock}/></td></tr>}
     </>
   );
 };
