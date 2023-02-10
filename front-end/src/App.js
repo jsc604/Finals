@@ -31,12 +31,13 @@ export default function App() {
 
           <Route path="crypto">
             <Route path="dashboard" element={<CryptoDashboard />}/>
-              <Route path="watchlist" element={<CryptoDashboard/>}/>
+            <Route path=":watchlistparam" element={<CryptoDashboard />}/>
             <Route path=":id" element={<CryptoInfo />} />
           </Route>
 
           <Route path="nft">
             <Route path="dashboard" element={<NftDashboard />} />
+            <Route path=":watchlistparam" element={<NftDashboard />}/>
             <Route path=":id" element={<NftInfo />} />
           </Route>
 

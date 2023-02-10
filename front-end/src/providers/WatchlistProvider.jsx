@@ -10,7 +10,7 @@ export default function WatchlistProvider(props) {
     setWatchlist(watchlist === false ? true : false);
   };
 
-  const watchlistData = {  watchlistToggle, watchlist };
+  const watchlistData = {  watchlistToggle, watchlist, setWatchlist };
 
   return (
     <watchlistContext.Provider value={watchlistData}>
