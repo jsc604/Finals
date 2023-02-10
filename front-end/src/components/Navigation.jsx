@@ -5,28 +5,27 @@ import { watchlistContext } from "../providers/WatchlistProvider";
 
 export default function Navigation(props) {
   const { tab } = props;
-  const { watchlistToggle, watchlist } = useContext(watchlistContext)
+  const { watchlistToggle, watchlist } = useContext(watchlistContext);
 
   const stockButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'stocks' });
   const cryptoButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'crypto' });
   const nftButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'nft' });
   const watchlistButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': watchlist === true });
   
-
   return (
     <nav className="navbar navbar-light bg-dark">
       <div>
-        <Link to="/stocks/dashboard">
+        <Link to={ watchlist ? "stocks/watchlist" : "/stocks/dashboard" }>
           <button className={stockButton} type="button">
             Stocks
           </button>
         </Link>
-        <Link to="/crypto/dashboard">
+        <Link to={ watchlist ? "/crypto/watchlist" : "/crypto/dashboard" }>
           <button className={cryptoButton} type="button">
             Crypto
           </button>
         </Link>
-        <Link to="/nft/dashboard">
+        <Link to={ watchlist ? "/nft/watchlist" : "/nft/dashboard" }>
           <button className={nftButton} type="button">
             NFT's
           </button>
@@ -34,9 +33,11 @@ export default function Navigation(props) {
       </div>
 
       <div>
-        <button className={watchlistButton} type="button" onClick={watchlistToggle}>
-          Watchlist
-        </button>
+        <Link to={ watchlist ? `/${tab}/dashboard` : `/${tab}/watchlist` }>
+          <button className={watchlistButton} type="button" onClick={watchlistToggle}>
+            Watchlist
+          </button>
+        </Link>
       </div>
     </nav>
   );

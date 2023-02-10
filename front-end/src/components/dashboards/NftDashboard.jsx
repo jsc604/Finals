@@ -12,6 +12,13 @@ export default function NftDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
+import { useParams } from "react-router-dom";
+
+export default function NftDashboard(props) {
+  const { watchlist } = useContext(watchlistContext);
+  const { watchlistparam } = useParams();
+  
+  console.log('watchlist Param---', watchlistparam);
 
   const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
   // const watchlistNftId = ['clonex', 'bored-ape-yacht-club'];
