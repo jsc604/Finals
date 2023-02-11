@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Test from "./hooks/test";
 import classNames from "classnames";
 import WatchlistProvider from "./providers/WatchlistProvider";
+import NftInfo2 from "./components/infoPages/NftInfo2";
 
 export default function App() {
 
@@ -31,14 +32,14 @@ export default function App() {
 
           <Route path="crypto">
             <Route path="dashboard" element={<CryptoDashboard />}/>
-            <Route path=":watchlistparam" element={<CryptoDashboard />}/>
+            <Route path="watchlist" element={<CryptoDashboard />}/>
             <Route path=":id" element={<CryptoInfo />} />
           </Route>
 
           <Route path="nft">
             <Route path="dashboard" element={<NftDashboard />} />
-            <Route path=":watchlistparam" element={<NftDashboard />}/>
-            <Route path=":id" element={<NftInfo />} />
+            <Route path="watchlist" element={<NftDashboard />}/>
+            <Route path=":id" element={<NftInfo2 />} />
           </Route>
 
           <Route path="*" element={<Home />} />

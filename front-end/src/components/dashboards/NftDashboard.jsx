@@ -6,7 +6,6 @@ import { watchlistContext } from "../../providers/WatchlistProvider";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useParams } from "react-router-dom";
 
 const topNftId = ['clonex', 'meebits', 'bored-ape-kennel-club', 'bored-ape-yacht-club', 'mutant-ape-yacht-club', 'cryptopunks', 'sandbox', 'decentraland', 'otherdeed-for-otherside', 'doodles-official', 'moonbirds'];
 
@@ -14,7 +13,6 @@ export default function NftDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
-  const { watchlistparam } = useParams();
   
   const payload = user?.email;
   

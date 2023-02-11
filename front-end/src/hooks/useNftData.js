@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext, useMemo, useCallback } from 'react';
-import { watchlistContext } from '../providers/WatchlistProvider';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
@@ -7,9 +6,6 @@ export default function useNftData(array) {
   const [nftData, setNftData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { watchlist } = useContext(watchlistContext);
-  
-  
   
   useEffect(() => {
     let cancel = false;
@@ -18,7 +14,6 @@ export default function useNftData(array) {
    
     setLoading(true);
     setNftData([]);
-
 
     Promise.all(request)
       .then(responses => {

@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import useCryptoData from "../../hooks/useCryptoData";
 import "../../styles/infoPage.scss";
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import ApexCryptoChart from "../charts/ApexCryptoChart";
@@ -17,6 +17,24 @@ export default function CryptoInfo(props) {
   );
 
   const {user} = useAuth0();
+
+  useEffect(() => {
+    if (user) {
+      axios.get('http://localhost:8080/checkIfFavorite', {
+        params: {
+          email: user.email,
+          apiId: id,
+          category: 'crypto'
+        }
+      })
+      .then(result => {
+        setFavorite(result.data.isFavorite);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+  }, [user, id]);
 
   const handleClick = () => {
     setFavorite(!favorite);
