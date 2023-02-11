@@ -15,7 +15,7 @@ export default function useNftInfo(id) {
     .then(response => {
       if (!cancel) {
         setLoading(true);
-        setNftInfo(response.data);
+        setNftInfo([response.data]);
       }
     })
     .catch(error => setError(error))

@@ -1,0 +1,50 @@
+.nft-infos {
+  width: 80%;
+  margin: auto;
+  color: white;
+
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .top-container {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: space-evenly;
+    align-items: center;
+
+    img {
+      width: 400px;
+      height: 400px;
+    }
+
+    .category {
+      display: flex;
+      font-size: 1.5rem;
+      flex-direction: column;
+      align-items: end;
+      margin-left: auto;
+
+      .category-type {
+        margin: 0px 1rem 0.5rem 0px;
+      }
+    }
+    .value {
+      display: flex;
+      font-size: 1.5rem;
+      flex-direction: column;
+      align-items: start;
+      margin-right: auto;
+
+      .value-type {
+        margin: 0px 0px 0.5rem 0px;
+      }
+    }
+  }
+
+  .description {
+    font-size: 1.5rem;
+  }
+ 
+}
