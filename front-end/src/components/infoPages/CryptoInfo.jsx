@@ -6,10 +6,13 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import ApexCryptoChart from "../charts/ApexCryptoChart";
+import { useContext } from "react";
+import { watchlistContext } from "../../providers/WatchlistProvider";
 
 export default function CryptoInfo(props) {
   const [favorite, setFavorite] = useState(false);
   const [interval, setInterval] = useState(7);
+  const {watchlist} = useContext(watchlistContext);
 
   const { id } = useParams();
   const { cryptoData } = useCryptoData(
@@ -68,7 +71,9 @@ export default function CryptoInfo(props) {
         <>
           <div className="info-header">
             <Link to="/crypto/dashboard">
-              <button className="btn btn-outline-warning">Back to Dashboard</button>
+              <button className="btn btn-outline-warning">
+                {watchlist? 'Back to Watchlist' : 'Back to Dashboard'}
+              </button>
             </Link>
             <h1>
               <img src={cryptoData.image.small} alt={cryptoData.name} />

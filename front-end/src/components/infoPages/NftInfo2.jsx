@@ -5,11 +5,14 @@ import "../../styles/nftInfo.scss";
 import { formatNumber } from "../../helpers/table_helpers";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { watchlistContext } from "../../providers/WatchlistProvider";
 
 export default function NftInfo2(props) {
   const [favorite, setFavorite] = useState(false);
   const { id } = useParams();
   const {user} = useAuth0();
+  const {watchlist} = useContext(watchlistContext);
 
   const { nftInfo } = useNftInfo(id);
 
@@ -74,7 +77,7 @@ export default function NftInfo2(props) {
         <div className="nav-buttons">
           <Link to="/nft/dashboard">
             <button className="btn btn-outline-warning">
-              Back to Dashboard
+              {watchlist? 'Back to Watchlist' : 'Back to Dashboard'}
             </button>
           </Link>
           <button className="btn btn-light" onClick={handleClick}>
