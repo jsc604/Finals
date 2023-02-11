@@ -14,7 +14,6 @@ export default function Home(props) {
   useEffect(() => {
     axios.post('http://localhost:8080/users', user)
     .then(result => {
-      console.log('RESULT: ', result)
     })
   },[user])
 

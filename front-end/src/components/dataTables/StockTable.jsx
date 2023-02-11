@@ -1,6 +1,7 @@
 import StockItems from "./StockItems";
 import { useState } from "react";
 import "../../styles/tableItems.scss";
+import StocksDashboard from "../dashboards/StocksDashboard";
 
 
 export default function StockTable(props) {
@@ -47,6 +48,7 @@ export default function StockTable(props) {
       price={stock.regularMarketPrice}
       prevClose={stock.previousClose}
       change={stock.percentageChange}
+      id={stock.symbol}
       setWatchlistIds={props.setWatchlistIds}
       watchlistIds={props.watchlistIds}
     />

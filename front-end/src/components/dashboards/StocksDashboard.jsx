@@ -21,7 +21,7 @@ export default function StocksDashboard(props) {
       
       axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
       .then((result) => {
-        const ids = result.data.StockFavorites.map(favorite => favorite.api_id);
+        const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
         setWatchlistIds(ids);
       })
       .catch((ex) => {
@@ -34,6 +34,7 @@ export default function StocksDashboard(props) {
   if(isLoading) {
     return null;
   };
+
 
   return (
     <main>
