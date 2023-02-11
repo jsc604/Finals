@@ -11,8 +11,6 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function StockItems(props) {
-
-
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
@@ -42,7 +40,6 @@ export default function StockItems(props) {
   }, [user]);
 
   const handleClick = () => {
-    setFavorite(!favorite);
     const payload = {
       email: user.email,
       apiId: props.id,
@@ -51,16 +48,33 @@ export default function StockItems(props) {
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
         .then(result => {
-          console.log('RESULT: ', result);
+          for (let i of result.data.rows) {
+            let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
+            props.setWatchlistIds(sorted)
+            setFavorite(!favorite);
+            axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
+            .then((result) => {
+              const ids = result.data.StockFavorites.map(favorite => favorite.api_id);
+              props.setWatchlistIds(ids);
+            })
+            .catch((ex) => {
+              console.log(ex);
+            });
+          }
         })
         .catch(ex => {
           console.log(ex);
         });
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
-        .then(result => {
-          console.log('RESULT: ', result);
+      .then(result => {
+        setFavorite(!favorite)
+        axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
+        .then((result) => {
+          const ids = result.data.StockFavorites.map(favorite => favorite.api_id);
+          props.setWatchlistIds(ids);
         })
+      })
         .catch(ex => {
           console.log(ex);
         });

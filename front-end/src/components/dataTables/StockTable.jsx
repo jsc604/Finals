@@ -22,7 +22,6 @@ export default function StockTable(props) {
 
     const translatedKey = nameKeyMapping[key];
 
-
     newSortedData.sort((a, b) => {
       let valueA = a[translatedKey];
       let valueB = b[translatedKey];
@@ -43,15 +42,13 @@ export default function StockTable(props) {
   
   let stockItems = sortedData.map((stock, i) => (
     <StockItems
-
+      key={i}
       stock={stock.symbol}
-
       price={stock.regularMarketPrice}
-
       prevClose={stock.previousClose}
-
       change={stock.percentageChange}
-
+      setWatchlistIds={props.setWatchlistIds}
+      watchlistIds={props.watchlistIds}
     />
   ));
 
