@@ -142,7 +142,7 @@ const insertIntoStocks = (userId, apiId, res) => {
             console.error(error);
             return;
           }
-          console.log(`Inserted "${apiId}" into stocks table`);
+          console.log(`Inserted "${apiId}" into stocks table for user ${userId}`);
           res.send({ status: "success" });
 
         }
@@ -361,7 +361,7 @@ app.get("/getFavoritesStocks", (req, res) => {
         console.error(error);
         return res.status(500).send({ error });
       }
-      return res.send({ Stockfavorites: result.rows });
+      return res.send({ stockFavorites: result.rows });
     }
   );
 });

@@ -47,14 +47,15 @@ export default function StockItems(props) {
     }
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
-        .then(result => {
+      .then(result => {
           for (let i of result.data.rows) {
             let sorted = props.watchlistIds.filter(id => id !== i['api_id']) 
             props.setWatchlistIds(sorted)
             setFavorite(!favorite);
+
             axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
             .then((result) => {
-              const ids = result.data.StockFavorites.map(favorite => favorite.api_id);
+              const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
               props.setWatchlistIds(ids);
             })
             .catch((ex) => {
@@ -71,13 +72,13 @@ export default function StockItems(props) {
         setFavorite(!favorite)
         axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
         .then((result) => {
-          const ids = result.data.StockFavorites.map(favorite => favorite.api_id);
+          const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
           props.setWatchlistIds(ids);
         })
       })
-        .catch(ex => {
-          console.log(ex);
-        });
+      .catch(ex => {
+        console.log(ex);
+      });
     }
   };
 
