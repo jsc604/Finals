@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
@@ -9,17 +9,26 @@ import percentChangedHelper from "../../helpers/percentChange";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
+import ApexStockChart from "../charts/ApexStockChart";
+import StockChartDropDown from "./StockChartDropDown";
 
 export default function StockItems(props) {
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
+  const [interval, setInterval] = useState(7);
 
-  const {user} = useAuth0();
+  const handleIntervalChange = (newInterval) => {
+    setInterval(newInterval);
+  };
+
+  const { user } = useAuth0();
 
   const percentChange = classNames({
     "positive": props.change >= 0,
     "negative": props.change < 0
   });
+
+  console.log("PROPS IN STOCKITEMS: ", props)
 
   useEffect(() => {
     if (user) {
@@ -30,12 +39,12 @@ export default function StockItems(props) {
           category: 'stocks'
         }
       })
-      .then(result => {
-        setFavorite(result.data.isFavorite);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+        .then(result => {
+          setFavorite(result.data.isFavorite);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }, [user]);
 
@@ -44,7 +53,7 @@ export default function StockItems(props) {
       email: user.email,
       apiId: props.id,
       category: 'stocks'
-    }
+    };
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
       .then(result => {
@@ -86,24 +95,37 @@ export default function StockItems(props) {
     <>
       <tr>
         <td onClick={handleClick}>
-          <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i>
+          <i className={favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i>
         </td>
 
         <td className="symbol-data">
-         <Link to={`/stocks/${props.stock}`}>
-          {props.stock} 
-         </Link> 
+          <Link to={`/stocks/${props.stock}`}>
+            {props.stock}
+          </Link>
         </td>
 
         <td>{formatNumber(props.price)}</td>
 
         <td>{formatNumber(props.prevClose)}</td>
-        
-        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
 
-        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
-      </tr>
-      {dropdown && <tr><td colSpan={10}>Chart</td></tr>}
-    </>
-  );
+
+        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
+        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button>
+        </td>
+        </tr>
+
+        {dropdown &&
+          <tr>
+            <td colSpan={4}>
+              <ApexStockChart id={props.stock} interval={interval} />
+            </td>
+
+            <td colSpan={4}>
+              <StockChartDropDown id={props.stock} onIntervalChange={handleIntervalChange}
+                interval={interval} />
+            </td>
+
+          </tr>}
+      </>
+      );
 };

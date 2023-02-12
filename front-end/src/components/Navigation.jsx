@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import { useContext } from "react";
 import { watchlistContext } from "../providers/WatchlistProvider";
@@ -43,3 +43,4 @@ export default function Navigation(props) {
     </nav>
   );
 };
+

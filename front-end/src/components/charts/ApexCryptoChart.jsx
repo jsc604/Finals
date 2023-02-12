@@ -11,6 +11,7 @@ export default function ApexCryptoChart(props) {
     `coins/${id}/ohlc?vs_currency=usd&days=${props.interval}`
   );
 
+
   if (!cryptoData) {
     return <div>Loading...</div>;
   }
@@ -26,7 +27,7 @@ export default function ApexCryptoChart(props) {
       height: 350
     },
     title: {
-      text: `${id.charAt(0).toUpperCase() + id.slice(1)} ${props.interval}d Price Chart`,
+      text: `${id.charAt(0).toUpperCase() + id.slice(1)} ${props.interval}Price Chart`,
       align: 'left',
       style: {
         color: 'white'

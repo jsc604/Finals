@@ -1,3 +1,43 @@
+// import CryptoTable from "../dataTables/CryptoTable";
+// import useCryptoData from "../../hooks/useCryptoData";
+// import Navigation from "../Navigation";
+// import { useState } from "react";
+
+// export default function CryptoDashboard(props) {
+//   const [watchlist, setWatchlist] = useState(false);
+
+//   const { cryptoData } = useCryptoData('/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false');
+
+//   const watchlistToggle = () => {
+//     setWatchlist(watchlist === false ? true : false);
+//   };
+
+
+//   return (
+
+//     <main>
+//       <div>
+
+
+//         <h1><strong>Top Crypto Currencies</strong></h1>
+//         <form className="search-form">
+//           <input
+//             className="search-input"
+//             type="text"
+//             placeholder="Search..."
+//           // onChange={(event) => setSearchValue(event.target.value)}
+//           />
+//           <button className="search-button" type="submit">Submit</button>
+//         </form>
+//       </div>
+
+//       <Navigation tab={'crypto'} toggle={watchlistToggle} />
+//       {cryptoData && <CryptoTable data={cryptoData} />}
+//     </main>
+//   );
+// };
+
+
 import CryptoTable from "../dataTables/CryptoTable";
 import useCryptoData from "../../hooks/useCryptoData";
 import Navigation from "../Navigation";
@@ -7,11 +47,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+
 
 export default function CryptoDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
+  const [searchValue, setSearchValue] = useState("");
 
   const buildAPIUrl = (ids) => {
     const idString = ids && ids.length > 0 ? ids.join("%2C%20") : null;
@@ -28,7 +72,7 @@ export default function CryptoDashboard(props) {
 
   useEffect(() => {
     if (watchlistIds?.length === 0) {
-  
+
       axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
         .then((result) => {
           const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
@@ -38,20 +82,35 @@ export default function CryptoDashboard(props) {
           console.log(ex);
         });
     }
-  },[watchlistIds])
+  }, [watchlistIds]);
 
 
-  if(isLoading) {
+  if (isLoading) {
     return null;
   };
 
   return (
     <main>
-      <h1>
-        <strong>{watchlist ? 'Crypto Watchlist' : 'Top Crypto Currencies'}</strong>
-      </h1>
+      <div>
+        <h1>
+          <strong>{watchlist ? 'Crypto Watchlist' : 'Top Crypto Currencies'}</strong>
+        </h1>
+        <form className="search-form">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search..."
+            onChange={event => setSearchValue(event.target.value)}
+          />
+          <Link to={`/crypto/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>
+            <button className="search-button">Submit</button>
+          </Link>
+        </form>
+      </div>
+
       <Navigation tab={"crypto"} />
-      {cryptoData && <CryptoTable data={cryptoData} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds}   />}
+      {cryptoData && <CryptoTable data={cryptoData} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />}
     </main>
   );
-}
+};
+
