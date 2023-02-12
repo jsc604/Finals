@@ -24,6 +24,5 @@ export default function useNftInfo(id) {
     return () => cancel = true;
   }, [id])
 
-  console.log('-----nft info------', nftInfo);
   return { error, loading, nftInfo };
 }
