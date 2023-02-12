@@ -4,33 +4,38 @@ import Chart from "react-apexcharts";
 import moment from "moment";
 import { useState } from "react";
 import useStockChartData from "../../hooks/useStockChartData";
+import { faBlackboard } from "@fortawesome/free-solid-svg-icons";
+import "../../styles/stockInfoPages.scss";
+
 
 export default function ApexStockChart(props) {
   const { id: urlId } = useParams();
   const id = props.id || urlId;
-  // console.log('-----id-----', id);
+  console.log('-----PROPS-----', props);
   const { data } = useStockChartData(id);
 
   
   if (!data) {
     return <div>Loading...</div>;
   }
-  // console.log("DATA APEXSTOCKCHART: ", data);
 
   const chartData = data[1];
 
   const chartPlots = (chartData) => {
+    let transformedValues = [];
     for (let timeStamps in chartData) {
-      let transformedValues = [];
       
-      console.log('timestamps', chartData[timeStamps]);
+      // console.log('timestamps', chartData[timeStamps]);
       // console.log('open price', chartData[timeStamps].open);
       // console.log("timeStamp what is", timeStamps * 1000)
       transformedValues.push({ x: new Date(timeStamps *1000), y: [chartData[timeStamps].open, chartData[timeStamps].close, chartData[timeStamps].high, chartData[timeStamps].low]});
-      console.log("transformedValues", transformedValues);
-  
-      return transformedValues;
+      // console.log("transformedValues", transformedValues);
+
     }
+
+    // const last175 = data.slice(-175);
+
+    return transformedValues.slice(-(props.interval * 25));
   }
 
 // console.log('chart plots data', chartPlots(chartData));
@@ -86,7 +91,7 @@ let chartInput = chartPlots(chartData);
       style: {
         background: 'black',
         color: 'black'
-      }
+      },
     }
   };
 

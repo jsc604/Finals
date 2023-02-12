@@ -40,7 +40,7 @@ export default function StockTable(props) {
   
     setSortedData(newSortedData);
   };
-  
+  console.log("SORTED DATA: ", sortedData)
   let stockItems = sortedData.map((stock, i) => (
     <StockItems
 
@@ -51,6 +51,9 @@ export default function StockTable(props) {
       prevClose={stock.previousClose}
 
       change={stock.percentageChange}
+
+
+
 
     />
   ));
@@ -64,6 +67,7 @@ export default function StockTable(props) {
           <th scope="col" onClick={() => sortData('regularMarketPrice')}>Current Price</th>
           <th scope="col" onClick={() => sortData('lastClose')}>Last market Close</th>
           <th scope="col" onClick={() => sortData('percentChange')}>Daily Change</th>
+
 
           <th scope="col">Chart</th>
         </tr>

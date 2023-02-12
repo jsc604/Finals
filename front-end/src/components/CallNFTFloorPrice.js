@@ -3,27 +3,30 @@ import logo from '../logo.svg';
 import '../styles/app.scss';
 import axios from 'axios';
 
-export default function CallNFTFloor() {
-  const [contractsData, setContractsData] = useState(null);
+const useTest = () => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`https://api.nftport.xyz/v0/transactions/stats/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d?chain=ethereum`, {
+    const options = {
+      method: 'GET',
+      url: 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/AAPL/asset-profile',
       headers: {
-        Authorization: 'f5f07efc-050b-4666-a24b-4dee60ab7688',
-        'accept': 'application/json'
+        'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
+        'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
       }
-    })
+    };
+
+    axios
+      .request(options)
       .then(response => {
-        setContractsData(response.data);
-        setLoading(false);
+        setData(response.data);
       })
       .catch(error => {
         setError(error);
-        setLoading(false);
       });
   }, []);
+  console.log(data)
 
   return (
     <div className="App">
@@ -31,7 +34,7 @@ export default function CallNFTFloor() {
         <img src={logo} className="App-logo" alt="logo" />
         {error ? <p>{error.toString()}</p> :
           <div>
-            {contractsData ? <p>{contractsData.statistics.floor_price}</p> : null}
+            {data ? <p>{data}</p> : null}
           </div>
         }
         <a

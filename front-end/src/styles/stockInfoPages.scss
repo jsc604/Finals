@@ -40,10 +40,9 @@
   .chart-info-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
     .info-chart {
-      width: 70%;
       color: black;
+      width: 70%;
     }
     .info-details {
       width: 27%;
@@ -60,3 +59,8 @@
 .dropdown-details {
   margin-top: 3rem;
 }
+
+td.info-chart {
+  color: black;
+}
+

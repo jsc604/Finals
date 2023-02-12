@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import StocksDashboard from "./components/dashboards/StocksDashboard";
-import CryptoDashboard from "./components/dashboards/CryptoDashboard"
-import NftDashboard from "./components/dashboards/NftDashboard"
+import CryptoDashboard from "./components/dashboards/CryptoDashboard";
+import NftDashboard from "./components/dashboards/NftDashboard";
 import CryptoInfo from "./components/infoPages/CryptoInfo";
 import NftInfo from "./components/infoPages/NftInfo";
 import StockInfo from "./components/infoPages/StockInfo";
@@ -10,7 +10,6 @@ import Header from "./components/Header";
 
 
 import Test from "./hooks/test";
-import TestStockInfo from "./components/infoPages/TestStockInfo"
 // //SEARCHES FOR CRYPTO DATA
 // import CallCrypto from './components/CallCryptoData';
 // // SEARCHES FOR MOST POPULAR NFTS
@@ -25,8 +24,8 @@ export default function App() {
 
   const location = useLocation();
 
-  const className = classNames('App', {'home': location.pathname === '/'});
-  
+  const className = classNames('App', { 'home': location.pathname === '/' });
+
   return (
     <div className={className}>
       <Header />
@@ -51,9 +50,9 @@ export default function App() {
 
         <Route path="*" element={<Home />} />
 
+
         <Route path="test">
           <Route path="test" element={<Test />} />
-          <Route path=":id" element={<TestStockInfo />} />
         </Route>
 
       </Routes>
