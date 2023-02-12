@@ -17,9 +17,7 @@ export default function useNftData(array) {
 
     Promise.all(request)
       .then(responses => {
-        console.log('PROMISE DOT ALL');
         if (!cancel) {
-          console.log('RESPONSES:', responses)
           const data = responses.map(response => {
             if (response.data.error) {
               throw new Error(response.data.error);

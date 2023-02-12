@@ -32,7 +32,6 @@ export default function CryptoDashboard(props) {
       axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload}`)
         .then((result) => {
           const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
-          console.log('-----CRYPTO ids-----', ids);
           setWatchlistIds(ids);
         })
         .catch((ex) => {

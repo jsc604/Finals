@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { useContext } from "react";
 import { watchlistContext } from "../providers/WatchlistProvider";
+import "../styles/navigation.scss";
 
 export default function Navigation(props) {
   const { tab } = props;
@@ -14,7 +15,7 @@ export default function Navigation(props) {
   
   return (
     <nav className="navbar navbar-light bg-dark">
-      <div>
+      <div className="dashboard-buttons">
         <Link to={ watchlist ? "stocks/watchlist" : "/stocks/dashboard" }>
           <button className={stockButton} type="button">
             Stocks
