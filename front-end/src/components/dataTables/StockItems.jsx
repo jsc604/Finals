@@ -104,9 +104,9 @@ export default function StockItems(props) {
           </Link>
         </td>
 
-        <td>{formatNumber(props.price)}</td>
+        <td>${formatNumber(props.price)}</td>
 
-        <td>{formatNumber(props.prevClose)}</td>
+        <td>${formatNumber(props.prevClose)}</td>
 
 
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
