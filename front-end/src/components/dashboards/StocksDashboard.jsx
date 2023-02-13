@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { watchlistContext } from "../../providers/WatchlistProvider";
 import { Link } from "react-router-dom";
 
-const topStockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
+const topStockArray = ['AAPL', 'TSLA', 'MSFT', 'META', 'KO'];
 
 
 export default function StocksDashboard(props) {

@@ -123,11 +123,11 @@ export default function StockItems(props) {
 
         {dropdown &&
           <tr>
-            <td colSpan={4}>
+            <td colSpan={4} className="drop-down-chart">
               <ApexStockChart id={props.stock} interval={interval} />
             </td>
 
-            <td colSpan={4}>
+            <td colSpan={2}>
               <StockChartDropDown id={props.stock} onIntervalChange={handleIntervalChange}
                 interval={interval} />
             </td>
