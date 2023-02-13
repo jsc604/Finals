@@ -92,7 +92,7 @@ export default function CryptoInfo(props) {
           <div className="chart-info-container">
             <ApexCryptoChart interval={interval}/>
             <div className="info-details">
-              <table class="table table-sm">
+              <table className="table table-sm">
                 <thead>
                   <tr>
                     <th scope="col">

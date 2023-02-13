@@ -51,7 +51,7 @@ export default function StocksDashboard(props) {
             onChange={(event) => setSearchValue(event.target.value)}
           />
           <Link to={`/stocks/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>&nbsp;
-            <button className="search-button btn btn-outline-warning"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button className="search-button btn btn-outline-warning"><i className="fa-solid fa-magnifying-glass"></i></button>
           </Link>
         </form>
       </div>

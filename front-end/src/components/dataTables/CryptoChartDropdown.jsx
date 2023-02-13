@@ -8,7 +8,7 @@ export default function CryptoChartDropdown(props) {
   
   return (
     <>
-      <table class="table table-sm">
+      <table className="table table-sm">
         <thead>
           <tr>
             <th scope="col">
