@@ -37,28 +37,28 @@ export default function StockChartDropDown(props) {
         <thead>
           <tr>
             <th scope="col">
-              <button className={interval === '1h' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+              <button className={interval === 1 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                 onClick={() => onIntervalChange(1)}
               >
                 1 day
               </button>
             </th>
             <th scope="col">
-              <button className={interval === '1wk' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+              <button className={interval === 7 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                 onClick={() => onIntervalChange(7)}
               >
                 7 day
               </button>
             </th>
             <th scope="col">
-              <button className={interval === '1mo' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+              <button className={interval === 14 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                 onClick={() => onIntervalChange(14)}
               >
                 14 day
               </button>
             </th>
             <th scope="col">
-              <button className={interval === '3mo' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+              <button className={interval === 30 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                 onClick={() => onIntervalChange(30)}
               >
                 30 day

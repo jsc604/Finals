@@ -10,7 +10,7 @@ export default function Test() {
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
   // const [interval, setInterval] = useState('1d');
 
-  axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history'; 
+  // axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history'; 
 
   useEffect(() => {
     let cancel = false;
@@ -20,7 +20,7 @@ export default function Test() {
     const promises = stockArray.map(stock => {
       const options = {
         method: 'GET',
-        url: `/${stock}/15m`,
+        url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,
         params: { diffandsplits: 'false' },
         headers: {
           'X-RapidAPI-Key': '7b5da849a9mshd5f86de579f0f1bp100542jsn7b2f59e7343d',
@@ -42,7 +42,6 @@ export default function Test() {
         
         
         setData(responses.map(stockObj => {
-          console.log("LOGGING HEERE", stockObj)
           const container = Object.values(stockObj)[0];
           
           return { ...container.meta, items: container.items, percentageChange: formatNumber(percentChangedHelper(container.meta.previousClose, container.meta.regularMarketPrice)) };
@@ -54,8 +53,6 @@ export default function Test() {
     };
   }, []);
 
-
-console.log('--------', data);
   const result = { error, loading, data };
 
   return result;

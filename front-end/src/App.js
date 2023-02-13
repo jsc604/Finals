@@ -8,8 +8,6 @@ import NftInfo from "./components/infoPages/NftInfo";
 import StockInfo from "./components/infoPages/StockInfo";
 import Header from "./components/Header";
 
-
-import Test from "./hooks/test";
 import classNames from "classnames";
 import WatchlistProvider from "./providers/WatchlistProvider";
 import NftInfo2 from "./components/infoPages/NftInfo2";
@@ -46,11 +44,6 @@ export default function App() {
           </Route>
 
           <Route path="*" element={<Home />} />
-
-        <Route path="test">
-          <Route path="test" element={<Test />} />
-          <Route path=":id" element={<TestStockInfo />} />
-        </Route>
 
         </Routes>
       </WatchlistProvider>
