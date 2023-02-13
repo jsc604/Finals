@@ -56,7 +56,7 @@ let chartInput = chartPlots(chartData);
         }
       },
       tooltip: {
-        enabled: true,
+        enabled: false,
         formatter: function(val) {
           return dayjs(val).format('MMM DD HH:mm')
         }
