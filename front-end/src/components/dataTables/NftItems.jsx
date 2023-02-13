@@ -1,13 +1,17 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
-import { trendingDown, trendingUp } from "../../helpers/table_helpers";
-import { formatNumber } from "../../helpers/table_helpers";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
+
+// STYLES
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+
+// HELPERS
+import { trendingDown, trendingUp } from "../../helpers/table_helpers";
+import { formatNumber } from "../../helpers/table_helpers";
 
 export default function NftItems(props) {
   const [dropdown, setDropdown] = useState(false);

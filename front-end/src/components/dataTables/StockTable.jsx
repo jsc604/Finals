@@ -1,7 +1,10 @@
-import StockItems from "./StockItems";
 import { useState } from "react";
+
+// COMPONENTS
+import StockItems from "./StockItems";
+
+// STYLES
 import "../../styles/tableItems.scss";
-import StocksDashboard from "../dashboards/StocksDashboard";
 
 
 export default function StockTable(props) {

@@ -1,12 +1,16 @@
-import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
-import useStockChartData from "../../hooks/useStockChartData";
-import useStockInformation from "../../hooks/useStockInformation";
 import { useParams } from "react-router-dom";
-import useStockInformationSingleCall from "../../hooks/useStockInformationSingleCall";
 import { useEffect } from "react";
 import axios from "axios";
+
+// HELPERS
+import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 import PercentChangedHelper from "../../helpers/percentChange";
-// import "../../styles/infoPage.scss";
+
+// HOOKS
+import useStockChartData from "../../hooks/useStockChartData";
+import useStockInformationSingleCall from "../../hooks/useStockInformationSingleCall";
+
+// STYLES
 import "../../styles/stockInfoPages.scss";
 
 

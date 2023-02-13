@@ -1,15 +1,15 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import WatchlistProvider from "./providers/WatchlistProvider";
+import classNames from "classnames";
+
+// COMPONENETS
 import Home from "./components/Home";
 import StocksDashboard from "./components/dashboards/StocksDashboard";
 import CryptoDashboard from "./components/dashboards/CryptoDashboard"
 import NftDashboard from "./components/dashboards/NftDashboard"
 import CryptoInfo from "./components/infoPages/CryptoInfo";
-import NftInfo from "./components/infoPages/NftInfo";
 import StockInfo from "./components/infoPages/StockInfo";
 import Header from "./components/Header";
-
-import classNames from "classnames";
-import WatchlistProvider from "./providers/WatchlistProvider";
 import NftInfo2 from "./components/infoPages/NftInfo2";
 
 export default function App() {

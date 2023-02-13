@@ -7,12 +7,8 @@ export default function useStockChartData(stock) {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
-
-  // const stockURL = axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history';
 
   useEffect(() => {
-    let cancel = false;
     setLoading(true);
 
     setData([]);
@@ -31,11 +27,9 @@ export default function useStockChartData(stock) {
         const dataArray = Object.values(response.data);
         console.log("Data Array: ", dataArray);
         setData(dataArray);
-        // setData(response.data);
       })
       .catch(error => {
         console.error("Error: ", error);
-        setError(error);
       })
       .finally(() => {
         setLoading(false);

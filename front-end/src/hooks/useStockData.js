@@ -8,9 +8,6 @@ export default function Test() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
-  // const [interval, setInterval] = useState('1d');
-
-  // axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history'; 
 
   useEffect(() => {
     let cancel = false;

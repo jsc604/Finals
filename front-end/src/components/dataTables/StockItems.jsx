@@ -1,16 +1,23 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
-import { trendingDown, trendingUp } from "../../helpers/table_helpers";
-import { formatNumber } from "../../helpers/table_helpers";
-import percentChangedHelper from "../../helpers/percentChange";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useEffect } from "react";
-import ApexStockChart from "../charts/ApexStockChart";
+
+// STYLES
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+
+// HELPERS
+import { trendingDown, trendingUp } from "../../helpers/table_helpers";
+import { formatNumber } from "../../helpers/table_helpers";
+
+// COMPONENTS
 import StockChartDropDown from "./StockChartDropDown";
+
+//CHART
+import ApexStockChart from "../charts/ApexStockChart";
 
 export default function StockItems(props) {
   const [dropdown, setDropdown] = useState(false);

@@ -1,5 +1,9 @@
-import NftItems from "./NftItems";
 import { useState } from "react";
+
+// COMPONENTS
+import NftItems from "./NftItems";
+
+//STYLES
 import "../../styles/tableItems.scss";
 
 export default function NftTable(props) {
