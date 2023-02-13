@@ -74,7 +74,7 @@ export default function StockInfo(props) {
     <div className="infos">
       {dataFromStocks?.data[0] && stockInfoData?.stockInfoData[0] ? (
         <>
-          <div className="header">
+          <div>
             <h1>{id}</h1>
             <div className="chart-info-container">
               <ApexStockChart
@@ -89,7 +89,7 @@ export default function StockInfo(props) {
                     <tr>
                       <th scope="col">
                         <button
-                          className={interval === '1h' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                          className={interval === 1 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                           onClick={() => setInterval(1)}
                         >
                           1 day
@@ -97,7 +97,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === '1wk' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                          className={interval === 7 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                           onClick={() => setInterval(7)}
                         >
                           7 day
@@ -105,7 +105,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === '1mo' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                          className={interval === 14 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                           onClick={() => setInterval(14)}
                         >
                           14 day
@@ -113,7 +113,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === '3mo' ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                          className={interval === 30 ? "btn btn-outline-light active" : "btn btn-outline-light"}
                           onClick={() => setInterval(30)}
                         >
                           30 day
