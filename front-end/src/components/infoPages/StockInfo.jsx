@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
@@ -28,6 +28,24 @@ export default function StockInfo(props) {
   const { dataFromStocks } = useStockDataSingleCall(id);
 
   const { user } = useAuth0();
+
+  useEffect(() => {
+    if (user) {
+      axios.get('http://localhost:8080/checkIfFavorite', {
+        params: {
+          email: user.email,
+          apiId: id,
+          category: 'stocks'
+        }
+      })
+      .then(result => {
+        setFavorite(result.data.isFavorite);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+  }, [id, user]);
 
   const handleClick = () => {
     setFavorite(!favorite);

@@ -42,7 +42,7 @@ export default function CryptoDashboard(props) {
           console.log(ex);
         });
     }
-  }, [watchlistIds]);
+  }, [watchlistIds, payload]);
 
 
   if (isLoading) {
