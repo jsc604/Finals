@@ -18,7 +18,7 @@ export default function Navigation(props) {
   return (
     <nav className="navbar navbar-light bg-dark">
       <div className="dashboard-buttons">
-        <Link to={ watchlist ? "stocks/watchlist" : "/stocks/dashboard" }>
+        <Link to={ watchlist ? "/stocks/watchlist" : "/stocks/dashboard" }>
           <button className={stockButton} type="button">
             Stocks
           </button>
