@@ -33,8 +33,8 @@ export default function StocksDashboard(props) {
           },[payload])
         
         
-  const { data } = useStockData(watchlist? watchlistIds : topStockArray);
-  
+  const { result } = useStockData(watchlist? watchlistIds : topStockArray);
+
   if(isLoading) {
     return null;
   };
@@ -56,12 +56,12 @@ export default function StocksDashboard(props) {
         </form>
       </div>
       {/* ___________COMMENTED OUT TO CHECK FOR USABILITY______________ */}
-      {/* <Navigation tab={'stocks'} />
-      {result && result.length !== 0 && <StockTable data={result} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />} */}
+      <Navigation tab={'stocks'} />
+      {result && result.length !== 0 && <StockTable data={result} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />}
 
       {/* ____________CODE BELOW IS ADDED FOR CHECKING_________ */}
-      <Navigation tab={'stocks'} />
-      {data && data.length && <StockTable data={data} />}
+      {/* <Navigation tab={'stocks'} />
+      {data && data.length !== 0 && <StockTable data={data} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds}/>} */}
     </main>
   );
 }

@@ -43,7 +43,7 @@ export default function StockTable(props) {
   
     setSortedData(newSortedData);
   };
-  console.log("SORTED DATA: ", sortedData)
+
   let stockItems = sortedData.map((stock, i) => (
     <StockItems
     key={i}
