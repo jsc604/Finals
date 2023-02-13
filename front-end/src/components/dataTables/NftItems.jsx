@@ -105,7 +105,7 @@ export default function NftItems(props) {
         <td>{formatNumber(props.holders)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {formatNumber(props.holdersChange)}%</td>
         <td>{formatNumber(props.supply)}</td>
-        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
+        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-info"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
       {dropdown && <tr><td colSpan={10}>{props.description}</td></tr>}
     </>

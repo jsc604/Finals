@@ -119,7 +119,7 @@ export default function StockItems(props) {
 
 
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
-        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button>
+        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-info"><FontAwesomeIcon icon={faCaretDown} /></button>
         </td>
         </tr>
 

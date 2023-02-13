@@ -39,7 +39,7 @@ let chartInput = chartPlots(chartData);
       height: 350
     },
     title: {
-      text: `${id} Price Chart`,
+      text: `${id} ${props.interval}d Price Chart`,
       align: 'left',
       style: {
         color: 'white'

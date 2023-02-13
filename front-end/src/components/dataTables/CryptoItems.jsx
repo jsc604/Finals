@@ -120,7 +120,7 @@ export default function CryptoItems(props) {
         <td>${formatNumber(props.low)}</td>
         <td>${formatNumber(props.volume)}</td>
         <td>${formatNumber(props.marketCap)}</td>
-        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-warning"><FontAwesomeIcon icon={faCaretDown} /></button></td>
+        <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-info"><FontAwesomeIcon icon={faCaretDown} /></button></td>
       </tr>
       {dropdown && 
       <tr>

@@ -82,13 +82,12 @@ export default function NftInfo2(props) {
 
         <div className="nav-buttons">
           <Link to="/nft/dashboard">
-            <button className="btn btn-outline-warning">
+            <button className="btn btn-outline-info">
               {watchlist? 'Back to Watchlist' : 'Back to Dashboard'}
             </button>
           </Link>
-          <button className="btn btn-light" onClick={handleClick}>
-            <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> 
-            Add to Watchlist
+          <button className="btn btn-outline-info" onClick={handleClick}>
+            <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> {favorite ? 'Remove from Watchlist' : 'Add to Watchlist'}
           </button>
         </div>
 

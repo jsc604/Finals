@@ -24,11 +24,7 @@ export default function Home(props) {
 
   return (
     <>
-      <div>
-        {/* <h2>
-          .
-        </h2> */}
-      </div>
+      <h1 className="home-quote"><strong>WHAT ARE WE TRACKING TODAY ANON?</strong></h1>
       <div className="homepage-button-group">
         <Link to="stocks/dashboard" onClick={setWatchlist(false)} >Stocks</Link>
         <Link to="crypto/dashboard" onClick={setWatchlist(false)} >Crypto</Link>

@@ -79,7 +79,7 @@ export default function CryptoInfo(props) {
         <>
           <div className="info-header">
             <Link to="/crypto/dashboard">
-              <button className="btn btn-outline-warning">
+              <button className="btn btn-outline-info">
                 {watchlist? 'Back to Watchlist' : 'Back to Dashboard'}
               </button>
             </Link>
@@ -97,7 +97,7 @@ export default function CryptoInfo(props) {
                   <tr>
                     <th scope="col">
                       <button 
-                        className={interval === 1 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        className={interval === 1 ? "btn btn-outline-info active" : "btn btn-outline-info"}
                         onClick={() => setInterval(1)} 
                       >
                         1 day
@@ -105,7 +105,7 @@ export default function CryptoInfo(props) {
                     </th>
                     <th scope="col">
                       <button 
-                        className={interval === 7 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        className={interval === 7 ? "btn btn-outline-info active" : "btn btn-outline-info"}
                         onClick={() => setInterval(7)} 
                       >
                         7 day
@@ -113,7 +113,7 @@ export default function CryptoInfo(props) {
                     </th>
                     <th scope="col">
                       <button 
-                        className={interval === 14 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        className={interval === 14 ? "btn btn-outline-info active" : "btn btn-outline-info"}
                         onClick={() => setInterval(14)} 
                       >
                         14 day
@@ -121,7 +121,7 @@ export default function CryptoInfo(props) {
                     </th>
                     <th scope="col">
                       <button 
-                        className={interval === 30 ? "btn btn-outline-light active" : "btn btn-outline-light"}
+                        className={interval === 30 ? "btn btn-outline-info active" : "btn btn-outline-info"}
                         onClick={() => setInterval(30)} 
                       >
                         30 day
@@ -163,8 +163,8 @@ export default function CryptoInfo(props) {
                 <br/>
                 Total Supply (<img src={cryptoData.image.thumb} alt="logo"/>): <strong>{formatNumber(cryptoData.market_data.total_supply)}</strong>
               </div>
-              <button onClick={handleClick} className="btn btn-light add-to-watchlist">
-                <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> Add to Watchlist
+              <button onClick={handleClick} className="btn btn-outline-info add-to-watchlist">
+                <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> {favorite ? 'Remove from Watchlist' : 'Add to Watchlist'}
               </button>
             </div>
           </div>

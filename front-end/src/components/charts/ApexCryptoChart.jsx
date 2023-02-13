@@ -27,7 +27,7 @@ export default function ApexCryptoChart(props) {
       height: 350
     },
     title: {
-      text: `${id.charAt(0).toUpperCase() + id.slice(1)} ${props.interval}Price Chart`,
+      text: `${id.charAt(0).toUpperCase() + id.slice(1)} ${props.interval}d Price Chart`,
       align: 'left',
       style: {
         color: 'white'
