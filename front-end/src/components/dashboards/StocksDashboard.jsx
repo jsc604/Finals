@@ -11,7 +11,7 @@ const topStockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
 
 export default function StocksDashboard(props) {
-  const { data } = useStockData();
+  // const { data } = useStockData();
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
@@ -19,25 +19,25 @@ export default function StocksDashboard(props) {
 
 
   // _________________COMMENTED OUT TO CHECK FOR USABILITY___________________
-  // const payload = user?.email;
+  const payload = user?.email;
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //     axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
-  //     .then((result) => {
-  //       const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-  //       setWatchlistIds(ids);
-  //     })
-  //     .catch((ex) => {
-  //       console.log(ex);
-  //     });
-  //   },[payload])
+      axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
+      .then((result) => {
+        const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
+        setWatchlistIds(ids);
+      })
+      .catch((ex) => {
+        console.log(ex);
+      });
+    },[payload])
 
-  // const {result}  = useStockData(watchlist ? watchlistIds : topStockArray);
+  const {result}  = useStockData(watchlist ? watchlistIds : topStockArray);
 
-  // if(isLoading) {
-  //   return null;
-  // };
+  if(isLoading) {
+    return null;
+  };
 
 
   return (
@@ -57,12 +57,12 @@ export default function StocksDashboard(props) {
         </form>
       </div>
       {/* ___________COMMENTED OUT TO CHECK FOR USABILITY______________ */}
-      {/* <Navigation tab={'stocks'} />
-      {result && result.length !== 0 && <StockTable data={result} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />} */}
+      <Navigation tab={'stocks'} />
+       {result && result.length !== 0 && <StockTable data={result} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />} 
 
       {/* ____________CODE BELOW IS ADDED FOR CHECKING_________ */}
-      <Navigation tab={'stocks'} />
-      {data && data.length && <StockTable data={data} />}
+      {/* <Navigation tab={'stocks'} />
+      {data && data.length !== 0  && <StockTable data={data} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />} */}
     </main>
   );
 }

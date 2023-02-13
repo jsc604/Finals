@@ -35,8 +35,6 @@ export default function StockItems(props) {
     "negative": props.change < 0
   });
 
-  console.log("PROPS IN STOCKITEMS: ", props)
-
   useEffect(() => {
     if (user) {
       axios.get('http://localhost:8080/checkIfFavorite', {

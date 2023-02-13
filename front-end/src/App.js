@@ -28,6 +28,8 @@ export default function App() {
 
         <Route path="stocks">
           <Route path="dashboard" element={<StocksDashboard />} />
+          <Route path="watchlist" element={<StocksDashboard />}/>
+
           <Route path=":id" element={<StockInfo />} />
         </Route>
 
