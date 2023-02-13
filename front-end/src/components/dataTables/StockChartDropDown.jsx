@@ -1,7 +1,3 @@
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
-
 // HELPERS
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 import PercentChangedHelper from "../../helpers/percentChange";
@@ -15,20 +11,13 @@ import "../../styles/stockInfoPages.scss";
 
 
 export default function StockChartDropDown(props) {
-  console.log("PROPS", props);
-
-  // useEffect(() => {
-  //   axios.get)
 
   const { onIntervalChange, interval } = props;
 
 
   const dataFromStocks = useStockChartData(props.id);
   const stockInfoData = useStockInformationSingleCall(props.id);
-
-
-  console.log("interval", interval);
-  console.log("DATA FROM STOCKS", dataFromStocks);
+  
 
   if (!dataFromStocks || !stockInfoData) {
     return <p>Loading...</p>;

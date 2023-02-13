@@ -18,7 +18,7 @@ import ApexStockChart from "../charts/ApexStockChart";
 
 export default function StockInfo(props) {
   const [favorite, setFavorite] = useState(false);
-  const [interval, setInterval] = useState('1d');
+  const [interval, setInterval] = useState(1);
 
   const { id } = useParams();
   const stockInfoData = useStockInformation(`https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/${id}/asset-profile`);

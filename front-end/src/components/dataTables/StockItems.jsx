@@ -22,7 +22,7 @@ import ApexStockChart from "../charts/ApexStockChart";
 export default function StockItems(props) {
   const [dropdown, setDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
-  const [interval, setInterval] = useState(7);
+  const [interval, setInterval] = useState(1);
 
   const handleIntervalChange = (newInterval) => {
     setInterval(newInterval);
