@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 // HOOKS
 import useStockInformation from "../../hooks/useStockInformation";
@@ -57,8 +58,16 @@ export default function StockInfo(props) {
     <div className="infos">
       {dataFromStocks?.data[0] && stockInfoData?.stockInfoData[0] ? (
         <>
-          <div>
-            <h1>{id}</h1>
+          <div /*className="info-header" */>
+              <div className="info-header">
+            <Link to="/stocks/dashboard">
+              <button className="btn btn-outline-warning">
+                {/* {watchlist? 'Back to Watchlist' : 'Back to Dashboard'} */}
+                Back to Dashboard
+              </button>
+            </Link>
+            <h1>{dataFromStocks?.data[0]?.symbol}</h1>
+              </div>
             <div className="chart-info-container">
               <ApexStockChart
                 interval={interval}
