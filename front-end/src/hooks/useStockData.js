@@ -40,7 +40,6 @@ export default function useStockData(array) {
         if (!cancel) {
           setData(responses.map(stockObj => {
             const container = Object.values(stockObj)[0];
-            
             return { ...container.meta, items: container.items, percentageChange: formatNumber(percentChangedHelper(container.meta.previousClose, container.meta.regularMarketPrice)) };
           }
           ));

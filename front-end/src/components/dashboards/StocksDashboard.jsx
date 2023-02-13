@@ -9,14 +9,11 @@ import { Link } from "react-router-dom";
 
 const topStockArray = ['AAPL', 'TSLA', 'MSFT', 'META', 'KO'];
 
-
 export default function StocksDashboard(props) {
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
   const [searchValue, setSearchValue] = useState("");
-  
-  
   
   const { result } = useStockData(watchlist? watchlistIds : topStockArray);
 
@@ -24,18 +21,16 @@ export default function StocksDashboard(props) {
   
   useEffect(() => {
     
-        axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
-        .then((result) => {
-            const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-            setWatchlistIds(ids);
-          })
-          .catch((ex) => {
-              console.log(ex);
-            });
-          },[payload])
+    axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
+      .then((result) => {
+        const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
+        setWatchlistIds(ids);
+      })
+      .catch((ex) => {
+        console.log(ex);
+      });
+  },[payload])
         
-        
-
   if(isLoading) {
     return null;
   };
@@ -56,13 +51,8 @@ export default function StocksDashboard(props) {
           </Link>
         </form>
       </div>
-      {/* ___________COMMENTED OUT TO CHECK FOR USABILITY______________ */}
       <Navigation tab={'stocks'} />
       {result && result.length !== 0 && <StockTable data={result} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds} />}
-
-      {/* ____________CODE BELOW IS ADDED FOR CHECKING_________ */}
-      {/* <Navigation tab={'stocks'} />
-      {data && data.length !== 0 && <StockTable data={data} setWatchlistIds={setWatchlistIds} watchlistIds={watchlistIds}/>} */}
     </main>
   );
 }
