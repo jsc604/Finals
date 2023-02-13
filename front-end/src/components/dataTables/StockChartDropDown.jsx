@@ -93,7 +93,7 @@ export default function StockChartDropDown(props) {
         Sector: {stockInfoData?.data[0]?.sector}
         <br />
         <br />
-        <a href={`https://${stockInfoData?.data[0]?.website}`} target="_blank" rel="noopener noreferrer" style={{color: "#ffc107"}}>
+        <a href={`${stockInfoData?.data[0]?.website}`} target="_blank" rel="noopener noreferrer" style={{color: "#ffc107"}}>
           <strong>
           {stockInfoData?.data[0]?.website}
           </strong>
