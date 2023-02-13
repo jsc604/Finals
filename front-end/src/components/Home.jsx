@@ -1,4 +1,3 @@
-import "../styles/HomepageButton2.scss"
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -6,6 +5,8 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { watchlistContext } from "../providers/WatchlistProvider";
 
+//STYLES
+import "../styles/HomepageButton2.scss"
 
 export default function Home(props) {
   const { user, isAuthenticated, isLoading } = useAuth0();

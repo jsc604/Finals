@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
-import percentChangedHelper from '../helpers/percentChange';
 import axios from 'axios';
-import { formatNumber } from "../helpers/table_helpers";
 
 export default function useStockInformationSingleCall(stock) {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
-
-  // const stockURL = axios.defaults.baseURL = 'https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history';
 
   useEffect(() => {
-    let cancel = false;
+
     setLoading(true);
 
     setData([]);
@@ -30,9 +25,7 @@ export default function useStockInformationSingleCall(stock) {
     axios.request(options)
       .then(response => {
         const dataArray = Object.values(response.data);
-        console.log("Data Array: ", dataArray);
         setData(dataArray);
-        // setData(response.data);
       })
       .catch(error => {
         console.error("Error: ", error);
@@ -41,11 +34,9 @@ export default function useStockInformationSingleCall(stock) {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [stock]);
 
   const result = { error, loading, data };
-
-  console.log("Data: ", data);
 
   return result;
 }

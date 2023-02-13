@@ -1,5 +1,9 @@
-import CryptoItems from "./CryptoItems";
 import { useState } from "react";
+
+// COMPONENTS
+import CryptoItems from "./CryptoItems";
+
+// STYLES
 import "../../styles/tableItems.scss";
 
 export default function CryptoTable(props) {

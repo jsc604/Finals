@@ -1,9 +1,13 @@
-import "../styles/app.scss";
-import "../styles/header.scss";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+
+// STYLES
+import "../styles/app.scss";
+import "../styles/header.scss";
+
+// COMPONENTS
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
 
 export default function Header() {

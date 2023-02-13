@@ -1,12 +1,18 @@
 import { useParams, Link } from "react-router-dom";
-import useNftInfo from "../../hooks/useNftInfo";
 import { useState, useEffect } from "react";
-import "../../styles/nftInfo.scss";
-import { formatNumber } from "../../helpers/table_helpers";
-import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
 import { watchlistContext } from "../../providers/WatchlistProvider";
+import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+
+//HOOKS
+import useNftInfo from "../../hooks/useNftInfo";
+
+// STYLES
+import "../../styles/nftInfo.scss";
+
+//HELPERS
+import { formatNumber } from "../../helpers/table_helpers";
 
 export default function NftInfo2(props) {
   const [favorite, setFavorite] = useState(false);

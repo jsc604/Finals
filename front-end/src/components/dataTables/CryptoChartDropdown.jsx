@@ -1,4 +1,6 @@
+// HELPERS
 import { formatNumber, trendingUp, trendingDown } from "../../helpers/table_helpers";
+// STYLES
 import "../../styles/tableItems.scss";
 
 export default function CryptoChartDropdown(props) {

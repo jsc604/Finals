@@ -1,13 +1,21 @@
 import { Link, useParams } from "react-router-dom";
-import useCryptoData from "../../hooks/useCryptoData";
-import "../../styles/infoPage.scss";
-import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
-import ApexCryptoChart from "../charts/ApexCryptoChart";
 import { useContext } from "react";
 import { watchlistContext } from "../../providers/WatchlistProvider";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+
+// HOOKS
+import useCryptoData from "../../hooks/useCryptoData";
+
+// STYLES
+import "../../styles/infoPage.scss";
+
+// HELPERS
+import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
+
+// CHART
+import ApexCryptoChart from "../charts/ApexCryptoChart";
 
 export default function CryptoInfo(props) {
   const [favorite, setFavorite] = useState(false);
