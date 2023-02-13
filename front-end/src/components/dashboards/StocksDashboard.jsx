@@ -11,34 +11,33 @@ const topStockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
 
 export default function StocksDashboard(props) {
-  const { data } = useStockData();
   const { watchlist } = useContext(watchlistContext);
   const [watchlistIds, setWatchlistIds] = useState([]);
   const { isLoading, user } = useAuth0();
   const [searchValue, setSearchValue] = useState("");
-
-
+  
+  
   // _________________COMMENTED OUT TO CHECK FOR USABILITY___________________
-  // const payload = user?.email;
-
-  // useEffect(() => {
-
-  //     axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
-  //     .then((result) => {
-  //       const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-  //       setWatchlistIds(ids);
-  //     })
-  //     .catch((ex) => {
-  //       console.log(ex);
-  //     });
-  //   },[payload])
-
-  // const {result}  = useStockData(watchlist ? watchlistIds : topStockArray);
-
-  // if(isLoading) {
-  //   return null;
-  // };
-
+  const payload = user?.email;
+  
+  useEffect(() => {
+    
+        axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
+        .then((result) => {
+            const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
+            setWatchlistIds(ids);
+          })
+          .catch((ex) => {
+              console.log(ex);
+            });
+          },[payload])
+        
+        
+  const { data } = useStockData(watchlist? watchlistIds : topStockArray);
+  
+  if(isLoading) {
+    return null;
+  };
 
   return (
     <main>
@@ -51,8 +50,8 @@ export default function StocksDashboard(props) {
             placeholder="Search..."
             onChange={(event) => setSearchValue(event.target.value)}
           />
-          <Link to={`/stocks/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>
-            <button className="search-button">Submit</button>
+          <Link to={`/stocks/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>&nbsp;
+            <button className="search-button btn btn-outline-warning"><i class="fa-solid fa-magnifying-glass"></i></button>
           </Link>
         </form>
       </div>

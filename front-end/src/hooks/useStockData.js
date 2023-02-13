@@ -3,18 +3,18 @@ import percentChangedHelper from '../helpers/percentChange';
 import axios from 'axios';
 import { formatNumber } from "../helpers/table_helpers";
 
-export default function Test() {
+export default function useStockData(array) {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
+  // const stockArray = ['AAPL', 'TSLA', 'MSFT', 'ARKK', 'KO'];
 
   useEffect(() => {
     let cancel = false;
 
     setLoading(true);
 
-    const promises = stockArray.map(stock => {
+    const promises = array.map(stock => {
       const options = {
         method: 'GET',
         url: `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${stock}/15m`,

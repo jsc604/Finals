@@ -1,30 +1,31 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
 // HOOKS
-import useStockInformation from "../../hooks/useStockInformation";
-import useStockData from "../../hooks/useStockData";
 import "../../styles/infoPage.scss";
 import percentChangedHelper from "../../helpers/percentChange";
+import useStockInformationSingleCall from "../../hooks/useStockInformationSingleCall";
+import useStockDataSingleCall from "../../hooks/useStockDataSingleCall";
 
 //HELPERS
 import { formatNumber, trendingDown, trendingUp } from "../../helpers/table_helpers";
 
 //CHART
 import ApexStockChart from "../charts/ApexStockChart";
+import { watchlistContext } from "../../providers/WatchlistProvider";
 
 
 export default function StockInfo(props) {
   const [favorite, setFavorite] = useState(false);
   const [interval, setInterval] = useState(1);
+  const { watchlist } = useContext(watchlistContext);
 
   const { id } = useParams();
-  const stockInfoData = useStockInformation(`https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/${id}/asset-profile`);
-  const dataFromStocks = useStockData(interval, `https://yahoo-finance15.p.rapidapi.com/api/yahoo/hi/history/${id}/${interval}`);
-
+  const { data } = useStockInformationSingleCall(id);
+  const { dataFromStocks } = useStockDataSingleCall(id);
 
   const { user } = useAuth0();
 
@@ -33,7 +34,7 @@ export default function StockInfo(props) {
     const payload = {
       email: user.email,
       apiId: id,
-      category: 'stock'
+      category: 'stocks'
     };
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
@@ -53,20 +54,19 @@ export default function StockInfo(props) {
         });
     }
   };
-
+  
   return (
     <div className="infos">
-      {dataFromStocks?.data[0] && stockInfoData?.stockInfoData[0] ? (
+      {dataFromStocks && data[0] ? (
         <>
           <div /*className="info-header" */>
               <div className="info-header">
             <Link to="/stocks/dashboard">
               <button className="btn btn-outline-warning">
-                {/* {watchlist? 'Back to Watchlist' : 'Back to Dashboard'} */}
-                Back to Dashboard
+                {watchlist ? 'Back to Watchlist' : 'Back to Dashboard'}
               </button>
             </Link>
-            <h1>{dataFromStocks?.data[0]?.symbol}</h1>
+            <h1>{dataFromStocks[0].symbol}</h1>
               </div>
             <div className="chart-info-container">
               <ApexStockChart
@@ -115,9 +115,9 @@ export default function StockInfo(props) {
                   </thead>
                   <tbody>
                     <tr>
-                      <td className={percentChangedHelper(dataFromStocks?.data[0]?.regularMarketPrice, dataFromStocks?.data[0]?.previousClose) >= 0 ? 'positive' : 'negative'}>
-                        {percentChangedHelper(dataFromStocks?.data[0]?.regularMarketPrice, dataFromStocks?.data[0]?.previousClose) >= 0 ? trendingUp : trendingDown} {dataFromStocks?.data[0]?.percentChange} <br />
-                        %{formatNumber(percentChangedHelper(dataFromStocks?.data[0]?.regularMarketPrice, dataFromStocks?.data[0]?.previousClose))}
+                      <td className={percentChangedHelper(dataFromStocks[0]?.regularMarketPrice, dataFromStocks[0].previousClose) >= 0 ? 'positive' : 'negative'}>
+                        {percentChangedHelper(dataFromStocks[0].regularMarketPrice, dataFromStocks[0].previousClose) >= 0 ? trendingUp : trendingDown} {dataFromStocks[0].percentChange} <br />
+                        %{formatNumber(percentChangedHelper(dataFromStocks[0].regularMarketPrice, dataFromStocks[0].previousClose))}
                       </td>
                       <td className={-2.22 >= 0 ? 'positive' : 'positive'}>
                         {1.46 >= 0 ? trendingUp : trendingDown}
@@ -142,19 +142,19 @@ export default function StockInfo(props) {
 
                 <div className="details">
                   Current Price: <strong>
-                    ${dataFromStocks?.data[0]?.regularMarketPrice}
+                    ${dataFromStocks[0].regularMarketPrice}
                   </strong>
                   <br />
                   Previous Close: <strong>
-                    ${dataFromStocks?.data[0]?.previousClose}
+                    ${dataFromStocks[0].previousClose}
                   </strong>
 
                   <br />
                   <br />
                   <br />
-                  <a href={`${stockInfoData?.stockInfoData[0]?.website}`} target="_blank">
+                  <a href={`${data[0].website}`} target="_blank">
                     <strong>
-                      {stockInfoData?.stockInfoData[0]?.website}
+                      {data[0].website}
                     </strong>
                   </a>
                   <br />
@@ -166,7 +166,7 @@ export default function StockInfo(props) {
               </div>
             </div>
             <p
-              dangerouslySetInnerHTML={{ __html: stockInfoData?.stockInfoData[0]?.longBusinessSummary }}
+              dangerouslySetInnerHTML={{ __html: data[0]?.longBusinessSummary }}
             ></p>
           </div>
         </>

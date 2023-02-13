@@ -46,8 +46,8 @@ export default function NftDashboard(props) {
             placeholder="Search..."
             onChange={event => setSearchValue(event.target.value)}
           />
-          <Link to={`/nft/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>
-            <button className="search-button">Submit</button>
+          <Link to={`/nft/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>&nbsp;
+            <button className="search-button btn btn-outline-warning"><i class="fa-solid fa-magnifying-glass"></i></button>
           </Link>
         </form>
       </div>
