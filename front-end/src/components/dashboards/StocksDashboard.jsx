@@ -17,7 +17,9 @@ export default function StocksDashboard(props) {
   const [searchValue, setSearchValue] = useState("");
   
   
-  // _________________COMMENTED OUT TO CHECK FOR USABILITY___________________
+  
+  const { result } = useStockData(watchlist? watchlistIds : topStockArray);
+
   const payload = user?.email;
   
   useEffect(() => {
@@ -33,7 +35,6 @@ export default function StocksDashboard(props) {
           },[payload])
         
         
-  const { result } = useStockData(watchlist? watchlistIds : topStockArray);
 
   if(isLoading) {
     return null;

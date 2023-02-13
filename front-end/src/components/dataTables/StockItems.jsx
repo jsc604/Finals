@@ -70,8 +70,11 @@ export default function StockItems(props) {
 
             axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
             .then((result) => {
+              props.setWatchlistIds([]);
               const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
+              // console.log('IDS FROM BACKEND:', ids)
               props.setWatchlistIds(ids);
+              // console.log('WATCHLIST IDS: ', props.watchlistIds)
             })
             .catch((ex) => {
               console.log(ex);
