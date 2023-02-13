@@ -16,7 +16,10 @@ export default function App() {
 
   const location = useLocation();
 
-  const className = classNames('App', {'home': location.pathname === '/'});
+  const className = classNames('App', {
+    'home': location.pathname === '/',
+    'not-home': location.pathname !== '/'
+  });
   
   return (
     <div className={className}>
