@@ -10,10 +10,10 @@ export default function Navigation(props) {
   const { tab } = props;
   const { watchlistToggle, watchlist } = useContext(watchlistContext);
 
-  const stockButton = classNames('btn btn-outline-info', { 'btn btn-outline-info active': tab === 'stocks' });
-  const cryptoButton = classNames('btn btn-outline-info', { 'btn btn-outline-info active': tab === 'crypto' });
-  const nftButton = classNames('btn btn-outline-info', { 'btn btn-outline-info active': tab === 'nft' });
-  const watchlistButton = classNames('btn btn-outline-info', { 'btn btn-outline-info active': watchlist === true });
+  const stockButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'stocks' });
+  const cryptoButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'crypto' });
+  const nftButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': tab === 'nft' });
+  const watchlistButton = classNames('btn btn-outline-warning', { 'btn btn-outline-warning active': watchlist === true });
   
   return (
     <nav className="navbar navbar-light bg-dark">

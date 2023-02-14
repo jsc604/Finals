@@ -19,7 +19,7 @@ export default function Header() {
 
       <Link to="/">
         <span >
-          <img className="logo" src={require("../logo/output-onlinegiftools.gif")} alt="Wave logo"></img>
+          <img className="logo" src={require("../logo/moonshot-high-resolution-logo-color-on-transparent-background.png")} alt="Wave logo"></img>
         </span>
       </Link>
 

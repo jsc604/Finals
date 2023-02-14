@@ -8,15 +8,15 @@
   margin-top: 10px;
   margin-bottom: 15px;
   .logo {
-    // width: 100%;
-    // height: 77px;
-    // padding: 15px;
-    // margin-left: 25px;
-    width: 350px;
-    height: 300px;
-    margin-top: 20%;
+    width: 100%;
+    height: 90px;
     padding: 15px;
     margin-left: 25px;
+    // width: 350px;
+    // height: 300px;
+    // margin-top: 20%;
+    // padding: 15px;
+    // margin-left: 25px;
     // background-color: black;
     // background-image:
     // radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
@@ -43,13 +43,13 @@
   width: 100px;
   background-color: black;
   border-radius: 25px;
-  border: 1px solid #0dcaf0;
-  color: #0dcaf0;
-  box-shadow: #0dcaf0 0px 3px 8px;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+  box-shadow: #ffc107 0px 3px 8px;
 
   &:hover, 
   &:focus {
-    background-color: #0dcaf0;
+    background-color: #ffc107;
     color: black;
     border: 1px solid black;
   }

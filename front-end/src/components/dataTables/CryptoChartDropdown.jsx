@@ -12,28 +12,28 @@ export default function CryptoChartDropdown(props) {
         <thead>
           <tr>
             <th scope="col">
-              <button className={ props.interval === 1 ? "btn btn-outline-info active" : "btn btn-outline-info" }
+              <button className={ props.interval === 1 ? "btn btn-outline-warning active" : "btn btn-outline-warning" }
                 onClick={() => onIntervalChange(1)}
               >
                 1 day
               </button>
             </th>
             <th scope="col">
-              <button className={ props.interval === 7 ? "btn btn-outline-info active" : "btn btn-outline-info" }
+              <button className={ props.interval === 7 ? "btn btn-outline-warning active" : "btn btn-outline-warning" }
                 onClick={() => onIntervalChange(7)}
               >
                 7 day
               </button>
             </th>
             <th scope="col">
-              <button className={ props.interval === 14 ? "btn btn-outline-info active" : "btn btn-outline-info" }
+              <button className={ props.interval === 14 ? "btn btn-outline-warning active" : "btn btn-outline-warning" }
                 onClick={() => onIntervalChange(14)}
               >
                 14 day
               </button>
             </th>
             <th scope="col">
-              <button className={ props.interval === 30 ? "btn btn-outline-info active" : "btn btn-outline-info" }
+              <button className={ props.interval === 30 ? "btn btn-outline-warning active" : "btn btn-outline-warning" }
                 onClick={() => onIntervalChange(30)}
               >
                 30 day

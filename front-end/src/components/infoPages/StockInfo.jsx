@@ -80,7 +80,7 @@ export default function StockInfo(props) {
           <div /*className="info-header" */>
               <div className="info-header">
             <Link to="/stocks/dashboard">
-              <button className="btn btn-outline-info">
+              <button className="btn btn-outline-warning">
                 {watchlist ? 'Back to Watchlist' : 'Back to Dashboard'}
               </button>
             </Link>
@@ -99,7 +99,7 @@ export default function StockInfo(props) {
                     <tr>
                       <th scope="col">
                         <button
-                          className={interval === 1 ? "btn btn-outline-info active" : "btn btn-outline-info"}
+                          className={interval === 1 ? "btn btn-outline-warning active" : "btn btn-outline-warning"}
                           onClick={() => setInterval(1)}
                         >
                           1 day
@@ -107,7 +107,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === 7 ? "btn btn-outline-info active" : "btn btn-outline-info"}
+                          className={interval === 7 ? "btn btn-outline-warning active" : "btn btn-outline-warning"}
                           onClick={() => setInterval(7)}
                         >
                           7 day
@@ -115,7 +115,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === 14 ? "btn btn-outline-info active" : "btn btn-outline-info"}
+                          className={interval === 14 ? "btn btn-outline-warning active" : "btn btn-outline-warning"}
                           onClick={() => setInterval(14)}
                         >
                           14 day
@@ -123,7 +123,7 @@ export default function StockInfo(props) {
                       </th>
                       <th scope="col">
                         <button
-                          className={interval === 30 ? "btn btn-outline-info active" : "btn btn-outline-info"}
+                          className={interval === 30 ? "btn btn-outline-warning active" : "btn btn-outline-warning"}
                           onClick={() => setInterval(30)}
                         >
                           30 day
@@ -178,7 +178,7 @@ export default function StockInfo(props) {
                   <br />
                 </div>
 
-                <button onClick={handleClick} className="btn btn-outline-info add-to-watchlist">
+                <button onClick={handleClick} className="btn btn-outline-warning add-to-watchlist">
                   <i className={favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> {favorite? 'Remove from Watchlist' : 'Add to Watchlist'}
                 </button>
               </div>
