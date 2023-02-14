@@ -15,22 +15,22 @@ export default function StocksDashboard(props) {
   const { isLoading, user } = useAuth0();
   const [searchValue, setSearchValue] = useState("");
   
-  const { result } = useStockData(watchlist? watchlistIds : topStockArray);
-
   const payload = user?.email;
   
   useEffect(() => {
     
     axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload}`)
-      .then((result) => {
-        const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-        setWatchlistIds(ids);
-      })
-      .catch((ex) => {
-        console.log(ex);
-      });
+    .then((result) => {
+      const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
+      setWatchlistIds(ids);
+    })
+    .catch((ex) => {
+      console.log(ex);
+    });
   },[payload])
-        
+  
+  const { result } = useStockData(watchlist? watchlistIds : topStockArray);
+  
   if(isLoading) {
     return null;
   };
@@ -46,7 +46,7 @@ export default function StocksDashboard(props) {
             placeholder="Search..."
             onChange={(event) => setSearchValue(event.target.value)}
           />
-          <Link to={`/stocks/${searchValue.replace(/\s+/g, '-').toLowerCase()}`}>&nbsp;
+          <Link to={`/stocks/${searchValue.replace(/\s+/g, '-').toUpperCase()}`}>&nbsp;
             <button className="search-button btn btn-outline-warning"><i className="fa-solid fa-magnifying-glass"></i></button>
           </Link>
         </form>

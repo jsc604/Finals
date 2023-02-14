@@ -49,7 +49,7 @@ export default function CryptoItems(props) {
         console.error(error);
       });
     }
-  }, [user]);
+  }, [user, props.id]);
 
   const handleClick = () => {
 

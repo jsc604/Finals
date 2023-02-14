@@ -23,11 +23,9 @@ export default function StockInfo(props) {
   const [interval, setInterval] = useState(1);
   const { watchlist } = useContext(watchlistContext);
 
-
   const { id } = useParams();
   const { data } = useStockInformationSingleCall(id);
   const { dataFromStocks } = useStockDataSingleCall(id);
-  const [watchlistIds, setWatchlistIds] = useState([]);
 
   const { user } = useAuth0();
 
@@ -47,49 +45,31 @@ export default function StockInfo(props) {
         console.error(error);
       });
     }
-  }, [ user]);
+  }, [user, id]);
 
   const handleClick = () => {
+    setFavorite(!favorite);
     const payload = {
       email: user.email,
       apiId: id,
       category: 'stocks'
-    };
+    }
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
-      .then(result => {
-          for (let i of result.data.rows) {
-            let sorted = watchlistIds.filter(id => id !== i['api_id']) 
-            setWatchlistIds(sorted)
-            setFavorite(!favorite);
-
-            axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
-            .then((result) => {
-              setWatchlistIds([]);
-              const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-              setWatchlistIds(ids);
-            })
-            .catch((ex) => {
-              console.log(ex);
-            });
-          }
+        .then(result => {
+          console.log('RESULT: ', result);
         })
         .catch(ex => {
           console.log(ex);
         });
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
-      .then(result => {
-        setFavorite(!favorite)
-        axios.get(`http://localhost:8080/getFavoritesStocks?email=${payload.email}`)
-        .then((result) => {
-          const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-          setWatchlistIds(ids);
+        .then(result => {
+          console.log('RESULT: ', result);
         })
-      })
-      .catch(ex => {
-        console.log(ex);
-      });
+        .catch(ex => {
+          console.log(ex);
+        });
     }
   };
   
@@ -104,7 +84,7 @@ export default function StockInfo(props) {
                 {watchlist ? 'Back to Watchlist' : 'Back to Dashboard'}
               </button>
             </Link>
-            <h1>{dataFromStocks[0].apiId}</h1>
+            <h1>{dataFromStocks[0].symbol}</h1>
               </div>
             <div className="chart-info-container">
               <ApexStockChart
@@ -190,7 +170,7 @@ export default function StockInfo(props) {
                   <br />
                   <br />
                   <br />
-                  <a href={`${data[0].website}`} target="_blank">
+                  <a href={`${data[0].website}`} target="_blank" rel="noreferrer">
                     <strong>
                       {data[0].website}
                     </strong>

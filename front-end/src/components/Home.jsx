@@ -9,7 +9,7 @@ import { watchlistContext } from "../providers/WatchlistProvider";
 import "../styles/HomepageButton2.scss"
 
 export default function Home(props) {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
   const { setWatchlist } = useContext(watchlistContext);
 
   useEffect(() => {
@@ -24,11 +24,6 @@ export default function Home(props) {
 
   return (
     <>
-      <div>
-        {/* <h2>
-          .
-        </h2> */}
-      </div>
       <div className="homepage-button-group">
         <Link to="stocks/dashboard" onClick={setWatchlist(false)} >Stocks</Link>
         <Link to="crypto/dashboard" onClick={setWatchlist(false)} >Crypto</Link>

@@ -33,6 +33,7 @@ export default function useStockData(array) {
             };
           } catch (error) {
             console.error(error);
+            setError(error);
           }
         });
   

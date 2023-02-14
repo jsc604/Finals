@@ -51,7 +51,7 @@ export default function StockItems(props) {
           console.error(error);
         });
     }
-  }, [user]);
+  }, [user, props.id]);
 
   const handleClick = () => {
     const payload = {
