@@ -179,7 +179,7 @@ export default function StockInfo(props) {
                 </div>
 
                 <button onClick={handleClick} className="btn btn-light add-to-watchlist">
-                  <i className={favorite ? "fa fa-star favorited" : "fa fa-star regular"}></i> Add to Watchlist
+                  <i className={favorite ? "fa fa-star favorited" : "fa fa-star regular"}></i> {favorite? 'Remove from Watchlist' : 'Add to Watchlist'}
                 </button>
               </div>
             </div>

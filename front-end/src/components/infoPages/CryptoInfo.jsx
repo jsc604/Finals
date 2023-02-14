@@ -164,7 +164,7 @@ export default function CryptoInfo(props) {
                 Total Supply (<img src={cryptoData.image.thumb} alt="logo"/>): <strong>{formatNumber(cryptoData.market_data.total_supply)}</strong>
               </div>
               <button onClick={handleClick} className="btn btn-light add-to-watchlist">
-                <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> Add to Watchlist
+                <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> {favorite? 'Remove from Watchlist' : 'Add to Watchlist'}
               </button>
             </div>
           </div>

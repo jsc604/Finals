@@ -87,8 +87,7 @@ export default function NftInfo2(props) {
             </button>
           </Link>
           <button className="btn btn-light" onClick={handleClick}>
-            <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> 
-            Add to Watchlist
+            <i className={ favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i> {favorite? 'Remove from Watchlist' : 'Add to Watchlist'}
           </button>
         </div>
 
