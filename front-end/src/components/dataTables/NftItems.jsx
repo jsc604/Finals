@@ -40,7 +40,7 @@ export default function NftItems(props) {
         console.error(error);
       });
     }
-  }, [user]);
+  }, [user, props.id]);
 
   const handleClick = () => {
 

@@ -6,7 +6,6 @@ import StockItems from "./StockItems";
 // STYLES
 import "../../styles/tableItems.scss";
 
-
 export default function StockTable(props) {
 
   const [sortedData, setSortedData] = useState(props.data);
@@ -55,7 +54,7 @@ export default function StockTable(props) {
     setWatchlistIds={props.setWatchlistIds}
     watchlistIds={props.watchlistIds}
     />
-  ));
+    ));
 
   return (
     <table className="table table-dark table-hover">
@@ -66,8 +65,6 @@ export default function StockTable(props) {
           <th scope="col" onClick={() => sortData('regularMarketPrice')}>Current Price</th>
           <th scope="col" onClick={() => sortData('lastClose')}>Last market Close</th>
           <th scope="col" onClick={() => sortData('percentChange')}>Daily Change</th>
-
-
           <th scope="col">Chart</th>
         </tr>
       </thead>

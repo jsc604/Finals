@@ -35,7 +35,6 @@ export default function StockItems(props) {
     "negative": props.change < 0
   });
 
-
   useEffect(() => {
     if (user) {
       axios.get('http://localhost:8080/checkIfFavorite', {
@@ -52,7 +51,7 @@ export default function StockItems(props) {
           console.error(error);
         });
     }
-  }, [user]);
+  }, [user, props.id]);
 
   const handleClick = () => {
     const payload = {
@@ -72,9 +71,7 @@ export default function StockItems(props) {
             .then((result) => {
               props.setWatchlistIds([]);
               const ids = result.data.stockFavorites.map(favorite => favorite.api_id);
-              // console.log('IDS FROM BACKEND:', ids)
               props.setWatchlistIds(ids);
-              // console.log('WATCHLIST IDS: ', props.watchlistIds)
             })
             .catch((ex) => {
               console.log(ex);
@@ -84,6 +81,7 @@ export default function StockItems(props) {
         .catch(ex => {
           console.log(ex);
         });
+
     } else {
       axios.post('http://localhost:8080/favoriteInsert', payload)
       .then(result => {
@@ -106,35 +104,27 @@ export default function StockItems(props) {
         <td onClick={handleClick}>
           <i className={favorite ? "fa-solid fa-star favorited" : "fa-regular fa-star"}></i>
         </td>
-
         <td className="symbol-data">
           <Link to={`/stocks/${props.stock}`}>
             {props.stock}
           </Link>
         </td>
-
         <td>${formatNumber(props.price)}</td>
-
         <td>${formatNumber(props.prevClose)}</td>
-
-
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
         <td onClick={() => setDropdown(!dropdown)} ><button className="btn btn-outline-info"><FontAwesomeIcon icon={faCaretDown} /></button>
         </td>
-        </tr>
-
-        {dropdown &&
-          <tr>
-            <td colSpan={4} className="drop-down-chart">
-              <ApexStockChart id={props.stock} interval={interval} />
-            </td>
-
-            <td colSpan={2}>
-              <StockChartDropDown id={props.stock} onIntervalChange={handleIntervalChange}
-                interval={interval} />
-            </td>
-
-          </tr>}
-      </>
-      );
+      </tr>
+      {dropdown &&
+        <tr>
+          <td colSpan={4} className="drop-down-chart">
+            <ApexStockChart id={props.stock} interval={interval} />
+          </td>
+          <td colSpan={2}>
+            <StockChartDropDown id={props.stock} onIntervalChange={handleIntervalChange}
+            interval={interval} />
+          </td>
+        </tr>}
+    </>
+  );
 };

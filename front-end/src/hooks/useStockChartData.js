@@ -28,11 +28,12 @@ export default function useStockChartData(stock) {
       })
       .catch(error => {
         console.error("Error: ", error);
+        setError(error)
       })
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [stock]);
 
   const result = { error, loading, data };
 

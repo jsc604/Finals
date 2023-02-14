@@ -9,7 +9,7 @@ import { watchlistContext } from "../providers/WatchlistProvider";
 import "../styles/HomepageButton2.scss"
 
 export default function Home(props) {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isLoading } = useAuth0();
   const { setWatchlist } = useContext(watchlistContext);
 
   useEffect(() => {

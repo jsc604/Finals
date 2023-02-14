@@ -49,7 +49,7 @@ export default function CryptoItems(props) {
         console.error(error);
       });
     }
-  }, [user]);
+  }, [user, props.id]);
 
   const handleClick = () => {
 
@@ -69,10 +69,7 @@ export default function CryptoItems(props) {
             axios.get(`http://localhost:8080/getFavoritesCrypto?email=${payload.email}`)
             .then((result) => {
               const ids = result.data.CryptoFavorites.map(favorite => favorite.api_id);
-              console.log('IDS FROM BACKEND:', ids)
-
               props.setWatchlistIds(ids);
-              console.log('WATCHLIST IDS: ', props.watchlistIds)
             })
             .catch((ex) => {
               console.log(ex);

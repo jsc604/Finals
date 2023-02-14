@@ -45,7 +45,7 @@ export default function StockInfo(props) {
         console.error(error);
       });
     }
-  }, [id, user]);
+  }, [user, id]);
 
   const handleClick = () => {
     setFavorite(!favorite);
@@ -53,7 +53,7 @@ export default function StockInfo(props) {
       email: user.email,
       apiId: id,
       category: 'stocks'
-    };
+    }
     if (favorite) {
       axios.post('http://localhost:8080/favoriteDelete', payload)
         .then(result => {
@@ -170,7 +170,7 @@ export default function StockInfo(props) {
                   <br />
                   <br />
                   <br />
-                  <a href={`${data[0].website}`} target="_blank">
+                  <a href={`${data[0].website}`} target="_blank" rel="noreferrer">
                     <strong>
                       {data[0].website}
                     </strong>

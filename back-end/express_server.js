@@ -115,7 +115,7 @@ const insertIntoCrypto = (userId, apiId, res) => {
             console.error(error);
             return;
           }
-          console.log(`Inserted "${apiId}" into crypto table`);
+          console.log(`Inserted "${apiId}" into crypto table for user ${userId}`);
           res.send({ status: "success" });
         }
       );
@@ -170,7 +170,7 @@ const insertIntoNft = (userId, apiId, res) => {
             console.error(error);
             return;
           }
-          console.log(`Inserted "${apiId}" into nft table`);
+          console.log(`Inserted "${apiId}" into nft table for user ${userId}`);
           res.send({ status: "success" });
 
         }
