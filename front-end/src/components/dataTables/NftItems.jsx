@@ -100,7 +100,7 @@ export default function NftItems(props) {
 
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.volume)}</td>
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.price)}</td>
-        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {props.change}%</td>
+        <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {formatNumber(props.change)}%</td>
         <td><i className="fa-brands fa-ethereum"></i>{formatNumber(props.marketCap)}</td>
         <td>{formatNumber(props.holders)}</td>
         <td className={percentChange}>{props.change >= 0 ? trendingUp : trendingDown} {formatNumber(props.holdersChange)}%</td>
