@@ -22,28 +22,28 @@ MoonShot was built using the following technologies:
 * Sass
 
 # Screenshots and Demo
-!["homepage"]()
+!["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.22.01%20PM.png?raw=true)
 
 General Functionality:
 
-![GIF Genral function]()
+![GIF Genral function](https://github.com/jsc604/MoonShot/blob/main/docs/general.gif?raw=true)
 
 Sign up and Login:
 
-![GIF Login]()
+![GIF Login](https://github.com/jsc604/MoonShot/blob/main/docs/login.gif?raw=true)
 
 Adding to Watchlist:
 
-![GIF favoriting]()
+![GIF favoriting](https://github.com/jsc604/MoonShot/blob/main/docs/Favoriting.gif?raw=true)
 
-!["homepage"]()
+!["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.37.11%20PM.png?raw=true)
 
-!["homepage"]()
+!["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.27.28%20PM.png?raw=true)
 
-!["homepage"]()
+!["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.28.50%20PM.png?raw=true)
 
 # Installation
-1. Clone the repository: git clone git@github.com:jsc604/MoonShot.git
+1. Clone the repository: `git clone git@github.com:jsc604/MoonShot.git`
 2. Install dependencies: `npm install`
 3. Create a PostgreSQL database
 4. Start the app: `npm start`
