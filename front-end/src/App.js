@@ -11,6 +11,7 @@ import CryptoInfo from "./components/infoPages/CryptoInfo";
 import StockInfo from "./components/infoPages/StockInfo";
 import Header from "./components/Header";
 import NftInfo2 from "./components/infoPages/NftInfo2";
+import Footer from "./components/Footer";
 
 export default function App() {
 
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="*" element={<Home />} />
 
         </Routes>
+        <Footer />
       </WatchlistProvider>
     </div>
   );
