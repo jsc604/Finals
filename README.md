@@ -46,4 +46,4 @@ Adding to Watchlist:
 1. Clone the repository: `git clone git@github.com:jsc604/MoonShot.git`
 2. Install dependencies: `npm install`
 3. Create a PostgreSQL database
-4. Start the app: `npm start`
+4. Start the app on both the front-end and back-end: `npm start`
