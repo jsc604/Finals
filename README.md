@@ -24,16 +24,13 @@ MoonShot was built using the following technologies:
 # Screenshots and Demo
 !["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.22.01%20PM.png?raw=true)
 
-General Functionality:
-
+**General Functionality:**
 ![GIF Genral function](https://github.com/jsc604/MoonShot/blob/main/docs/general.gif?raw=true)
 
-Sign up and Login:
-
+**Sign up and Login:**
 ![GIF Login](https://github.com/jsc604/MoonShot/blob/main/docs/login.gif?raw=true)
 
-Adding to Watchlist:
-
+**Adding to Watchlist:**
 ![GIF favoriting](https://github.com/jsc604/MoonShot/blob/main/docs/Favoriting.gif?raw=true)
 
 !["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.37.11%20PM.png?raw=true)
@@ -41,6 +38,8 @@ Adding to Watchlist:
 !["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.27.28%20PM.png?raw=true)
 
 !["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%201.28.50%20PM.png?raw=true)
+
+!["homepage"](https://github.com/jsc604/MoonShot/blob/main/docs/Screenshot%202023-02-16%20at%202.23.44%20PM.png?raw=true)
 
 # Installation
 1. Clone the repository: `git clone git@github.com:jsc604/MoonShot.git`
